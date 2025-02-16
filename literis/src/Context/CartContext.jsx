@@ -1,7 +1,18 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useContext } from 'react';
 
+// Cria o contexto do carrinho
 export const CartContext = createContext();
 
+// Hook personalizado para usar o contexto do carrinho
+export const useCart = () => {
+  const context = useContext(CartContext);
+  if (!context) {
+    throw new Error('useCart deve ser usado dentro de um CartProvider');
+  }
+  return context;
+};
+
+// Provedor do contexto do carrinho
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 

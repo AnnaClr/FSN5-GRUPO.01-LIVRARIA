@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+// const gradient = "linear-gradient(to right, #6a11cb, #2575fc)";
+
 export const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
@@ -12,8 +14,8 @@ export const Nav = styled.nav`
   
  
   background-color: rgb(255, 255, 255);
-  border-bottom: 2px solid #ddd;
-  border-top: 30px solid  #007bff;
+  border-bottom: 8px solid rgb(88, 42, 255);
+  border-top: 30px solid rgb(88, 42, 255);
 `;
 
 export const Logo = styled(Link)`
@@ -72,7 +74,7 @@ export const SearchInput = styled.input`
 export const SearchButton = styled.button`
   padding: 2.5rem;
   border: none;
-  background-color: #007bff;
+  background-color: rgb(88, 42, 255);
   color: white;
   cursor: pointer;
   display: flex;
@@ -80,7 +82,7 @@ export const SearchButton = styled.button`
   justify-content: center;
 
   &:hover {
-    background-color: #0056b3;
+    background-color:rgb(53, 26, 255);
   }
 `;
 
@@ -101,24 +103,15 @@ export const SearchSelect = styled.select`
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  padding-right: 2rem; /* Espaço para o ícone */
-  text-align: left; /* Alinha o texto à esquerda */
+  padding-right: 2rem;
+  text-align: left;
 `;
 
 export const IconWrapper = styled.div`
   position: absolute;
   right: 0.9rem;
-  pointer-events: none; /* Impede que o ícone bloqueie o clique no select */
+  pointer-events: none;
   color: rgb(117, 117, 131);
-`;
-
-export const MenuCategoryIcon = styled.span`
-  font-size: 2rem;
-  color: gray;
-
-  &:hover {
-    color:rgb(0, 93, 192);
-  }
 `;
 
 export const ArrowIcon = styled.span`
@@ -128,32 +121,6 @@ export const ArrowIcon = styled.span`
 
 export const SearchIcon = styled.span`
   font-size: 1rem;
-`;
-
-export const SecondaryNav = styled.nav`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  gap: 2rem;
-  padding: 1.5rem 1rem;
- 
-  background-color: #f8f8f8;
-  border-bottom: 8px solid  #007bff;
-`;
-
-export const SecondaryNavLink = styled(Link)`
-  text-decoration: none;
-  color: gray;
-  font-weight: 500;
-  font-size: 1.2rem;
-  display: flex; /* Alinha ícone e texto horizontalmente */
-  align-items: center; /* Centraliza verticalmente */
-  gap: 0.5rem; /* Espaço entre o ícone e o texto */
-
-  &:hover {
-    color: rgb(0, 93, 192);
-  }
 `;
 
 export const CartIcon = styled.span`

@@ -4,7 +4,7 @@ import { AuthContext } from '../../context/AuthContext';
 
 // Importando icones:
 import { FaSearch } from "react-icons/fa";
-import { IoIosArrowDown, IoMdMenu, IoMdCart} from "react-icons/io";
+import { IoIosArrowDown, IoMdCart} from "react-icons/io";
 import { IoLogOut } from "react-icons/io5";
 import { FaUserAstronaut } from "react-icons/fa6";
 
@@ -17,13 +17,11 @@ import { Nav, NavLinks,
   SearchSelect, 
   SearchInput, 
   SearchButton, 
-  SecondaryNav, 
-  SecondaryNavLink, 
   SelectContainer, 
   CartIcon, 
   SearchIcon, 
   IconWrapper, 
-  MenuCategoryIcon } from './style';
+} from './style';
 
 const Header = () => {
   const { isAuthenticated, logout } = useContext(AuthContext);
@@ -38,6 +36,7 @@ const Header = () => {
     <>
       {/* Primeira Sessão: Logo, Barra de Pesquisa, Login e Carrinho */}
       <Nav>
+        <div className='divtest'> </div>
             <Logo to="/">
               <LogoImage src="../src/assets/Literis.png" alt="Literis Logo" />
             </Logo>
@@ -80,16 +79,6 @@ const Header = () => {
                 )}
           </NavLinks>
       </Nav>
-
-      {/* Segunda Sessão: Categorias, Mais Vendidos, Livros por Idiomas, Principais Autores */}
-      <SecondaryNav>
-        <SecondaryNavLink to="/categories"> 
-        <MenuCategoryIcon> <IoMdMenu /> </MenuCategoryIcon>
-        CATEGORIAS </SecondaryNavLink>
-        <SecondaryNavLink to="/best-sellers">MAIS VENDIDOS</SecondaryNavLink>
-        <SecondaryNavLink to="/books-by-language">LIVROS POR IDIOMA</SecondaryNavLink>
-        <SecondaryNavLink to="/top-authors">PRINCIPAIS AUTORES</SecondaryNavLink>
-      </SecondaryNav>
     </>
   );
 };

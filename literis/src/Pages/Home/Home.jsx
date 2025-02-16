@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { IoMdMenu } from 'react-icons/io';
+
 import {
   newBooks,
   oscarBooks,
   authors,
   coupons,
   offers,
-  // aboutCards,
-} from '../../Vitrine/livros'; // Importando os dados
+  aboutCards,
+} from '../../Vitrine/livros';
+
 import {
   HomeContainer,
   SectionTitle,
@@ -26,12 +30,15 @@ import {
   CouponCard,
   OfferGrid,
   OfferCard,
-  // AboutGrid,
-  // AboutCard,
-  // AboutIcon,
-  // AboutText,
+  AboutGrid,
+  AboutCard,
+  AboutIcon,
+  AboutText,
   SeeMoreButton,
   PaginationContainer,
+  SecondaryNav, 
+  SecondaryNavLink, 
+  MenuCategoryIcon 
 } from './style';
 
 const Home = () => {
@@ -42,6 +49,9 @@ const Home = () => {
   const [currentOscarBooksIndex, setCurrentOscarBooksIndex] = useState(0);
   const [currentAuthorsIndex, setCurrentAuthorsIndex] = useState(0);
   const [currentOffersIndex, setCurrentOffersIndex] = useState(0);
+
+  // Estado para o modal de detalhes do produto
+  const [selectedBook, setSelectedBook] = useState(null);
 
   // Funções para navegar entre os livros
   const nextBooks = (setIndex, currentIndex, books) => {
@@ -60,6 +70,15 @@ const Home = () => {
 
   return (
     <HomeContainer>
+        {/* Segunda Sessão: Categorias, Mais Vendidos, Livros por Idiomas, Principais Autores */}
+            <SecondaryNav>
+                <SecondaryNavLink to="/categories"> 
+                <MenuCategoryIcon> <IoMdMenu /> </MenuCategoryIcon>
+                CATEGORIAS </SecondaryNavLink>
+                <SecondaryNavLink to="/best-sellers">MAIS VENDIDOS</SecondaryNavLink>
+                <SecondaryNavLink to="/books-by-language">LIVROS POR IDIOMA</SecondaryNavLink>
+                <SecondaryNavLink to="/top-authors">PRINCIPAIS AUTORES</SecondaryNavLink>
+            </SecondaryNav>
       {/* Novidades na Literis */}
       <SectionTitle>Novidades na Literis</SectionTitle>
       <BookGrid>
@@ -69,7 +88,9 @@ const Home = () => {
             <BookTitle>{book.title}</BookTitle>
             <BookAuthor>{book.author}</BookAuthor>
             <BookPrice>{book.price}</BookPrice>
-            <DetailsButton>Ver Detalhes</DetailsButton>
+            <DetailsButton as={Link} to={`/product/${book.title}`}>
+               Ver Detalhes
+            </DetailsButton>
           </BookCard>
         ))}
       </BookGrid>
@@ -98,7 +119,9 @@ const Home = () => {
             <BookTitle>{book.title}</BookTitle>
             <BookAuthor>{book.author}</BookAuthor>
             <BookPrice>{book.price}</BookPrice>
-            <DetailsButton>Ver Detalhes</DetailsButton>
+            <DetailsButton as={Link} to={`/product/${book.id}`}>
+               Ver Detalhes
+            </DetailsButton>
           </BookCard>
         ))}
       </BookGrid>
@@ -160,7 +183,9 @@ const Home = () => {
             <BookImage src={offer.image} alt={offer.title} />
             <BookTitle>{offer.title}</BookTitle>
             <BookPrice>{offer.price}</BookPrice>
-            <DetailsButton>Ver Detalhes</DetailsButton>
+            <DetailsButton as={Link} to={`/product/${offer.id}`}>
+               Ver Detalhes
+            </DetailsButton>
           </OfferCard>
         ))}
       </OfferGrid>
@@ -180,7 +205,7 @@ const Home = () => {
       </PaginationContainer>
       <SeeMoreButton>Veja mais</SeeMoreButton>
 
-      {/* Conheça a Literis
+      {/* Conheça a Literis */}
       <SectionTitle>Conheça a Literis</SectionTitle>
       <AboutGrid>
         {aboutCards.map((card) => (
@@ -189,7 +214,7 @@ const Home = () => {
             <AboutText>{card.text}</AboutText>
           </AboutCard>
         ))}
-      </AboutGrid> */}
+      </AboutGrid>
     </HomeContainer>
   );
 };

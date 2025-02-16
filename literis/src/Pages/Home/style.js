@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 // Cores principais
 const primaryColor = "rgb(67, 139, 255)";
@@ -119,7 +120,7 @@ export const BookCard = styled.div`
 
 export const BookImage = styled.img`
   width: 100%;
-  height: auto;
+  max-height: 400px;
   object-fit: cover;
   border-radius: 10px;
   margin-bottom: 1rem;
@@ -380,4 +381,39 @@ export const AboutIcon = styled.div`
 export const AboutText = styled.p`
   font-size: 1rem;
   color: ${textColor};
+`;
+
+export const SecondaryNav = styled.nav`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 2rem;
+  padding: 1.5rem 1rem;
+ 
+  background-color: #f8f8f8;
+  border-bottom: 2px solid #ddd;
+`;
+
+export const SecondaryNavLink = styled(Link)`
+  text-decoration: none;
+  color: gray;
+  font-weight: 500;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &:hover {
+    color: rgb(0, 93, 192);
+  }
+`;
+
+export const MenuCategoryIcon = styled.span`
+  font-size: 2rem;
+  color: gray;
+
+  &:hover {
+    color:rgb(0, 93, 192);
+  }
 `;
