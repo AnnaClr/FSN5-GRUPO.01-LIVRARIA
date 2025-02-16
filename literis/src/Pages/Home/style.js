@@ -78,8 +78,8 @@ export const BookCard = styled.div`
   color: ${textColor};
   position: relative;
   overflow: hidden;
-  width: 300px; /* Largura fixa */
-  height: auto; /* Altura fixa */
+  width: 300px;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -241,8 +241,8 @@ export const AuthorCard = styled.div`
   color: ${textColor};
   position: relative;
   overflow: hidden;
-  width: 200px; /* Largura fixa */
-  height: auto; /* Altura fixa */
+  width: 200px;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -313,8 +313,8 @@ export const OfferCard = styled.div`
   color: ${textColor};
   position: relative;
   overflow: hidden;
-  width: 300px; /* Largura fixa */
-  height: auto; /* Altura fixa */
+  width: 300px;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
