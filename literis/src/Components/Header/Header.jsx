@@ -3,24 +3,18 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 
 // Importando icones:
-import { FaSearch } from "react-icons/fa";
-import { IoIosArrowDown, IoMdCart} from "react-icons/io";
+// import { IoMdCart } from "react-icons/io";
 import { IoLogOut } from "react-icons/io5";
-import { FaUserAstronaut } from "react-icons/fa6";
+// import { FaUserAstronaut } from "react-icons/fa6";
 
 // Importando componentes estilizados:
-import { Nav, NavLinks, 
+import {  
+  Nav, 
+  NavLinks, 
   LogoImage, 
   LogoutButton, 
   Logo, 
-  SearchBar, 
-  SearchSelect, 
-  SearchInput, 
-  SearchButton, 
-  SelectContainer, 
   CartIcon, 
-  SearchIcon, 
-  IconWrapper, 
 } from './style';
 
 const Header = () => {
@@ -33,52 +27,50 @@ const Header = () => {
   };
 
   return (
-    <>
-      {/* Primeira Sessão: Logo, Barra de Pesquisa, Login e Carrinho */}
-      <Nav>
-        <div className='divtest'> </div>
-            <Logo to="/">
-              <LogoImage src="../src/assets/Literis.png" alt="Literis Logo" />
-            </Logo>
-
-            <SearchBar>
-                <SelectContainer>
-                  <SearchSelect>
-                    <option value="title">Por Título</option>
-                    <option value="author">Por Autor</option>
-                    <option value="publisher">Por Editora</option>
-                  </SearchSelect>
-                    <IconWrapper>
-                      <IoIosArrowDown />
-                  </IconWrapper>
-                </SelectContainer>
-              <SearchInput type="text" placeholder="Pesquisar..." />
-              <SearchButton>
-                <SearchIcon> <FaSearch /> </SearchIcon> {/* Ícone de lupa */}
-              </SearchButton>
-            </SearchBar>
-
-            <NavLinks>
-                <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-                  <Link to="/cart">
-                    <CartIcon> <IoMdCart /> </CartIcon>
-                  </Link>
-                  {!isAuthenticated && (
-                    <Link to="/login">
-                      <CartIcon> <FaUserAstronaut /> </CartIcon>
-                    </Link>
+    <>  
+        <Nav>
+        {/* Logo da Livraria */}            
+        <Logo to="/">
+            <LogoImage src="../src/assets/Literis.png" alt="Literis Logo" />
+        </Logo>
+     
+          <div className='divtest'> </div>
+              <NavLinks>
+                  <section style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+                      {/* Navegar para a Página Inicial */}
+                      <Link to="/">
+                          INÍCIO
+                      </Link>
+                      {/* Navegar para a Livraria */}
+                      <Link to="/bookstore">
+                          LIVRARIA
+                      </Link>
+                      {/* Navegar para a pagina Sobre Nós*/}
+                      <Link to="/about">
+                          SOBRE NÓS
+                      </Link>
+                      {/* Navegar para o Login */}
+                      {!isAuthenticated && (
+                          <Link to="/login">
+                              LOGIN
+                          </Link>
+                      )}
+                      {/* Navegar para o Carrinho */}
+                      <Link to="/cart">
+                          CARRINHO
+                      </Link>
+                  </section>
+                  
+                  
+                  {isAuthenticated && (
+                    <LogoutButton onClick={handleLogout}> 
+                      <CartIcon> 
+                          <IoLogOut /> 
+                        </CartIcon>
+                    </LogoutButton>
                   )}
-                </div>
-                
-                {isAuthenticated && (
-                  <LogoutButton onClick={handleLogout}> 
-                     <CartIcon> 
-                         <IoLogOut /> 
-                      </CartIcon>
-                  </LogoutButton>
-                )}
-          </NavLinks>
-      </Nav>
+            </NavLinks>
+        </Nav>   
     </>
   );
 };

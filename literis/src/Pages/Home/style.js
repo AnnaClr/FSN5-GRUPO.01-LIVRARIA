@@ -233,11 +233,11 @@ export const AuthorGrid = styled.div`
 `;
 
 export const AuthorCard = styled.div`
-  background: ${white};
-  border-radius: 15px;
+  /* background: ${white};
+  border-radius: 15px; */
   padding: 1.5rem;
   text-align: center;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1); */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   color: ${textColor};
   position: relative;
@@ -250,17 +250,19 @@ export const AuthorCard = styled.div`
 
   &:hover {
     transform: translateY(-10px);
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); */
   }
 `;
 
 export const AuthorImage = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  max-height: 250px;
+  max-width: 200px;
+  height: auto;
   border-radius: 50%;
   object-fit: cover;
   margin: 0 auto 1rem;
-  border: 3px solid ${primaryColor};
+  border: 3px solid #6a11cb,;
 `;
 
 export const AuthorName = styled.p`

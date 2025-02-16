@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import styled from 'styled-components';
-import { CartContext } from '../context/CartContext';
+import { CartContext } from '../../context/CartContext';
 import { toast } from 'react-toastify';
+import { Container, CartList, CartItem, QuantityControl, CheckoutButton } from './style';
 
 const Cart = () => {
   const { cart, removeFromCart, updateQuantity, clearCart } = useContext(CartContext);
@@ -42,41 +42,5 @@ const Cart = () => {
     </Container>
   );
 };
-
-const Container = styled.div`
-  padding: 20px;
-  text-align: center;
-`;
-
-const CartList = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-`;
-
-const CartItem = styled.div`
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const QuantityControl = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-`;
-
-const CheckoutButton = styled.button`
-  padding: 10px 20px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 20px;
-`;
 
 export default Cart;

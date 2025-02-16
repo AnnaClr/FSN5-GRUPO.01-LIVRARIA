@@ -4,7 +4,7 @@ import Home from './pages/Home/Home.jsx';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ProductDetails from './Pages/ProductDetails/ProductDetail.jsx';
-import Cart from './pages/Cart';
+import Cart from './pages/Cart/Cart.jsx';
 import Contact from './pages/Contact';
 import About from './pages/About';
 import Header from './components/Header/Header';
@@ -21,22 +21,19 @@ function App() {
     <Router>
       <Header />
       <Routes>
-        {/* <Route
-          path="/"
-          element={isAuthenticated ? <Home /> : <Navigate to="/about" />}
-        /> */}
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/product/:id" element={<ProductDetails />} />
+        <Route path="/cart" element={<Cart />} />
         {/* <Route
           path="/product/:id"
           element={isAuthenticated ? <ProductDetails /> : <Navigate to="/" />}
         /> */}
-        <Route
+        {/* <Route
           path="/cart"
-          element={isAuthenticated ? <Cart /> : <Navigate to="/" />}
-        />
+          element={isAuthenticated ? <Cart /> : <Navigate to="/login" />}
+        /> */}
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
       </Routes>

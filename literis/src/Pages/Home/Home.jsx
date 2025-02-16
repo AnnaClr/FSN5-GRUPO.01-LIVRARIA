@@ -6,9 +6,9 @@ import {
   newBooks,
   oscarBooks,
   authors,
-  coupons,
+  // coupons,
   offers,
-  aboutCards,
+  // aboutCards,
 } from '../../Vitrine/livros';
 
 import {
@@ -26,14 +26,14 @@ import {
   AuthorImage,
   AuthorName,
   ArrowButton,
-  CouponGrid,
-  CouponCard,
+  // CouponGrid,
+  // CouponCard,
   OfferGrid,
   OfferCard,
-  AboutGrid,
-  AboutCard,
-  AboutIcon,
-  AboutText,
+  // AboutGrid,
+  // AboutCard,
+  // AboutIcon,
+  // AboutText,
   SeeMoreButton,
   PaginationContainer,
   SecondaryNav, 
@@ -169,11 +169,6 @@ const Home = () => {
 
       {/* Cupons de desconto */}
       <SectionTitle>Cupons de desconto</SectionTitle>
-      <CouponGrid>
-        {coupons.map((coupon) => (
-          <CouponCard key={coupon.id}>{coupon.text}</CouponCard>
-        ))}
-      </CouponGrid>
 
       {/* Ofertas da Semana */}
       <SectionTitle>Ofertas da Semana</SectionTitle>
@@ -207,14 +202,6 @@ const Home = () => {
 
       {/* Conheça a Literis */}
       <SectionTitle>Conheça a Literis</SectionTitle>
-      <AboutGrid>
-        {aboutCards.map((card) => (
-          <AboutCard key={card.id}>
-            <AboutIcon>{card.icon}</AboutIcon>
-            <AboutText>{card.text}</AboutText>
-          </AboutCard>
-        ))}
-      </AboutGrid>
     </HomeContainer>
   );
 };

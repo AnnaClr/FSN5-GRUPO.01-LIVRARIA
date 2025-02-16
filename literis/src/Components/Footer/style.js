@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+const gradient = "linear-gradient(to right, #6a11cb, #2575fc)";
+
 export const FooterContainer = styled.footer`
   background-color:rgb(255, 255, 255);
   border-top: 6px solid #007bff;
@@ -66,10 +68,11 @@ export const PaymentIcons = styled.div`
 `;
 
 export const FooterBottom = styled.div`
+  /* background: ${gradient}; */
   text-align: center;
   padding-top: 1.5rem;
   font-size: 0.9rem;
-  color: #777;
+  color: #000;
   border-top: 2px solid #ddd;
   margin-top: 1.5rem;
 `;
