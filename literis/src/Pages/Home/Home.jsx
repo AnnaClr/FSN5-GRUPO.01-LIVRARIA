@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { IoMdMenu } from 'react-icons/io';
 
+import AstronautCupom from '../../assets/AstronautCupom.png';
+import Cupom2 from '../../assets/Cupom2.png';
+import MoonCupom from '../../assets/MoonCupom.png';
+
 import {
   newBooks,
   oscarBooks,
   authors,
-  // coupons,
   offers,
-  // aboutCards,
 } from '../../Vitrine/livros';
 
 import {
@@ -26,8 +28,8 @@ import {
   AuthorImage,
   AuthorName,
   ArrowButton,
-  // CouponGrid,
-  // CouponCard,
+  CupomImage,
+  CupomCard,
   OfferGrid,
   OfferCard,
   // AboutGrid,
@@ -35,7 +37,6 @@ import {
   // AboutIcon,
   // AboutText,
   SeeMoreButton,
-  PaginationContainer,
   SecondaryNav, 
   SecondaryNavLink, 
   MenuCategoryIcon 
@@ -49,17 +50,14 @@ const Home = () => {
   const [currentOscarBooksIndex, setCurrentOscarBooksIndex] = useState(0);
   const [currentAuthorsIndex, setCurrentAuthorsIndex] = useState(0);
   const [currentOffersIndex, setCurrentOffersIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Estado para o modal de detalhes do produto
-  const [selectedBook, setSelectedBook] = useState(null);
-
-  // Funções para navegar entre os livros
-  const nextBooks = (setIndex, currentIndex, books) => {
-    setIndex((prev) => (prev + booksPerPage < books.length ? prev + booksPerPage : prev));
+  const nextBooks = () => {
+    setCurrentIndex((prev) => (prev + 3) % (newBooks.length - 2));
   };
 
-  const prevBooks = (setIndex, currentIndex) => {
-    setIndex((prev) => (prev - booksPerPage >= 0 ? prev - booksPerPage : prev));
+  const prevBooks = () => {
+    setCurrentIndex((prev) => (prev - 3 + (newBooks.length - 2)) % (newBooks.length - 2));
   };
 
   // Livros visíveis em cada seção
@@ -70,7 +68,8 @@ const Home = () => {
 
   return (
     <HomeContainer>
-        {/* Segunda Sessão: Categorias, Mais Vendidos, Livros por Idiomas, Principais Autores */}
+    
+        {/* Categorias, Mais Vendidos, Livros por Idiomas, Principais Autores */}
             <SecondaryNav>
                 <SecondaryNavLink to="/categories"> 
                 <MenuCategoryIcon> <IoMdMenu /> </MenuCategoryIcon>
@@ -79,96 +78,69 @@ const Home = () => {
                 <SecondaryNavLink to="/books-by-language">LIVROS POR IDIOMA</SecondaryNavLink>
                 <SecondaryNavLink to="/top-authors">PRINCIPAIS AUTORES</SecondaryNavLink>
             </SecondaryNav>
+   
       {/* Novidades na Literis */}
-      <SectionTitle>Novidades na Literis</SectionTitle>
-      <BookGrid>
-        {visibleNewBooks.map((book) => (
-          <BookCard key={book.id}>
-            <BookImage src={book.image} alt={book.title} />
-            <BookTitle>{book.title}</BookTitle>
-            <BookAuthor>{book.author}</BookAuthor>
-            <BookPrice>{book.price}</BookPrice>
-            <DetailsButton as={Link} to={`/product/${book.title}`}>
-               Ver Detalhes
-            </DetailsButton>
-          </BookCard>
-        ))}
-      </BookGrid>
-      <PaginationContainer>
-        <ArrowButton
-          onClick={() => prevBooks(setCurrentNewBooksIndex, currentNewBooksIndex)}
-          disabled={currentNewBooksIndex === 0}
-        >
-          ◄
-        </ArrowButton>
-        <ArrowButton
-          onClick={() => nextBooks(setCurrentNewBooksIndex, currentNewBooksIndex, newBooks)}
-          disabled={currentNewBooksIndex + booksPerPage >= newBooks.length}
-        >
-          ►
-        </ArrowButton>
-      </PaginationContainer>
-      <SeeMoreButton>Veja mais</SeeMoreButton>
+            <SectionTitle>Novidades na Literis</SectionTitle>
+                <BookGrid>
+                    <ArrowButton onClick={prevBooks}>◄</ArrowButton>
+                    {newBooks.slice(currentIndex, currentIndex + 4).map((book) => (
+                      <BookCard key={book.id}>
+                        <BookImage src={book.image} alt={book.title} />
+                        <BookTitle>{book.title}</BookTitle>
+                        <BookAuthor>{book.author}</BookAuthor>
+                        <BookPrice>{book.price}</BookPrice>
+                        <DetailsButton as={Link} to={`/product/${book.id}`}>
+                          Ver Detalhes
+                        </DetailsButton>
+                      </BookCard>
+                    ))}
+                    <ArrowButton onClick={nextBooks}>►</ArrowButton>
+                </BookGrid>
+            <SeeMoreButton>VEJA MAIS NA LIVRARIA</SeeMoreButton>
+            <hr />
 
       {/* Oscar 2025: Leia antes de assistir */}
       <SectionTitle>Oscar 2025: Leia antes de assistir</SectionTitle>
-      <BookGrid>
-        {visibleOscarBooks.map((book) => (
-          <BookCard key={book.id}>
-            <BookImage src={book.image} alt={book.title} />
-            <BookTitle>{book.title}</BookTitle>
-            <BookAuthor>{book.author}</BookAuthor>
-            <BookPrice>{book.price}</BookPrice>
-            <DetailsButton as={Link} to={`/product/${book.id}`}>
-               Ver Detalhes
-            </DetailsButton>
-          </BookCard>
-        ))}
-      </BookGrid>
-      <PaginationContainer>
-        <ArrowButton
-          onClick={() => prevBooks(setCurrentOscarBooksIndex, currentOscarBooksIndex)}
-          disabled={currentOscarBooksIndex === 0}
-        >
-          ◄
-        </ArrowButton>
-        <ArrowButton
-          onClick={() => nextBooks(setCurrentOscarBooksIndex, currentOscarBooksIndex, oscarBooks)}
-          disabled={currentOscarBooksIndex + booksPerPage >= oscarBooks.length}
-        >
-          ►
-        </ArrowButton>
-      </PaginationContainer>
-      <SeeMoreButton>Veja mais</SeeMoreButton>
+          <BookGrid>
+              <ArrowButton onClick={prevBooks}>◄</ArrowButton>
+              {oscarBooks.slice(currentIndex, currentIndex + 4).map((book) => (
+                  <BookCard key={book.id}>
+                    <BookImage src={book.image} alt={book.title} />
+                    <BookTitle>{book.title}</BookTitle>
+                    <BookAuthor>{book.author}</BookAuthor>
+                    <BookPrice>{book.price}</BookPrice>
+                    <DetailsButton as={Link} to={`/product/${book.id}`}>
+                      Ver Detalhes
+                    </DetailsButton>
+                  </BookCard>
+                ))}
+                <ArrowButton onClick={nextBooks}>►</ArrowButton>
+          </BookGrid>
+          <SeeMoreButton>VEJA MAIS NA LIVRARIA</SeeMoreButton>
+          <hr />
 
       {/* Autores para conhecer em 2025 */}
       <SectionTitle>Autores para conhecer em 2025</SectionTitle>
       <AuthorGrid>
-        {visibleAuthors.map((author) => (
+        <ArrowButton onClick={prevBooks}>◄</ArrowButton>
+        {visibleAuthors.slice(currentIndex, currentIndex + 4).map((author) => (
           <AuthorCard key={author.id}>
             <AuthorImage src={author.image} alt={author.name} />
             <AuthorName>{author.name}</AuthorName>
           </AuthorCard>
         ))}
+        <ArrowButton onClick={nextBooks}>►</ArrowButton>
       </AuthorGrid>
-      <PaginationContainer>
-        <ArrowButton
-          onClick={() => prevBooks(setCurrentAuthorsIndex, currentAuthorsIndex)}
-          disabled={currentAuthorsIndex === 0}
-        >
-          ◄
-        </ArrowButton>
-        <ArrowButton
-          onClick={() => nextBooks(setCurrentAuthorsIndex, currentAuthorsIndex, authors)}
-          disabled={currentAuthorsIndex + booksPerPage >= authors.length}
-        >
-          ►
-        </ArrowButton>
-      </PaginationContainer>
-      <SeeMoreButton>Veja mais</SeeMoreButton>
+      <hr />
 
       {/* Cupons de desconto */}
       <SectionTitle>Cupons de desconto</SectionTitle>
+          <CupomCard>
+            <CupomImage src={Cupom2} alt="Cupom de desconto" />
+            <CupomImage src={AstronautCupom} alt="Cupom de desconto" />
+            <CupomImage src={MoonCupom} alt="Cupom de desconto" />
+          </CupomCard>
+          <hr />
 
       {/* Ofertas da Semana */}
       <SectionTitle>Ofertas da Semana</SectionTitle>
@@ -184,21 +156,8 @@ const Home = () => {
           </OfferCard>
         ))}
       </OfferGrid>
-      <PaginationContainer>
-        <ArrowButton
-          onClick={() => prevBooks(setCurrentOffersIndex, currentOffersIndex)}
-          disabled={currentOffersIndex === 0}
-        >
-          ◄
-        </ArrowButton>
-        <ArrowButton
-          onClick={() => nextBooks(setCurrentOffersIndex, currentOffersIndex, offers)}
-          disabled={currentOffersIndex + booksPerPage >= offers.length}
-        >
-          ►
-        </ArrowButton>
-      </PaginationContainer>
-      <SeeMoreButton>Veja mais</SeeMoreButton>
+      <SeeMoreButton>VEJA MAIS NA LIVRARIA</SeeMoreButton>
+      <hr />
 
       {/* Conheça a Literis */}
       <SectionTitle>Conheça a Literis</SectionTitle>

@@ -12,6 +12,10 @@ const white = "#fff";
 export const HomeContainer = styled.div`
   padding: 2rem;
   background-color: ${lightBackground};
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 export const SectionTitle = styled.h2`
@@ -57,6 +61,14 @@ export const SectionTitle = styled.h2`
       width: 100px;
     }
   }
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export const BookGrid = styled.div`
@@ -67,6 +79,42 @@ export const BookGrid = styled.div`
   padding: 1rem;
   overflow: hidden;
   position: relative;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    gap: 1rem;
+  }
+`;
+
+export const ArrowButton = styled.button`
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: ${secondaryColor};
+  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  z-index: 1;
+
+  &:hover {
+    transform: scale(1.2);
+    color: ${primaryColor};
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
+`;
+
+export const BooksWrapper = styled.div`
+  display: flex;
+  gap: 1.5rem;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+  height: auto;
 `;
 
 export const BookCard = styled.div`
@@ -75,7 +123,7 @@ export const BookCard = styled.div`
   padding: 1.5rem;
   text-align: center;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.5s ease, opacity 1s ease;
   color: ${textColor};
   position: relative;
   overflow: hidden;
@@ -116,6 +164,14 @@ export const BookCard = styled.div`
   &:hover::after {
     opacity: 0.1;
   }
+
+  @media (max-width: 768px) {
+    width: 45%;
+  }
+
+  @media (max-width: 480px) {
+    width: 100%;
+  }
 `;
 
 export const BookImage = styled.img`
@@ -130,11 +186,19 @@ export const BookTitle = styled.h3`
   font-size: 1.2rem;
   margin: 0.5rem 0;
   color: ${primaryColor};
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 export const BookAuthor = styled.p`
   font-size: 1rem;
   color: #666;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
 `;
 
 export const BookPrice = styled.p`
@@ -142,6 +206,10 @@ export const BookPrice = styled.p`
   color: ${textColor};
   font-weight: bold;
   margin: 0.5rem 0;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 export const DetailsButton = styled.button`
@@ -156,6 +224,7 @@ export const DetailsButton = styled.button`
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  z-index: 1;
 
   &::after {
     content: "";
@@ -167,7 +236,7 @@ export const DetailsButton = styled.button`
     background: rgba(255, 255, 255, 0.3);
     transform: translate(-50%, -50%) rotate(45deg);
     transition: all 0.5s ease;
-    z-index: 0;
+    z-index: -1;
   }
 
   &:hover::after {
@@ -179,10 +248,15 @@ export const DetailsButton = styled.button`
     background: linear-gradient(to right, #2575fc, #6a11cb);
     transform: translateY(-3px);
   }
+
+  @media (max-width: 768px) {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
 `;
 
 export const SeeMoreButton = styled.button`
-  background: ${gradient};
+  background: #2575fc;
   color: ${white};
   border: none;
   padding: 0.7rem 1.2rem;
@@ -194,31 +268,14 @@ export const SeeMoreButton = styled.button`
   display: block;
 
   &:hover {
-    background: linear-gradient(to right, #2575fc, #6a11cb);
+    background: #6a11cb;
     transform: translateY(-3px);
   }
-`;
 
-export const ArrowButton = styled.button`
-  background: transparent;
-  border: none;
-  font-size: 2rem;
-  cursor: pointer;
-  color: ${secondaryColor};
-  transition: transform 0.2s ease;
-
-  &:hover {
-    transform: scale(1.2);
-    color: ${primaryColor};
+  @media (max-width: 768px) {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
   }
-`;
-
-export const PaginationContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 1rem;
 `;
 
 // Estilos para a seção de Autores
@@ -230,14 +287,16 @@ export const AuthorGrid = styled.div`
   padding: 1rem;
   overflow: hidden;
   position: relative;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    gap: 1rem;
+  }
 `;
 
 export const AuthorCard = styled.div`
-  /* background: ${white};
-  border-radius: 15px; */
   padding: 1.5rem;
   text-align: center;
-  /* box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1); */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   color: ${textColor};
   position: relative;
@@ -250,7 +309,14 @@ export const AuthorCard = styled.div`
 
   &:hover {
     transform: translateY(-10px);
-    /* box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2); */
+  }
+
+  @media (max-width: 768px) {
+    width: 45%;
+  }
+
+  @media (max-width: 480px) {
+    width: 100%;
   }
 `;
 
@@ -262,13 +328,21 @@ export const AuthorImage = styled.img`
   border-radius: 50%;
   object-fit: cover;
   margin: 0 auto 1rem;
-  border: 3px solid #6a11cb,;
+  border: 3px solid #6a11cb;
+
+  @media (max-width: 768px) {
+    width: 150px;
+  }
 `;
 
 export const AuthorName = styled.p`
   font-size: 1rem;
   color: ${textColor};
   font-weight: bold;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
 `;
 
 // Estilos para a seção de Cupons
@@ -277,6 +351,14 @@ export const CouponGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.5rem;
   padding: 1rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const CouponCard = styled.div`
@@ -293,6 +375,10 @@ export const CouponCard = styled.div`
     transform: translateY(-5px);
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
   }
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 // Estilos para a seção de Ofertas
@@ -304,6 +390,11 @@ export const OfferGrid = styled.div`
   padding: 1rem;
   overflow: hidden;
   position: relative;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    gap: 1rem;
+  }
 `;
 
 export const OfferCard = styled.div`
@@ -326,6 +417,14 @@ export const OfferCard = styled.div`
     transform: translateY(-10px);
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
   }
+
+  @media (max-width: 768px) {
+    width: 45%;
+  }
+
+  @media (max-width: 480px) {
+    width: 100%;
+  }
 `;
 
 export const OfferImage = styled.img`
@@ -340,6 +439,10 @@ export const OfferTitle = styled.h3`
   font-size: 1.2rem;
   margin: 0.5rem 0;
   color: ${primaryColor};
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 export const OfferPrice = styled.p`
@@ -347,6 +450,10 @@ export const OfferPrice = styled.p`
   color: ${textColor};
   font-weight: bold;
   margin: 0.5rem 0;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 // Estilos para a seção "Conheça a Literis"
@@ -355,6 +462,14 @@ export const AboutGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
   padding: 1rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const AboutCard = styled.div`
@@ -372,29 +487,45 @@ export const AboutCard = styled.div`
     transform: translateY(-10px);
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
   }
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 export const AboutIcon = styled.div`
   font-size: 2rem;
   margin-bottom: 1rem;
   color: ${primaryColor};
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export const AboutText = styled.p`
   font-size: 1rem;
   color: ${textColor};
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
 `;
 
 export const SecondaryNav = styled.nav`
   display: flex;
   align-items: center;
   justify-content: center;
-
   gap: 2rem;
   padding: 1.5rem 1rem;
- 
   background-color: #f8f8f8;
   border-bottom: 2px solid #ddd;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
 `;
 
 export const SecondaryNavLink = styled(Link)`
@@ -409,6 +540,10 @@ export const SecondaryNavLink = styled(Link)`
   &:hover {
     color: rgb(0, 93, 192);
   }
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 export const MenuCategoryIcon = styled.span`
@@ -416,6 +551,51 @@ export const MenuCategoryIcon = styled.span`
   color: gray;
 
   &:hover {
-    color:rgb(0, 93, 192);
+    color: rgb(0, 93, 192);
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
+`;
+
+export const CupomCard = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0;
+
+  @media (max-width: 768px) {
+    gap: 0.5rem;
+  }
+`;
+
+export const CupomImage = styled.img`
+  width: 600px;
+  height: 350px;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: auto;
+  }
+`;
+
+export const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+  position: relative; 
+
+  @media (max-width: 768px) {
+    gap: 0.5rem;
   }
 `;

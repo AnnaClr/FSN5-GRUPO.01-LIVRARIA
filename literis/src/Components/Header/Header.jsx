@@ -31,7 +31,8 @@ const Header = () => {
         <Nav>
         {/* Logo da Livraria */}            
         <Logo to="/">
-            <LogoImage src="../src/assets/Literis.png" alt="Literis Logo" />
+            {/* <LogoImage src="../src/assets/Literis.png" alt="Literis Logo" /> */}
+            <h1>LITERIS - LIVRARIA ONLINE</h1>
         </Logo>
      
           <div className='divtest'> </div>

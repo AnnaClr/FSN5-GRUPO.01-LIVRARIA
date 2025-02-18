@@ -72,7 +72,7 @@ const ProductDetails = () => {
 
   const handleBuyNow = () => {
     addToCart({ ...livro, quantity, version: selectedVersion });
-    navigate('/checkout'); // Redireciona para a página de pagamento
+    navigate('/checkout');
   };
 
   const calculateDiscountPrice = (price, discount) => {

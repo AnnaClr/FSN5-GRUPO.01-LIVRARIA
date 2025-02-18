@@ -1,17 +1,34 @@
 import styled from 'styled-components';
 
-const gradient = "linear-gradient(to right, #6a11cb, #2575fc)";
+const lightBackground = "rgb(247, 247, 247)";
 
 export const FooterContainer = styled.footer`
-  background-color:rgb(255, 255, 255);
-  border-top: 6px solid #007bff;
+  background-color: ${lightBackground};
+  border-top: 4px solid rgb(88, 42, 255);
   padding: 2rem 4rem;
+
+  @media (max-width: 768px) {
+    padding: 2rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1rem;
+  }
 `;
 
 export const FooterContent = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const FooterSection = styled.div`
@@ -23,6 +40,10 @@ export const FooterSection = styled.div`
   li {
     margin-bottom: 0.5rem;
     color: #333;
+
+    @media (max-width: 480px) {
+      font-size: 0.9rem;
+    }
   }
 
   a {
@@ -31,15 +52,23 @@ export const FooterSection = styled.div`
     font-weight: 500;
 
     &:hover {
-      color: #007bff;
+      color:rgb(128, 0, 255);
+    }
+
+    @media (max-width: 480px) {
+      font-size: 0.9rem;
     }
   }
 `;
 
 export const SectionTitle = styled.h4`
   font-size: 1.1rem;
-  color: #007bff;
+  color: rgb(88, 42, 255);
   margin-bottom: 1rem;
+
+  @media (max-width: 480px) {
+    font-size: 1rem;
+  }
 `;
 
 export const SocialIcons = styled.div`
@@ -51,7 +80,11 @@ export const SocialIcons = styled.div`
     font-size: 1.5rem;
 
     &:hover {
-      color: #007bff;
+      color: rgb(128, 0, 255);
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1.2rem;
     }
   }
 `;
@@ -63,18 +96,25 @@ export const PaymentIcons = styled.div`
   color: #555;
 
   svg:hover {
-    color: #007bff;
+    color: rgb(128, 0, 255);
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.5rem;
   }
 `;
 
 export const FooterBottom = styled.div`
-  /* background: ${gradient}; */
   text-align: center;
   padding-top: 1.5rem;
   font-size: 0.9rem;
   color: #000;
   border-top: 2px solid #ddd;
   margin-top: 1.5rem;
+
+  @media (max-width: 480px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export const LogoSection = styled.div`
@@ -87,10 +127,18 @@ export const LogoSection = styled.div`
     font-size: 0.9rem;
     color: #777;
     margin-top: 0.5rem;
+
+    @media (max-width: 480px) {
+      font-size: 0.8rem;
+    }
   }
 `;
 
 export const LogoImage = styled.img`
   width: 150px;
   height: auto;
+
+  @media (max-width: 480px) {
+    width: 120px;
+  }
 `;

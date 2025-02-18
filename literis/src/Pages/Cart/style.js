@@ -9,7 +9,7 @@ const descriptionColor = "#555";
 
 export const Container = styled.div`
   padding: 20px;
-  max-width: 1200px;
+  max-width: 1500px;
   margin: 0 auto;
   text-align: center;
 `;
@@ -53,13 +53,21 @@ export const CartList = styled.div`
 
 export const CartItem = styled.div`
   border: 1px solid #ddd;
-  border-radius: 10px;
+  /* border-radius: 10px; */
+  height: 200px;
   padding: 1rem;
   display: flex;
   align-items: center;
   gap: 1rem;
   background-color: ${white};
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+`;
+
+export const ItemImage = styled.img`
+  width: auto;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 10px;
 `;
 
 export const ItemInfo = styled.div`
@@ -96,6 +104,11 @@ export const QuantityControl = styled.div`
     &:hover {
       background: linear-gradient(to right, #2575fc, #6a11cb);
     }
+
+    &:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
   }
 
   span {
@@ -107,13 +120,13 @@ export const QuantityControl = styled.div`
 export const PriceInfo = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   gap: 0.2rem;
 
   span {
     font-size: 1.1rem;
     font-weight: bold;
-    color: ${primaryColor};
+    color: #dc3545;
   }
 
   s {
@@ -138,7 +151,8 @@ export const RemoveButton = styled.button`
 `;
 
 export const CheckoutSummary = styled.div`
-  width: 300px;
+  width: 500px;
+  height: 500px;
   padding: 1rem;
   border: 1px solid #ddd;
   border-radius: 10px;
@@ -168,6 +182,7 @@ export const SummaryCard = styled.div`
 
 export const CheckoutButton = styled.button`
   background: ${gradient};
+  align-items: center;
   color: ${white};
   border: none;
   padding: 0.7rem 1.2rem;
@@ -183,6 +198,19 @@ export const CheckoutButton = styled.button`
   }
 `;
 
-export const Checkbox = styled.input`
+export const ClearCartButton = styled.button`
+  background: #ffc107;
+  color: ${textColor};
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 5px;
+  font-weight: bold;
   cursor: pointer;
+  width: 100%;
+  margin-top: 1rem;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background:rgb(224, 60, 0);
+  }
 `;
