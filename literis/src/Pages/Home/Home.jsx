@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { IoMdMenu } from 'react-icons/io';
+import { IoMdMenu, IoIosArrowBack, IoIosArrowForward  } from 'react-icons/io';
 
-import AstronautCupom from '../../assets/AstronautCupom.png';
-import Cupom2 from '../../assets/Cupom2.png';
-import MoonCupom from '../../assets/MoonCupom.png';
+// import AstronautCupom from '../../assets/AstronautCupom.png';
+// import Cupom2 from '../../assets/Cupom2.png';
+// import MoonCupom from '../../assets/MoonCupom.png';
 
 import {
   newBooks,
@@ -27,141 +27,129 @@ import {
   AuthorCard,
   AuthorImage,
   AuthorName,
-  ArrowButton,
-  CupomImage,
-  CupomCard,
+  // ArrowButton,
+  // CupomImage,
+  // CupomCard,
   OfferGrid,
   OfferCard,
-  // AboutGrid,
-  // AboutCard,
-  // AboutIcon,
-  // AboutText,
-  SeeMoreButton,
+  // SeeMoreButton,
   SecondaryNav, 
   SecondaryNavLink, 
-  MenuCategoryIcon 
+  // MenuCategoryIcon 
 } from './style';
 
 const Home = () => {
-  const booksPerPage = 5;
+  const booksPerPage = 4;
 
-  // Estados para paginação de cada seção
-  const [currentNewBooksIndex, setCurrentNewBooksIndex] = useState(0);
-  const [currentOscarBooksIndex, setCurrentOscarBooksIndex] = useState(0);
-  const [currentAuthorsIndex, setCurrentAuthorsIndex] = useState(0);
-  const [currentOffersIndex, setCurrentOffersIndex] = useState(0);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  // Estados separados para cada seção
+  const [currentNewBooks, setCurrentNewBooks] = useState(0);
+  const [currentOscarBooks, setCurrentOscarBooks] = useState(0);
+  const [currentAuthors, setCurrentAuthors] = useState(0);
+  const [currentOffers, setCurrentOffers] = useState(0);
 
-  const nextBooks = () => {
-    setCurrentIndex((prev) => (prev + 3) % (newBooks.length - 2));
+  // Funções genéricas para navegação
+  const nextSlide = (current, setCurrent, listLength) => {
+    setCurrent(current + booksPerPage >= listLength ? 0 : current + booksPerPage);
   };
 
-  const prevBooks = () => {
-    setCurrentIndex((prev) => (prev - 3 + (newBooks.length - 2)) % (newBooks.length - 2));
+  const prevSlide = (current, setCurrent, listLength) => {
+    setCurrent(current === 0 ? listLength - booksPerPage : current - booksPerPage);
   };
-
-  // Livros visíveis em cada seção
-  const visibleNewBooks = newBooks.slice(currentNewBooksIndex, currentNewBooksIndex + booksPerPage);
-  const visibleOscarBooks = oscarBooks.slice(currentOscarBooksIndex, currentOscarBooksIndex + booksPerPage);
-  const visibleAuthors = authors.slice(currentAuthorsIndex, currentAuthorsIndex + booksPerPage);
-  const visibleOffers = offers.slice(currentOffersIndex, currentOffersIndex + booksPerPage);
 
   return (
-    <HomeContainer>
-    
-        {/* Categorias, Mais Vendidos, Livros por Idiomas, Principais Autores */}
-            <SecondaryNav>
-                <SecondaryNavLink to="/categories"> 
-                <MenuCategoryIcon> <IoMdMenu /> </MenuCategoryIcon>
-                CATEGORIAS </SecondaryNavLink>
-                <SecondaryNavLink to="/best-sellers">MAIS VENDIDOS</SecondaryNavLink>
-                <SecondaryNavLink to="/books-by-language">LIVROS POR IDIOMA</SecondaryNavLink>
-                <SecondaryNavLink to="/top-authors">PRINCIPAIS AUTORES</SecondaryNavLink>
-            </SecondaryNav>
-   
-      {/* Novidades na Literis */}
+    <>
+        <SecondaryNav>
+            <SecondaryNavLink to="/categories"> 
+              {/* <MenuCategoryIcon> <IoMdMenu /> </MenuCategoryIcon> */}
+              CATEGORIAS 
+            </SecondaryNavLink>
+            <SecondaryNavLink to="/best-sellers">MAIS VENDIDOS</SecondaryNavLink>
+            <SecondaryNavLink to="/books-by-language">LIVROS POR IDIOMA</SecondaryNavLink>
+            <SecondaryNavLink to="/top-authors">PRINCIPAIS AUTORES</SecondaryNavLink>
+        </SecondaryNav>
+
+        <HomeContainer>
+            {/* Seção Novidades */}
             <SectionTitle>Novidades na Literis</SectionTitle>
-                <BookGrid>
-                    <ArrowButton onClick={prevBooks}>◄</ArrowButton>
-                    {newBooks.slice(currentIndex, currentIndex + 4).map((book) => (
-                      <BookCard key={book.id}>
-                        <BookImage src={book.image} alt={book.title} />
-                        <BookTitle>{book.title}</BookTitle>
-                        <BookAuthor>{book.author}</BookAuthor>
-                        <BookPrice>{book.price}</BookPrice>
-                        <DetailsButton as={Link} to={`/product/${book.id}`}>
-                          Ver Detalhes
-                        </DetailsButton>
-                      </BookCard>
-                    ))}
-                    <ArrowButton onClick={nextBooks}>►</ArrowButton>
-                </BookGrid>
-            <SeeMoreButton>VEJA MAIS NA LIVRARIA</SeeMoreButton>
+            <BookGrid>
+              <button className='left-arrow' onClick={() => prevSlide(currentNewBooks, setCurrentNewBooks, newBooks.length)}><IoIosArrowBack /></button>
+              {newBooks.slice(currentNewBooks, currentNewBooks + booksPerPage).map((book) => (
+                <BookCard key={book.id}>
+                  <BookImage src={book.image} alt={book.title} />
+                  <BookTitle>{book.title}</BookTitle>
+                  <BookAuthor>{book.author}</BookAuthor>
+                  <BookPrice>{book.price}</BookPrice>
+                  <DetailsButton as={Link} to={`/product/${book.id}`}>
+                    Ver Detalhes
+                  </DetailsButton>
+                </BookCard>
+              ))}
+              <button className='right-arrow' onClick={() => nextSlide(currentNewBooks, setCurrentNewBooks, newBooks.length)}><IoIosArrowForward /></button>
+            </BookGrid>
             <hr />
 
-      {/* Oscar 2025: Leia antes de assistir */}
-      <SectionTitle>Oscar 2025: Leia antes de assistir</SectionTitle>
-          <BookGrid>
-              <ArrowButton onClick={prevBooks}>◄</ArrowButton>
-              {oscarBooks.slice(currentIndex, currentIndex + 4).map((book) => (
-                  <BookCard key={book.id}>
-                    <BookImage src={book.image} alt={book.title} />
-                    <BookTitle>{book.title}</BookTitle>
-                    <BookAuthor>{book.author}</BookAuthor>
-                    <BookPrice>{book.price}</BookPrice>
-                    <DetailsButton as={Link} to={`/product/${book.id}`}>
-                      Ver Detalhes
-                    </DetailsButton>
-                  </BookCard>
-                ))}
-                <ArrowButton onClick={nextBooks}>►</ArrowButton>
-          </BookGrid>
-          <SeeMoreButton>VEJA MAIS NA LIVRARIA</SeeMoreButton>
-          <hr />
+            {/* Seção Oscar 2025 */}
+            <SectionTitle>Oscar 2025: Leia antes de assistir</SectionTitle>
+            <BookGrid>
+              <button className='left-arrow' onClick={() => prevSlide(currentOscarBooks, setCurrentOscarBooks, oscarBooks.length)}><IoIosArrowBack /></button>
+              {oscarBooks.slice(currentOscarBooks, currentOscarBooks + booksPerPage).map((book) => (
+                <BookCard key={book.id}>
+                  <BookImage src={book.image} alt={book.title} />
+                  <BookTitle>{book.title}</BookTitle>
+                  <BookAuthor>{book.author}</BookAuthor>
+                  <BookPrice>{book.price}</BookPrice>
+                  <DetailsButton as={Link} to={`/product/${book.id}`}>
+                    Ver Detalhes
+                  </DetailsButton>
+                </BookCard>
+              ))}
+              <button className='right-arrow' onClick={() => nextSlide(currentOscarBooks, setCurrentOscarBooks, oscarBooks.length)}><IoIosArrowForward /></button>
+            </BookGrid>
+            <hr />
 
-      {/* Autores para conhecer em 2025 */}
-      <SectionTitle>Autores para conhecer em 2025</SectionTitle>
-      <AuthorGrid>
-        <ArrowButton onClick={prevBooks}>◄</ArrowButton>
-        {visibleAuthors.slice(currentIndex, currentIndex + 4).map((author) => (
-          <AuthorCard key={author.id}>
-            <AuthorImage src={author.image} alt={author.name} />
-            <AuthorName>{author.name}</AuthorName>
-          </AuthorCard>
-        ))}
-        <ArrowButton onClick={nextBooks}>►</ArrowButton>
-      </AuthorGrid>
-      <hr />
+            {/* Seção Autores */}
+            <SectionTitle>Autores para conhecer em 2025</SectionTitle>
+            <AuthorGrid>
+              <button className='left-arrow' onClick={() => prevSlide(currentAuthors, setCurrentAuthors, authors.length)}><IoIosArrowBack /></button>
+              {authors.slice(currentAuthors, currentAuthors + booksPerPage).map((author) => (
+                <AuthorCard key={author.id}>
+                  <AuthorImage src={author.image} alt={author.name} />
+                  <AuthorName>{author.name}</AuthorName>
+                </AuthorCard>
+              ))}
+              <button className='right-arrow' onClick={() => nextSlide(currentAuthors, setCurrentAuthors, authors.length)}><IoIosArrowForward /></button>
+            </AuthorGrid>
+            <hr />
 
-      {/* Cupons de desconto */}
-      <SectionTitle>Cupons de desconto</SectionTitle>
-          <CupomCard>
-            <CupomImage src={Cupom2} alt="Cupom de desconto" />
-            <CupomImage src={AstronautCupom} alt="Cupom de desconto" />
-            <CupomImage src={MoonCupom} alt="Cupom de desconto" />
-          </CupomCard>
-          <hr />
+            {/* Seção Cupons de desconto */}
+            {/* <SectionTitle>Cupons de desconto</SectionTitle>
+            <CupomCard>
+              <CupomImage src={Cupom2} alt="Cupom de desconto" />
+              <CupomImage src={AstronautCupom} alt="Cupom de desconto" />
+              <CupomImage src={MoonCupom} alt="Cupom de desconto" />
+            </CupomCard>
+            <hr /> */}
 
-      {/* Ofertas da Semana */}
-      <SectionTitle>Ofertas da Semana</SectionTitle>
-      <OfferGrid>
-        {visibleOffers.map((offer) => (
-          <OfferCard key={offer.id}>
-            <BookImage src={offer.image} alt={offer.title} />
-            <BookTitle>{offer.title}</BookTitle>
-            <BookPrice>{offer.price}</BookPrice>
-            <DetailsButton as={Link} to={`/product/${offer.id}`}>
-               Ver Detalhes
-            </DetailsButton>
-          </OfferCard>
-        ))}
-      </OfferGrid>
-      <SeeMoreButton>VEJA MAIS NA LIVRARIA</SeeMoreButton>
-      <hr />
-
-      {/* Conheça a Literis */}
-      <SectionTitle>Conheça a Literis</SectionTitle>
-    </HomeContainer>
+            {/* Seção Ofertas do dia */}
+            <SectionTitle>Ofertas do dia</SectionTitle>
+            <OfferGrid>
+              <button className='left-arrow' onClick={() => prevSlide(currentOffers, setCurrentOffers, offers.length)}><IoIosArrowBack /></button>
+              {offers.slice(currentOffers, currentOffers + booksPerPage).map((offer) => (
+                <OfferCard key={offer.id}>
+                  <BookImage src={offer.image} alt={offer.title} />
+                  <BookTitle>{offer.title}</BookTitle>
+                  <BookAuthor>{offer.author}</BookAuthor>
+                  <BookPrice>{offer.price}</BookPrice>
+                  <DetailsButton as={Link} to={`/product/${offer.id}`}>
+                    Ver Detalhes
+                  </DetailsButton>
+                </OfferCard>
+              ))}
+              <button className='right-arrow' onClick={() => nextSlide(currentOffers, setCurrentOffers, offers.length)}><IoIosArrowForward /></button>
+            </OfferGrid>
+            <hr />
+        </HomeContainer>
+    </>
   );
 };
 

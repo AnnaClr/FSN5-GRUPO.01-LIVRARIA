@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-// Cores principais
+// Cores principais (mantidas conforme solicitado)
 const primaryColor = "rgb(67, 139, 255)";
 const secondaryColor = "rgb(77, 169, 255)";
 const gradient = "linear-gradient(to right, #6a11cb, #2575fc)";
@@ -12,24 +12,68 @@ const white = "#fff";
 export const HomeContainer = styled.div`
   padding: 2rem;
   background-color: ${lightBackground};
+  font-family: 'Inter', sans-serif; // Fonte moderna
 
   @media (max-width: 768px) {
     padding: 1rem;
   }
+
+  .slider {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .slide {
+    opacity: 0;
+    transition-duration: 1s ease;
+  }
+
+  .slide.active {
+    opacity: 1;
+    transition-duration: 1s;
+    transform: scale(1.08);
+  }
+
+  .left-arrow, .right-arrow {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    user-select: none;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 1);
+    }
+  }
+
+  .left-arrow {
+    left: 25px;
+  }
+
+  .right-arrow {
+    right: 25px;
+  }
 `;
 
 export const SectionTitle = styled.h2`
-  font-size: 2.5rem;
-  color: transparent;
-  background: ${gradient};
-  background-clip: text;
-  -webkit-background-clip: text;
+  font-size: 2rem;
+  color: #6a11cb;
   text-align: center;
   position: relative;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem; // Aumentei o espaçamento
   text-transform: uppercase;
   letter-spacing: 2px;
   animation: fadeIn 1s ease-in-out;
+  margin-top: 2.5rem;
+
 
   @keyframes fadeIn {
     from {
@@ -75,13 +119,17 @@ export const BookGrid = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2.5rem; // Aumentei o espaçamento entre os cards
   padding: 1rem;
   overflow: hidden;
   position: relative;
   flex-wrap: wrap;
 
   @media (max-width: 768px) {
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 480px) {
     gap: 1rem;
   }
 `;
@@ -109,43 +157,26 @@ export const ArrowButton = styled.button`
   }
 `;
 
-export const BooksWrapper = styled.div`
-  display: flex;
-  gap: 1.5rem;
-  transition: transform 0.5s ease-in-out;
-  width: 100%;
-  height: auto;
-`;
-
 export const BookCard = styled.div`
   background: ${white};
-  border-radius: 15px;
-  padding: 1.5rem;
+  border-radius: 10px; // Bordas mais suaves
+  padding: 1rem; // Reduzi o padding
   text-align: center;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.5s ease, opacity 1s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   color: ${textColor};
   position: relative;
   overflow: hidden;
-  width: 300px;
+  width: 220px; // Cards mais compactos
   height: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin-bottom: 2.5rem;
 
   &:hover {
     transform: translateY(-10px);
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-  }
-
-  &::before {
-    content: "★";
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 1.5rem;
-    color: gold;
-    z-index: 1;
   }
 
   &::after {
@@ -176,15 +207,15 @@ export const BookCard = styled.div`
 
 export const BookImage = styled.img`
   width: 100%;
-  max-height: 400px;
+  max-height: 300px; // Imagens menores
   object-fit: cover;
   border-radius: 10px;
   margin-bottom: 1rem;
 `;
 
 export const BookTitle = styled.h3`
-  font-size: 1.2rem;
-  margin: 0.5rem 0;
+  font-size: 1.2rem; // Fonte menor
+  margin: 0.0rem 0;
   color: ${primaryColor};
 
   @media (max-width: 768px) {
@@ -193,17 +224,17 @@ export const BookTitle = styled.h3`
 `;
 
 export const BookAuthor = styled.p`
-  font-size: 1rem;
+  font-size: 0.9rem; // Fonte menor
   color: #666;
 
   @media (max-width: 768px) {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
 `;
 
 export const BookPrice = styled.p`
-  font-size: 1.2rem;
-  color: ${textColor};
+  font-size: 1.1rem; // Fonte menor
+  color:rgb(195, 67, 67);
   font-weight: bold;
   margin: 0.5rem 0;
 
@@ -216,7 +247,7 @@ export const DetailsButton = styled.button`
   background: ${gradient};
   color: ${white};
   border: none;
-  padding: 0.7rem 1.2rem;
+  padding: 0.5rem 1rem; // Botão mais compacto
   border-radius: 5px;
   font-weight: bold;
   transition: transform 0.3s ease, background 0.3s ease;
@@ -225,6 +256,7 @@ export const DetailsButton = styled.button`
   overflow: hidden;
   cursor: pointer;
   z-index: 1;
+  font-size: 0.9rem; // Fonte menor
 
   &::after {
     content: "";
@@ -250,8 +282,8 @@ export const DetailsButton = styled.button`
   }
 
   @media (max-width: 768px) {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
   }
 `;
 
@@ -283,25 +315,26 @@ export const AuthorGrid = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2rem; // Mais espaçamento
   padding: 1rem;
   overflow: hidden;
   position: relative;
   flex-wrap: wrap;
+  margin-bottom: 2.5rem;
 
   @media (max-width: 768px) {
-    gap: 1rem;
+    gap: 1.5rem;
   }
 `;
 
 export const AuthorCard = styled.div`
-  padding: 1.5rem;
+  padding: 1rem; // Reduzi o padding
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   color: ${textColor};
   position: relative;
   overflow: hidden;
-  width: 200px;
+  width: 200px; // Cards mais compactos
   height: auto;
   display: flex;
   flex-direction: column;
@@ -321,17 +354,16 @@ export const AuthorCard = styled.div`
 `;
 
 export const AuthorImage = styled.img`
-  width: 200px;
-  max-height: 250px;
-  max-width: 200px;
-  height: auto;
+  width: 200px; // Imagens menores
+  height: 200px;
   border-radius: 50%;
   object-fit: cover;
   margin: 0 auto 1rem;
   border: 3px solid #6a11cb;
 
   @media (max-width: 768px) {
-    width: 150px;
+    width: 120px;
+    height: 120px;
   }
 `;
 
@@ -349,7 +381,7 @@ export const AuthorName = styled.p`
 export const CouponGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
+  gap: 2rem; // Mais espaçamento
   padding: 1rem;
 
   @media (max-width: 768px) {
@@ -365,7 +397,7 @@ export const CouponCard = styled.div`
   background: ${gradient};
   color: ${white};
   padding: 1.5rem;
-  border-radius: 15px;
+  border-radius: 10px; // Bordas mais suaves
   text-align: center;
   font-size: 1.2rem;
   font-weight: bold;
@@ -386,28 +418,29 @@ export const OfferGrid = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2rem; // Mais espaçamento
   padding: 1rem;
   overflow: hidden;
   position: relative;
   flex-wrap: wrap;
+  margin-bottom: 2.5rem;
 
   @media (max-width: 768px) {
-    gap: 1rem;
+    gap: 1.5rem;
   }
 `;
 
 export const OfferCard = styled.div`
   background: ${white};
-  border-radius: 15px;
-  padding: 1.5rem;
+  border-radius: 10px; // Bordas mais suaves
+  padding: 1rem; // Reduzi o padding
   text-align: center;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   color: ${textColor};
   position: relative;
   overflow: hidden;
-  width: 300px;
+  width: 220px; // Cards mais compactos
   height: auto;
   display: flex;
   flex-direction: column;
@@ -436,7 +469,7 @@ export const OfferImage = styled.img`
 `;
 
 export const OfferTitle = styled.h3`
-  font-size: 1.2rem;
+  font-size: 1.1rem; // Fonte menor
   margin: 0.5rem 0;
   color: ${primaryColor};
 
@@ -446,7 +479,7 @@ export const OfferTitle = styled.h3`
 `;
 
 export const OfferPrice = styled.p`
-  font-size: 1.2rem;
+  font-size: 1.1rem; // Fonte menor
   color: ${textColor};
   font-weight: bold;
   margin: 0.5rem 0;
@@ -460,7 +493,7 @@ export const OfferPrice = styled.p`
 export const AboutGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
+  gap: 2rem; // Mais espaçamento
   padding: 1rem;
 
   @media (max-width: 768px) {
@@ -474,8 +507,8 @@ export const AboutGrid = styled.div`
 
 export const AboutCard = styled.div`
   background: ${white};
-  border-radius: 15px;
-  padding: 1.5rem;
+  border-radius: 10px; // Bordas mais suaves
+  padding: 1rem; // Reduzi o padding
   text-align: center;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -519,7 +552,7 @@ export const SecondaryNav = styled.nav`
   gap: 2rem;
   padding: 1.5rem 1rem;
   background-color: #f8f8f8;
-  border-bottom: 2px solid #ddd;
+  border-bottom: 4px solid #6a11cb;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -532,7 +565,7 @@ export const SecondaryNavLink = styled(Link)`
   text-decoration: none;
   color: gray;
   font-weight: 500;
-  font-size: 1.2rem;
+  font-size: 1rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -593,7 +626,7 @@ export const PaginationContainer = styled.div`
   gap: 1rem;
   margin-top: 1rem;
   width: 100%;
-  position: relative; 
+  position: relative;
 
   @media (max-width: 768px) {
     gap: 0.5rem;

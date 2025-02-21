@@ -5,7 +5,7 @@ const lightBackground = "rgb(247, 247, 247)";
 export const FooterContainer = styled.footer`
   background-color: ${lightBackground};
   border-top: 4px solid rgb(88, 42, 255);
-  padding: 2rem 4rem;
+  padding: 1rem 2rem;
 
   @media (max-width: 768px) {
     padding: 2rem;
@@ -19,7 +19,7 @@ export const FooterContainer = styled.footer`
 export const FooterContent = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
+  gap: 1px;
 
   @media (max-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
@@ -62,7 +62,7 @@ export const FooterSection = styled.div`
 `;
 
 export const SectionTitle = styled.h4`
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: rgb(88, 42, 255);
   margin-bottom: 1rem;
 
