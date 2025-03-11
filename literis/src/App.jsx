@@ -6,7 +6,7 @@ import Register from './pages/Register';
 import ProductDetails from './Pages/ProductDetails/ProductDetail.jsx';
 import Cart from './pages/Cart/Cart.jsx';
 import Contact from './pages/Contact';
-import About from './pages/About';
+import About from './pages/About/About.jsx';
 import Header from './components/Header/Header';
 import Footer from './Components/Footer/Footer';
 import { ToastContainer } from 'react-toastify';

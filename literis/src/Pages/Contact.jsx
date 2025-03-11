@@ -92,7 +92,7 @@ const Form = styled.form`
   button {
     margin-top: 20px;
     padding: 12px;
-    background: linear-gradient(135deg, #1177cb, #2575fc); /* Gradiente no botão */
+    background: linear-gradient(135deg, #1177cb, #2575fc);
     color: white;
     border: none;
     border-radius: 8px;

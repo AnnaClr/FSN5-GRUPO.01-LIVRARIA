@@ -14,7 +14,7 @@ const Login = () => {
 
   const handleLogin = () => {
     if (email && password) {
-      login(); // Autentica o usuário
+      login();
       toast.success('Login realizado com sucesso!');
       navigate('/');
     } else {

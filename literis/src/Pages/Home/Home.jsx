@@ -1,156 +1,151 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { IoMdMenu, IoIosArrowBack, IoIosArrowForward  } from 'react-icons/io';
-
-// import AstronautCupom from '../../assets/AstronautCupom.png';
-// import Cupom2 from '../../assets/Cupom2.png';
-// import MoonCupom from '../../assets/MoonCupom.png';
-
-import {
-  newBooks,
-  oscarBooks,
-  authors,
-  offers,
-} from '../../Vitrine/livros';
-
+import React from "react";
 import {
   HomeContainer,
-  SectionTitle,
-  BookGrid,
+  Cover,
+  Text,
+  Title,
+  Subtitle,
+  Button,
+  Cards,
+  CardsTitle,
+  CardsContent,
+  Card,
+  CardIcon,
+  CardNum,
+  CardTitle,
+  CardSubtitle,
+  Vitrine,
+  Box,
+  BooksImg,
+  VitrineText,
+  Paragraph,
+  Books,
+  BooksTitle,
+  BookCardContainer,
   BookCard,
-  BookImage,
-  BookTitle,
-  BookAuthor,
-  BookPrice,
-  DetailsButton,
-  AuthorGrid,
-  AuthorCard,
-  AuthorImage,
-  AuthorName,
-  // ArrowButton,
-  // CupomImage,
-  // CupomCard,
-  OfferGrid,
-  OfferCard,
-  // SeeMoreButton,
-  SecondaryNav, 
-  SecondaryNavLink, 
-  // MenuCategoryIcon 
-} from './style';
+  BookCover,
+  BookName,
+  Author,
+  Price,
+  BookCardButton,
+  VitrineTitle,
+} from "./style";
 
-const Home = () => {
-  const booksPerPage = 4;
+import HomeImages from "../../imgs/Home.png";
+import PequenoPrincipe from '../../imgs/PequenoPrincipe.png';
+import DomCasmurro from '../../imgs/DomCasmurro.png';
+import { FaUser, FaThumbsUp } from "react-icons/fa";
+import { IoBookSharp } from "react-icons/io5";
+import { books } from "../../Vitrine/livros"; // Importe os dados dos livros
 
-  // Estados separados para cada seção
-  const [currentNewBooks, setCurrentNewBooks] = useState(0);
-  const [currentOscarBooks, setCurrentOscarBooks] = useState(0);
-  const [currentAuthors, setCurrentAuthors] = useState(0);
-  const [currentOffers, setCurrentOffers] = useState(0);
+export default function Home() {
 
-  // Funções genéricas para navegação
-  const nextSlide = (current, setCurrent, listLength) => {
-    setCurrent(current + booksPerPage >= listLength ? 0 : current + booksPerPage);
-  };
-
-  const prevSlide = (current, setCurrent, listLength) => {
-    setCurrent(current === 0 ? listLength - booksPerPage : current - booksPerPage);
-  };
+    // Filtra os livros desejados
+    const selectedBooks = books.filter(
+      (book) =>
+        book.title === "Conclave" || book.title === "Wicked" || book.title === "Ainda Estou Aqui"
+    );
 
   return (
-    <>
-        <SecondaryNav>
-            <SecondaryNavLink to="/categories"> 
-              {/* <MenuCategoryIcon> <IoMdMenu /> </MenuCategoryIcon> */}
-              CATEGORIAS 
-            </SecondaryNavLink>
-            <SecondaryNavLink to="/best-sellers">MAIS VENDIDOS</SecondaryNavLink>
-            <SecondaryNavLink to="/books-by-language">LIVROS POR IDIOMA</SecondaryNavLink>
-            <SecondaryNavLink to="/top-authors">PRINCIPAIS AUTORES</SecondaryNavLink>
-        </SecondaryNav>
+    <HomeContainer>
+      <Cover>
+        <Text>
+        <Title className="title">
+          <span className="blue">BOAS VINDAS À LITERIS! 🌟</span>
+          <br /> {/* Quebra de linha */}
+          Sua jornada literária começa aqui
+        </Title>
+          <Subtitle className="subtitle">
+            Aqui, você encontra um universo de histórias, conhecimento e
+            aventuras ao alcance de um clique. Seu próximo livro favorito está
+            te esperando! 🚀
+          </Subtitle>
+          <Button>COMECE AGORA</Button>
+        </Text>
+        <img src={HomeImages} alt="" />
+      </Cover>
 
-        <HomeContainer>
-            {/* Seção Novidades */}
-            <SectionTitle>Novidades na Literis</SectionTitle>
-            <BookGrid>
-              <button className='left-arrow' onClick={() => prevSlide(currentNewBooks, setCurrentNewBooks, newBooks.length)}><IoIosArrowBack /></button>
-              {newBooks.slice(currentNewBooks, currentNewBooks + booksPerPage).map((book) => (
-                <BookCard key={book.id}>
-                  <BookImage src={book.image} alt={book.title} />
-                  <BookTitle>{book.title}</BookTitle>
-                  <BookAuthor>{book.author}</BookAuthor>
-                  <BookPrice>{book.price}</BookPrice>
-                  <DetailsButton as={Link} to={`/product/${book.id}`}>
-                    Ver Detalhes
-                  </DetailsButton>
-                </BookCard>
-              ))}
-              <button className='right-arrow' onClick={() => nextSlide(currentNewBooks, setCurrentNewBooks, newBooks.length)}><IoIosArrowForward /></button>
-            </BookGrid>
-            <hr />
+      <Cards>
+        <CardsTitle>
+          CONHEÇA O MAIS NOVO E COMPLETO
+          <br />
+          ACERVO LITERÁRIO ONLINE
+        </CardsTitle>
+        <CardsContent>
+          <Card>
+            <CardIcon>
+              <IoBookSharp  size={50} color="rgb(30, 90, 255)" />
+            </CardIcon>
+            <CardNum>1000+</CardNum>
+            <CardTitle>Livros Disponíveis</CardTitle>
+            <CardSubtitle>
+              Explore nossa vasta coleção de livros de
+              <br />
+              diversos gêneros e autores.
+            </CardSubtitle>
+          </Card>
+          <Card>
+            <CardIcon>
+              <FaUser size={50} color="rgb(30, 90, 255)" />
+            </CardIcon>
+            <CardNum>500+</CardNum>
+            <CardTitle>Autores incríveis</CardTitle>
+            <CardSubtitle>
+              Explore nossa vasta coleção de livros de
+              <br />
+              diversos gêneros e autores.
+            </CardSubtitle>
+          </Card>
+          <Card>
+            <CardIcon>
+              <FaThumbsUp size={50} color="rgb(30, 90, 255)" />
+            </CardIcon>
+            <CardNum>99%</CardNum>
+            <CardTitle>de aprovação</CardTitle>
+            <CardSubtitle>
+              Explore nossa vasta coleção de livros de
+              <br />
+              diversos gêneros e autores.
+            </CardSubtitle>
+          </Card>
+        </CardsContent>
+       
+        <Button className="button-cards">COMECE AGORA</Button>
+      </Cards>
 
-            {/* Seção Oscar 2025 */}
-            <SectionTitle>Oscar 2025: Leia antes de assistir</SectionTitle>
-            <BookGrid>
-              <button className='left-arrow' onClick={() => prevSlide(currentOscarBooks, setCurrentOscarBooks, oscarBooks.length)}><IoIosArrowBack /></button>
-              {oscarBooks.slice(currentOscarBooks, currentOscarBooks + booksPerPage).map((book) => (
-                <BookCard key={book.id}>
-                  <BookImage src={book.image} alt={book.title} />
-                  <BookTitle>{book.title}</BookTitle>
-                  <BookAuthor>{book.author}</BookAuthor>
-                  <BookPrice>{book.price}</BookPrice>
-                  <DetailsButton as={Link} to={`/product/${book.id}`}>
-                    Ver Detalhes
-                  </DetailsButton>
-                </BookCard>
-              ))}
-              <button className='right-arrow' onClick={() => nextSlide(currentOscarBooks, setCurrentOscarBooks, oscarBooks.length)}><IoIosArrowForward /></button>
-            </BookGrid>
-            <hr />
+      <Vitrine>
+        <Box>
+          <BooksImg>
+            <img src={PequenoPrincipe} alt="" className="img1" />
+            <img src={DomCasmurro} alt="" className="img2" />
+          </BooksImg>
+          <VitrineText>
+            <VitrineTitle>LIVROS EXTRAORDINÁRIOS PARA VOCÊ!</VitrineTitle>
+            <Paragraph>
+            Descubra histórias envolventes e conhecimento inspirador com nossa seleção de livros extraordinários. 
+            De aventuras emocionantes a aprendizados transformadores, há sempre uma nova página esperando por você! 📚✨
+            </Paragraph>
+            <Button>COMECE AGORA</Button>
+          </VitrineText>
+        </Box>
+      </Vitrine>
 
-            {/* Seção Autores */}
-            <SectionTitle>Autores para conhecer em 2025</SectionTitle>
-            <AuthorGrid>
-              <button className='left-arrow' onClick={() => prevSlide(currentAuthors, setCurrentAuthors, authors.length)}><IoIosArrowBack /></button>
-              {authors.slice(currentAuthors, currentAuthors + booksPerPage).map((author) => (
-                <AuthorCard key={author.id}>
-                  <AuthorImage src={author.image} alt={author.name} />
-                  <AuthorName>{author.name}</AuthorName>
-                </AuthorCard>
-              ))}
-              <button className='right-arrow' onClick={() => nextSlide(currentAuthors, setCurrentAuthors, authors.length)}><IoIosArrowForward /></button>
-            </AuthorGrid>
-            <hr />
+      {/* Seção dos livros */}
+      <Books>
+        <BooksTitle>EXPLORE NOSSAS ESTANTES DE LIVROS</BooksTitle>
+        <BookCardContainer>
+          {selectedBooks.map((book) => (
+            <BookCard key={book.id}>
+              <BookCover style={{ backgroundImage: `url(${book.image})` }} />
+              <BookName>{book.title}</BookName>
+              <Author>{book.author}</Author>
+              <Price>{book.physicalPrice}</Price>
+              <BookCardButton>ver detalhes</BookCardButton>
+            </BookCard>
+          ))}
+        </BookCardContainer>
+      </Books>
 
-            {/* Seção Cupons de desconto */}
-            {/* <SectionTitle>Cupons de desconto</SectionTitle>
-            <CupomCard>
-              <CupomImage src={Cupom2} alt="Cupom de desconto" />
-              <CupomImage src={AstronautCupom} alt="Cupom de desconto" />
-              <CupomImage src={MoonCupom} alt="Cupom de desconto" />
-            </CupomCard>
-            <hr /> */}
-
-            {/* Seção Ofertas do dia */}
-            <SectionTitle>Ofertas do dia</SectionTitle>
-            <OfferGrid>
-              <button className='left-arrow' onClick={() => prevSlide(currentOffers, setCurrentOffers, offers.length)}><IoIosArrowBack /></button>
-              {offers.slice(currentOffers, currentOffers + booksPerPage).map((offer) => (
-                <OfferCard key={offer.id}>
-                  <BookImage src={offer.image} alt={offer.title} />
-                  <BookTitle>{offer.title}</BookTitle>
-                  <BookAuthor>{offer.author}</BookAuthor>
-                  <BookPrice>{offer.price}</BookPrice>
-                  <DetailsButton as={Link} to={`/product/${offer.id}`}>
-                    Ver Detalhes
-                  </DetailsButton>
-                </OfferCard>
-              ))}
-              <button className='right-arrow' onClick={() => nextSlide(currentOffers, setCurrentOffers, offers.length)}><IoIosArrowForward /></button>
-            </OfferGrid>
-            <hr />
-        </HomeContainer>
-    </>
+    </HomeContainer>
   );
-};
-
-export default Home;
+}

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 //  importando ícones:
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaCcVisa, FaCcMastercard, FaPaypal } from 'react-icons/fa';
+import Logo from '../../imgs/LiterisLogo.png';
 
 // Importando componentes estilizados:
 import {
@@ -23,7 +24,7 @@ const Footer = () => {
       <FooterContent>
         {/* Seção da Logo e Descrição */}
         <LogoSection>
-          <LogoImage src="./src/assets/Literis.png" alt="Literis Logo" />
+          <LogoImage src={Logo} alt="Literis Logo" />
           <p>Literis - Sua jornada literária começa aqui!</p>
         </LogoSection>
 
@@ -49,19 +50,8 @@ const Footer = () => {
           </ul>
         </FooterSection>
 
-        {/* Minha Conta */}
-        <FooterSection>
-          <SectionTitle>MINHA CONTA</SectionTitle>
-          <ul>
-            <li><Link to="/login">Entrar</Link></li>
-            <li><Link to="/register">Criar Conta</Link></li>
-            <li><Link to="/cart">Meu Carrinho</Link></li>
-            <li><Link to="/cart">Lista de Desejos</Link></li>
-          </ul>
-        </FooterSection>
-
         {/* Seção de Contato */}
-        <FooterSection>
+        {/* <FooterSection>
           <SectionTitle>CONTATO</SectionTitle>
           <ul>
           <li><Link to="/">contatoliteris@gmail.com</Link></li>
@@ -69,7 +59,7 @@ const Footer = () => {
             <br />
             <li><Link to="/">Rua dos Livros Estrelosos, 123</Link></li>
           </ul>
-        </FooterSection>
+        </FooterSection> */}
 
         {/* Redes Sociais */}
         <FooterSection>
@@ -95,7 +85,8 @@ const Footer = () => {
 
       {/* Rodapé Inferior */}
       <FooterBottom>
-        <p>© {new Date().getFullYear()} Literis - Livraria Online. Todos os direitos reservados.</p>
+        <hr />
+        <p>© 2025 Literis - Livraria Online. Todos os direitos reservados.</p>
       </FooterBottom>
     </FooterContainer>
   );

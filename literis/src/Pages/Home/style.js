@@ -1,634 +1,300 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
-// Cores principais (mantidas conforme solicitado)
-const primaryColor = "rgb(67, 139, 255)";
-const secondaryColor = "rgb(77, 169, 255)";
-const gradient = "linear-gradient(to right, #6a11cb, #2575fc)";
-const lightBackground = "rgb(247, 247, 247)";
-const textColor = "#333";
-const white = "#fff";
+// Cores globais
+const colors = {
+  primary: "rgb(30, 90, 255)",
+  secondary: "rgb(59, 59, 59)",
+  background: "#FFFFFF",
+  backgroundSecondary: "#F3F4F6",
+  text: "#374151",
+  accent: "rgb(30, 90, 255)",
+};
 
+const gradientBackground = "linear-gradient(to right,rgb(255, 255, 255), rgb(240, 240, 240))";
+const gradientBackground2 = "linear-gradient(to left,rgb(255, 255, 255), rgb(240, 240, 240))";
+const gradientBackground3 = "linear-gradient(to left,rgb(0, 136, 255), rgb(73, 137, 255))";
+
+// Container principal
 export const HomeContainer = styled.div`
-  padding: 2rem;
-  background-color: ${lightBackground};
-  font-family: 'Inter', sans-serif; // Fonte moderna
+  background-color: ${colors.background};
+  color: ${colors.text};
+  font-family: "Inter", sans-serif;
+`;
 
-  @media (max-width: 768px) {
-    padding: 1rem;
-  }
+// Seção de capa
+export const Cover = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 80px 100px;
+  background: ${gradientBackground};
 
-  .slider {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .slide {
-    opacity: 0;
-    transition-duration: 1s ease;
-  }
-
-  .slide.active {
-    opacity: 1;
-    transition-duration: 1s;
-    transform: scale(1.08);
-  }
-
-  .left-arrow, .right-arrow {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.8);
-    border: none;
-    padding: 10px;
-    border-radius: 50%;
-    user-select: none;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease;
-
-    &:hover {
-      background-color: rgba(255, 255, 255, 1);
-    }
-  }
-
-  .left-arrow {
-    left: 25px;
-  }
-
-  .right-arrow {
-    right: 25px;
+  img {
+    width: 550px;
+    height: 550px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 16px;
   }
 `;
 
-export const SectionTitle = styled.h2`
-  font-size: 2rem;
-  color: #6a11cb;
-  text-align: center;
-  position: relative;
-  margin-bottom: 3rem; // Aumentei o espaçamento
+export const Text = styled.div`
+  width: 50%;
+`;
+
+export const Title = styled.h1`
+  font-family: 'Times New Roman', Times, serif;
+  width: 800px;
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1.2;
+  color:rgb(30, 90, 255);
+  text-shadow: 2px 2px 4px rgba(0, 85, 255, 0.28);
   text-transform: uppercase;
-  letter-spacing: 2px;
-  animation: fadeIn 1s ease-in-out;
-  margin-top: 2.5rem;
+  letter-spacing: 4px;
 
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  &::after {
-    content: "";
-    width: 100px;
-    height: 5px;
-    background: ${gradient};
-    display: block;
-    margin: 10px auto 0;
-    border-radius: 2px;
-    animation: slideIn 1s ease-in-out;
-  }
-
-  @keyframes slideIn {
-    from {
-      width: 0;
-    }
-    to {
-      width: 100px;
-    }
-  }
-
-  @media (max-width: 768px) {
-    font-size: 2rem;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 1.5rem;
+  span.blue {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    color:rgb(59, 59, 59);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    letter-spacing: 6px;
   }
 `;
 
-export const BookGrid = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2.5rem; // Aumentei o espaçamento entre os cards
-  padding: 1rem;
-  overflow: hidden;
-  position: relative;
-  flex-wrap: wrap;
-
-  @media (max-width: 768px) {
-    gap: 1.5rem;
-  }
-
-  @media (max-width: 480px) {
-    gap: 1rem;
-  }
+export const Subtitle = styled.p`
+  font-size: 18px;
+  color: ${colors.text};
+  margin-bottom: 40px;
+  line-height: 1.6;
+  width: 600px;
+  text-align: justify;
 `;
 
-export const ArrowButton = styled.button`
-  background: transparent;
+export const Button = styled.button`
+  background-color: ${colors.accent};
+  color: ${colors.background};
+  padding: 12px 24px;
   border: none;
-  font-size: 2rem;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
-  color: ${secondaryColor};
-  transition: transform 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem;
-  z-index: 1;
+  transition: background-color 0.3s ease;
 
   &:hover {
-    transform: scale(1.2);
-    color: ${primaryColor};
+    background-color: darken(${colors.accent}, 10%);
   }
+`;
 
-  @media (max-width: 768px) {
-    font-size: 1.5rem;
+// Seção de cards
+export const Cards = styled.div`
+  padding: 80px 100px;
+  background: ${gradientBackground2};
+  justify-content: center;
+  align-items: center;
+
+  .button-cards {
+    margin-top: 60px;
+    display: flex;
+    gap: 20px;
   }
+`;
+
+export const CardsTitle = styled.h2`
+  font-size: 36px;
+  font-weight: 700;
+  color: ${colors.secondary};
+  text-align: center;
+  margin-bottom: 60px;
+
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  letter-spacing: 4px;
+`;
+
+export const CardsContent = styled.div`
+  display: flex;
+  /* justify-content: space-between; */
+  gap: 20px;
+`;
+
+export const Card = styled.div`
+  background-color: ${colors.background};
+  border: 1px solid ${colors.backgroundSecondary};
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  width: 30%;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.2);
+  }
+`;
+
+export const CardIcon = styled.div`
+  font-size: 48px;
+  color: ${colors.primary};
+  margin-bottom: 20px;
+`;
+
+export const CardNum = styled.div`
+  font-size: 32px;
+  font-weight: 700;
+  color: ${colors.primary};
+  margin-bottom: 10px;
+`;
+
+export const CardTitle = styled.div`
+  font-size: 20px;
+  font-weight: 600;
+  color: ${colors.text};
+  margin-bottom: 10px;
+`;
+
+export const CardSubtitle = styled.div`
+  font-size: 14px;
+  color: ${colors.text};
+  line-height: 1.6;
+`;
+
+// Seção de vitrine
+export const Vitrine = styled.div`
+  padding: 80px 100px;
+  background: ${gradientBackground3};
+`;
+
+export const VitrineTitle = styled.h2`
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: ${colors.primary};
+
+  text-shadow: 2px 2px 4px rgba(0, 85, 255, 0.28);
+  letter-spacing: 4px;
+`;
+
+export const Box = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: ${colors.background};
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+`;
+
+export const BooksImg = styled.div`
+  img {
+    width: 220px;
+    height: 350px;
+    background-size: contain;
+    background-position: center;
+
+    margin-right: 40px;
+    box-shadow: rgba(72, 72, 72, 0.38) 4px 4px 6px;
+  }
+`;
+
+export const VitrineText = styled.div`
+  width: 650px;
+`;
+
+export const Paragraph = styled.p`
+  font-size: 16px;
+  color: ${colors.text};
+  line-height: 1.6;
+  margin-bottom: 40px;
+`;
+
+// Seção de livros
+export const Books = styled.div`
+  padding: 80px 100px;
+  background: ${gradientBackground2};
+`;
+
+export const BooksTitle = styled.h2`
+  font-size: 36px;
+  font-weight: 700;
+  color: ${colors.secondary};
+  text-align: center;
+  margin-bottom: 60px;
+
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  letter-spacing: 4px;
+`;
+
+export const BookCardContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const BookCard = styled.div`
-  background: ${white};
-  border-radius: 10px; // Bordas mais suaves
-  padding: 1rem; // Reduzi o padding
-  text-align: center;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  color: ${textColor};
-  position: relative;
-  overflow: hidden;
-  width: 220px; // Cards mais compactos
-  height: auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  margin-bottom: 2.5rem;
+  justify-content: center;
+  align-items: center;
+  background-color: ${colors.background};
+  border: 1px solid ${colors.backgroundSecondary};
+  border-radius: 16px;
+  padding: 24px;
+  width: 300px;
+  height: 550px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 
   &:hover {
     transform: translateY(-10px);
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-  }
-
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: ${gradient};
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 0;
-  }
-
-  &:hover::after {
-    opacity: 0.1;
-  }
-
-  @media (max-width: 768px) {
-    width: 45%;
-  }
-
-  @media (max-width: 480px) {
-    width: 100%;
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.2);
   }
 `;
 
-export const BookImage = styled.img`
+export const BookCover = styled.div`
   width: 100%;
-  max-height: 300px; // Imagens menores
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 1rem;
+  height: 380px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 12px;
+  margin-bottom: 20px;
 `;
 
-export const BookTitle = styled.h3`
-  font-size: 1.2rem; // Fonte menor
-  margin: 0.0rem 0;
-  color: ${primaryColor};
-
-  @media (max-width: 768px) {
-    font-size: 1rem;
-  }
+export const BookName = styled.div`
+  font-size: 25px;
+  font-weight: 600;
+  color: ${colors.primary};
+  margin-bottom: 5px;
 `;
 
-export const BookAuthor = styled.p`
-  font-size: 0.9rem; // Fonte menor
-  color: #666;
-
-  @media (max-width: 768px) {
-    font-size: 0.8rem;
-  }
-`;
-
-export const BookPrice = styled.p`
-  font-size: 1.1rem; // Fonte menor
-  color:rgb(195, 67, 67);
-  font-weight: bold;
-  margin: 0.5rem 0;
-
-  @media (max-width: 768px) {
-    font-size: 1rem;
-  }
-`;
-
-export const DetailsButton = styled.button`
-  background: ${gradient};
-  color: ${white};
-  border: none;
-  padding: 0.5rem 1rem; // Botão mais compacto
-  border-radius: 5px;
-  font-weight: bold;
-  transition: transform 0.3s ease, background 0.3s ease;
-  margin-top: 1rem;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  z-index: 1;
-  font-size: 0.9rem; // Fonte menor
-
-  &::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 300%;
-    height: 300%;
-    background: rgba(255, 255, 255, 0.3);
-    transform: translate(-50%, -50%) rotate(45deg);
-    transition: all 0.5s ease;
-    z-index: -1;
-  }
-
-  &:hover::after {
-    width: 0;
-    height: 0;
-  }
-
-  &:hover {
-    background: linear-gradient(to right, #2575fc, #6a11cb);
-    transform: translateY(-3px);
-  }
-
-  @media (max-width: 768px) {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.8rem;
-  }
-`;
-
-export const SeeMoreButton = styled.button`
-  background: #2575fc;
-  color: ${white};
-  border: none;
-  padding: 0.7rem 1.2rem;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: transform 0.3s ease, background 0.3s ease;
-  margin: 2rem auto;
-  display: block;
-
-  &:hover {
-    background: #6a11cb;
-    transform: translateY(-3px);
-  }
-
-  @media (max-width: 768px) {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-  }
-`;
-
-// Estilos para a seção de Autores
-export const AuthorGrid = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem; // Mais espaçamento
-  padding: 1rem;
-  overflow: hidden;
-  position: relative;
-  flex-wrap: wrap;
-  margin-bottom: 2.5rem;
-
-  @media (max-width: 768px) {
-    gap: 1.5rem;
-  }
-`;
-
-export const AuthorCard = styled.div`
-  padding: 1rem; // Reduzi o padding
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  color: ${textColor};
-  position: relative;
-  overflow: hidden;
-  width: 200px; // Cards mais compactos
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  &:hover {
-    transform: translateY(-10px);
-  }
-
-  @media (max-width: 768px) {
-    width: 45%;
-  }
-
-  @media (max-width: 480px) {
-    width: 100%;
-  }
-`;
-
-export const AuthorImage = styled.img`
-  width: 200px; // Imagens menores
-  height: 200px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin: 0 auto 1rem;
-  border: 3px solid #6a11cb;
-
-  @media (max-width: 768px) {
-    width: 120px;
-    height: 120px;
-  }
-`;
-
-export const AuthorName = styled.p`
-  font-size: 1rem;
-  color: ${textColor};
-  font-weight: bold;
-
-  @media (max-width: 768px) {
-    font-size: 0.9rem;
-  }
-`;
-
-// Estilos para a seção de Cupons
-export const CouponGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem; // Mais espaçamento
-  padding: 1rem;
-
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (max-width: 480px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-export const CouponCard = styled.div`
-  background: ${gradient};
-  color: ${white};
-  padding: 1.5rem;
-  border-radius: 10px; // Bordas mais suaves
-  text-align: center;
-  font-size: 1.2rem;
-  font-weight: bold;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-  }
-
-  @media (max-width: 768px) {
-    padding: 1rem;
-  }
-`;
-
-// Estilos para a seção de Ofertas
-export const OfferGrid = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem; // Mais espaçamento
-  padding: 1rem;
-  overflow: hidden;
-  position: relative;
-  flex-wrap: wrap;
-  margin-bottom: 2.5rem;
-
-  @media (max-width: 768px) {
-    gap: 1.5rem;
-  }
-`;
-
-export const OfferCard = styled.div`
-  background: ${white};
-  border-radius: 10px; // Bordas mais suaves
-  padding: 1rem; // Reduzi o padding
-  text-align: center;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  color: ${textColor};
-  position: relative;
-  overflow: hidden;
-  width: 220px; // Cards mais compactos
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  &:hover {
-    transform: translateY(-10px);
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-  }
-
-  @media (max-width: 768px) {
-    width: 45%;
-  }
-
-  @media (max-width: 480px) {
-    width: 100%;
-  }
-`;
-
-export const OfferImage = styled.img`
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 1rem;
-`;
-
-export const OfferTitle = styled.h3`
-  font-size: 1.1rem; // Fonte menor
-  margin: 0.5rem 0;
-  color: ${primaryColor};
-
-  @media (max-width: 768px) {
-    font-size: 1rem;
-  }
-`;
-
-export const OfferPrice = styled.p`
-  font-size: 1.1rem; // Fonte menor
-  color: ${textColor};
-  font-weight: bold;
-  margin: 0.5rem 0;
-
-  @media (max-width: 768px) {
-    font-size: 1rem;
-  }
-`;
-
-// Estilos para a seção "Conheça a Literis"
-export const AboutGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem; // Mais espaçamento
-  padding: 1rem;
-
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (max-width: 480px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-export const AboutCard = styled.div`
-  background: ${white};
-  border-radius: 10px; // Bordas mais suaves
-  padding: 1rem; // Reduzi o padding
-  text-align: center;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  color: ${textColor};
-  position: relative;
-  overflow: hidden;
-
-  &:hover {
-    transform: translateY(-10px);
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-  }
-
-  @media (max-width: 768px) {
-    padding: 1rem;
-  }
-`;
-
-export const AboutIcon = styled.div`
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: ${primaryColor};
-
-  @media (max-width: 768px) {
-    font-size: 1.5rem;
-  }
-`;
-
-export const AboutText = styled.p`
-  font-size: 1rem;
-  color: ${textColor};
-
-  @media (max-width: 768px) {
-    font-size: 0.9rem;
-  }
-`;
-
-export const SecondaryNav = styled.nav`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  padding: 1.5rem 1rem;
-  background-color: #f8f8f8;
-  border-bottom: 4px solid #6a11cb;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem;
-  }
-`;
-
-export const SecondaryNavLink = styled(Link)`
-  text-decoration: none;
-  color: gray;
+export const Author = styled.div`
+  font-size: 14px;
+  font-style: italic;
   font-weight: 500;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  color: ${colors.text};
+  margin-bottom: 15px;
+`;
+
+export const Price = styled.div`
+  font-size: 18px;
+  font-weight: 700;
+  color:rgb(0, 210, 25);
+  margin-bottom: 20px;
+`;
+
+export const BookCardButton = styled.button`
+  background-color: ${colors.primary};
+  color: ${colors.background};
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 
   &:hover {
-    color: rgb(0, 93, 192);
-  }
-
-  @media (max-width: 768px) {
-    font-size: 1rem;
-  }
-`;
-
-export const MenuCategoryIcon = styled.span`
-  font-size: 2rem;
-  color: gray;
-
-  &:hover {
-    color: rgb(0, 93, 192);
-  }
-
-  @media (max-width: 768px) {
-    font-size: 1.5rem;
-  }
-`;
-
-export const CupomCard = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-  margin: 1rem 0;
-
-  @media (max-width: 768px) {
-    gap: 0.5rem;
-  }
-`;
-
-export const CupomImage = styled.img`
-  width: 600px;
-  height: 350px;
-  transition: transform 0.3s ease;
-
-  &:hover {
-    transform: translateY(-5px);
-  }
-
-  @media (max-width: 768px) {
-    width: 100%;
-    height: auto;
-  }
-`;
-
-export const PaginationContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 1rem;
-  width: 100%;
-  position: relative;
-
-  @media (max-width: 768px) {
-    gap: 0.5rem;
+    background-color: darken(${colors.secondary}, 10%);
   }
 `;

@@ -1,35 +1,33 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useCart } from '../../Context/CartContext';
+import { FaStar, FaBook, FaBuilding, FaCalendarAlt } from 'react-icons/fa';
+import { MdLanguage } from "react-icons/md";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { books } from '../../Vitrine/livros';
-import { FaBook, FaLanguage, FaBuilding, FaCalendarAlt, FaStar } from 'react-icons/fa';
+import { useCart } from '../../Context/CartContext';
 import {
   ProductDetailsContainer,
   ProductImage,
   ProductInfo,
   ProductTitle,
   ProductAuthor,
+  RatingSection,
+  RatingStars,
   ProductDescription,
   ProductDetailsSection,
   ProductDetailsItem,
   ProductCard,
-  ProductCardPrice,
-  ProductCardDiscount,
+  PriceOptionsContainer,
+  PriceOption,
+  DiscountPrice,
+  OriginalPrice,
   ProductCardShipping,
   ProductCardStock,
   ProductCardQuantity,
   AddToCartButton,
   BuyNowButton,
   ProductCardFooter,
-  PriceOption,
-  OriginalPrice,
-  DiscountPrice,
-  RatingSection,
-  RatingStars,
-  // RatingInput,
-  RatingSubmitButton,
 } from './style';
 
 const ProductDetails = () => {
@@ -43,24 +41,11 @@ const ProductDetails = () => {
 
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
-  const [selectedVersion, setSelectedVersion] = useState('e-book'); // Estado para a versão selecionada
-  const [userRating, setUserRating] = useState(0); // Estado para a avaliação do usuário
+  const [selectedVersion, setSelectedVersion] = useState('e-book');
 
   const handleAddToCart = () => {
     addToCart({ ...livro, quantity, version: selectedVersion });
     toast.success('Livro adicionado ao carrinho!', {
-      position: 'bottom-right',
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-    });
-  };
-
-  const handleRatingSubmit = () => {
-    // Aqui você pode adicionar a lógica para enviar a avaliação do usuário
-    toast.success('Avaliação enviada com sucesso!', {
       position: 'bottom-right',
       autoClose: 3000,
       hideProgressBar: false,
@@ -75,92 +60,94 @@ const ProductDetails = () => {
     navigate('/checkout');
   };
 
-  const calculateDiscountPrice = (price, discount) => {
-    return (price * (1 - discount / 100)).toFixed(2);
-  };
+  const isOutOfStock = livro.stock <= 0;
 
   return (
     <ProductDetailsContainer>
+      {/* Imagem do produto */}
       <ProductImage src={livro.image} alt={livro.title} />
+
+      {/* Informações do produto */}
       <ProductInfo>
         <ProductTitle>{livro.title}</ProductTitle>
         <ProductAuthor>{livro.author}</ProductAuthor>
+
+        {/* Avaliação */}
         <RatingSection>
-          <FaStar color="#FFD700" />
+          <RatingStars>
+            {[1, 2, 3, 4, 5].map((star) => (
+              <FaStar
+                key={star}
+                color={star <= livro.review ? '#FFD700' : '#ccc'}
+              />
+            ))}
+          </RatingStars>
           <span>{livro.review} | {livro.totalReviews} avaliações</span>
         </RatingSection>
+
+        {/* Descrição completa */}
         <ProductDescription>{livro.FullDescription}</ProductDescription>
-        
+
+        {/* Detalhes adicionais */}
         <ProductDetailsSection>
           <ProductDetailsItem>
-            <FaBook /> <strong>Páginas:</strong> {livro.pages}
+            <FaBook color='rgb(30, 90, 255)' /><span>{livro.pages}</span>
           </ProductDetailsItem>
           <ProductDetailsItem>
-            <FaLanguage /> <strong>Idioma:</strong> {livro.language}
+          <MdLanguage color='rgb(30, 90, 255)' /> <span>{livro.language}</span>
           </ProductDetailsItem>
           <ProductDetailsItem>
-            <FaBuilding /> <strong>Editora:</strong> {livro.publisher}
+            <FaBuilding color='rgb(30, 90, 255)' /><span>{livro.publisher}</span>
           </ProductDetailsItem>
           <ProductDetailsItem>
-            <FaCalendarAlt /> <strong>Publicação:</strong> {livro.publicationDate}
+            <FaCalendarAlt color='rgb(30, 90, 255)' /> <span>{livro.publication}</span>
           </ProductDetailsItem>
         </ProductDetailsSection>
-
-        {/* Seção de Avaliação do Usuário */}
-        <RatingSection>
-            <h3>Avalie este livro:</h3>
-            <RatingStars>
-              {[1, 2, 3, 4, 5].map((star) => (
-                <FaStar
-                  key={star}
-                  color={star <= userRating ? '#FFD700' : '#ccc'}
-                  onClick={() => setUserRating(star)}
-                  style={{ cursor: 'pointer' }}
-                />
-              ))}
-            </RatingStars>
-            <RatingSubmitButton onClick={handleRatingSubmit}>
-              Enviar Avaliação
-            </RatingSubmitButton>
-        </RatingSection>
       </ProductInfo>
 
+      {/* Card de compra */}
       <ProductCard>
-        <PriceOption
-          onClick={() => setSelectedVersion('e-book')}
-          selected={selectedVersion === 'e-book'}
-        >
-          {/* <span>E-book: R$ {calculateDiscountPrice(livro.ebookPrice, livro.discount)}</span> */}
-          <span>E-book: R$ 39,99</span>
-          {livro.discount > 0 && (
-            <DiscountPrice>
-              {/* <span>{livro.discount}% de desconto</span> */}
-              <OriginalPrice>R$ {livro.ebookPrice}</OriginalPrice>
-              <span>-25%</span>
-            </DiscountPrice>
-          )}
-        </PriceOption>
-        <PriceOption
-          onClick={() => setSelectedVersion('físico')}
-          selected={selectedVersion === 'físico'}
-        >
-          {/* <span>Físico: R$ {calculateDiscountPrice(livro.physicalPrice, livro.discount)}</span> */}
-          <span>Físico: R$ 69,99</span>
-          {livro.discount > 0 && (
-            <DiscountPrice>
-              {/* <span>{livro.discount}% de desconto</span> */}
-              <OriginalPrice>R$ {livro.physicalPrice}</OriginalPrice>
-              <span>-25%</span>
-            </DiscountPrice>
-          )}
-        </PriceOption>
+        {/* Opções de preço */}
+        <PriceOptionsContainer>
+          <PriceOption
+            onClick={() => !isOutOfStock && setSelectedVersion('e-book')}
+            selected={selectedVersion === 'e-book'}
+            disabled={isOutOfStock}
+          >
+            <span>E-book: {livro.ebookPrice}</span>
+            {livro.discount > 0 && (
+              <DiscountPrice>
+                <OriginalPrice>R$ {livro.physicalPrice}</OriginalPrice>
+                <span>-25%</span>
+              </DiscountPrice>
+            )}
+          </PriceOption>
+          <PriceOption
+            onClick={() => !isOutOfStock && setSelectedVersion('físico')}
+            selected={selectedVersion === 'físico'}
+            disabled={isOutOfStock}
+          >
+            <span>Físico: {livro.physicalPrice}</span>
+            {livro.discount > 0 && (
+              <DiscountPrice>
+                <OriginalPrice>R$ {livro.physicalPrice}</OriginalPrice>
+                <span>-25%</span>
+              </DiscountPrice>
+            )}
+          </PriceOption>
+        </PriceOptionsContainer>
+
+        {/* Frete */}
         <ProductCardShipping>
           Frete grátis a partir de R$ 79,99
         </ProductCardShipping>
-        <ProductCardStock>
-          {livro.stock > 0 ? 'EM ESTOQUE' : 'FORA DE ESTOQUE'}
-          {/* EM ESTOQUE */}
+
+        {/* Estoque */}
+        <ProductCardStock isOutOfStock={isOutOfStock}>
+          {isOutOfStock ? 'FORA DE ESTOQUE' : 'EM ESTOQUE'}
         </ProductCardStock>
+
+        {/* Quantidade */}
         <ProductCardQuantity>
           <input
             placeholder="Quantidade:"
@@ -169,14 +156,19 @@ const ProductDetails = () => {
             max={livro.stock}
             value={quantity}
             onChange={(e) => setQuantity(parseInt(e.target.value))}
+            disabled={isOutOfStock}
           />
         </ProductCardQuantity>
-        <AddToCartButton onClick={handleAddToCart}>
+
+        {/* Botões de ação */}
+        <AddToCartButton onClick={handleAddToCart} disabled={isOutOfStock}>
           Adicionar ao Carrinho
         </AddToCartButton>
-        <BuyNowButton onClick={handleBuyNow}>
+        <BuyNowButton onClick={handleBuyNow} disabled={isOutOfStock}>
           Comprar Agora
         </BuyNowButton>
+
+        {/* Rodapé do card */}
         <ProductCardFooter>
           <p>Enviado por: Literis.com.br</p>
           <p>Vendido por: Literis.com.br</p>

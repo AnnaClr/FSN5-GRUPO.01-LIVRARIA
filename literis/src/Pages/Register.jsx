@@ -28,12 +28,10 @@ const Register = () => {
   };
 
   const handleGoogleLogin = () => {
-    // Lógica para login com Google
     toast.info('Login com Google selecionado');
   };
 
   const handleFacebookLogin = () => {
-    // Lógica para login com Facebook
     toast.info('Login com Facebook selecionado');
   };
 
@@ -59,13 +57,28 @@ const Register = () => {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
-        <Button onClick={handleRegister}>Registrar</Button>
-        <Divider>ou</Divider>
-        <FcGoogle onClick={handleGoogleLogin} />
-        <FaFacebook onClick={handleFacebookLogin} />
-        <p>
-          Já tem uma conta? <Link to="/login">Faça login</Link>
-        </p>
+
+        <Button onClick={handleRegister}>Criar conta</Button>
+
+        <Divider>
+          <span>OU</span>
+        </Divider> 
+
+        <SocialButtons>
+          <GoogleButton onClick={handleGoogleLogin}>
+            <FcGoogle size={20} />
+            <span>Logar com Google</span>
+          </GoogleButton>
+          <FacebookButton onClick={handleFacebookLogin}>
+            <FaFacebook size={20} color="#1877F2" />
+            <span>Logar com Facebook</span>
+          </FacebookButton>
+        </SocialButtons>
+
+        <RegisterLink>
+          Não tem uma conta? <Link to="/login">Faça login</Link>
+        </RegisterLink>
+
       </FormContainer>
     </Container>
   );
@@ -76,6 +89,38 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
+`;
+
+const Button = styled.button`
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  background-color: #6a11cb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #2575fc;
+  }
+`;
+
+const RegisterLink = styled.p`
+  margin-top: 20px;
+  font-size: 14px;
+  color: #333;
+
+  a {
+    color: #6a11cb;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `;
 
 const FormContainer = styled.div`
@@ -104,21 +149,38 @@ const Input = styled.input`
   }
 `;
 
-const Button = styled.button`
+const SocialButtons = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+`;
+
+const SocialButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   width: 100%;
   padding: 12px;
-  margin-top: 20px;
-  background-color: #6a11cb;
-  color: white;
-  border: none;
+  border: 1px solid #ddd;
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
+  background: white;
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #2575fc;
+    background-color: #f4f4f4;
   }
+`;
+
+const GoogleButton = styled(SocialButton)`
+  color: #333;
+`;
+
+const FacebookButton = styled(SocialButton)`
+  color: #1877F2;
 `;
 
 const Divider = styled.div`
