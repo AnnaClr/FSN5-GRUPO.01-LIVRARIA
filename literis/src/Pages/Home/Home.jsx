@@ -108,8 +108,6 @@ export default function Home() {
             </CardSubtitle>
           </Card>
         </CardsContent>
-       
-        <Button className="button-cards">COMECE AGORA</Button>
       </Cards>
 
       <Vitrine>
