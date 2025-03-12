@@ -13,6 +13,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useContext } from 'react';
 import { AuthContext } from './context/AuthContext';
+import Bookstore from './Pages/Bookstore/Bookstore.jsx';
 
 function App() {
   const { isAuthenticated } = useContext(AuthContext);
@@ -25,6 +26,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/product/:id" element={<ProductDetails />} />
+        <Route path="/bookstore" element={<Bookstore />} />
         <Route path="/cart" element={<Cart />} />
         {/* <Route
           path="/product/:id"

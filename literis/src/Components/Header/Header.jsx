@@ -40,7 +40,6 @@ const Header = () => {
           <Logo to="/">LITERIS</Logo>
 
           <div className="navs-center">
-            <NavLink to="/">VENDEDOR</NavLink>
             <NavLink to="/">PÁGINA INICIAL</NavLink>
             <NavLink to="/bookstore">LIVRARIA</NavLink>
             <NavLink to="/about">SOBRE NÓS</NavLink>
@@ -52,7 +51,7 @@ const Header = () => {
               <LoginButton onClick={() => navigate('/login')}><strong>LOGIN</strong></LoginButton>
             )}
             {isAuthenticated && (
-              <LoginButton onClick={handleLogout}>Logout</LoginButton>
+              <LoginButton onClick={handleLogout}>Sair</LoginButton>
             )}
           </div>
         </NavLinks>

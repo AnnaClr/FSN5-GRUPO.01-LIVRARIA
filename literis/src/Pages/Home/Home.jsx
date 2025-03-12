@@ -36,11 +36,10 @@ import PequenoPrincipe from '../../imgs/PequenoPrincipe.png';
 import DomCasmurro from '../../imgs/DomCasmurro.png';
 import { FaUser, FaThumbsUp } from "react-icons/fa";
 import { IoBookSharp } from "react-icons/io5";
-import { books } from "../../Vitrine/livros"; // Importe os dados dos livros
+import { books } from "../../Vitrine/livros";
 
 export default function Home() {
 
-    // Filtra os livros desejados
     const selectedBooks = books.filter(
       (book) =>
         book.title === "Conclave" || book.title === "Wicked" || book.title === "Ainda Estou Aqui"

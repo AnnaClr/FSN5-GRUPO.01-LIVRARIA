@@ -1,13 +1,10 @@
 import React from "react";
-import { FaBook, FaHandshake, FaShieldAlt } from "react-icons/fa"; // Ícones para os cards
-import BoyImage from "../../imgs/BoyImage.png"; // Imagem para a seção "Quem Somos"
-import GirlImage from "../../imgs/GirlImage.png"; // Imagem para a seção "Nossa Missão"
-// import Books from '../../imgs/Books.png';
+import { FaBook, FaHandshake, FaShieldAlt } from "react-icons/fa"; 
+import BoyImage from "../../imgs/BoyImage.png";
+import GirlImage from "../../imgs/GirlImage.png"; 
+
 import {
   AboutContainer,
-  //   SectionContent,
-  //   SectionImage,
-  //   SectionText,
   SectionTitle,
   CardsContainer,
   Card,
@@ -40,7 +37,7 @@ export default function About() {
         <Text>
           <Title className="title">
             <span className="blue">SOBRE NÓS ✨</span>
-            <br /> {/* Quebra de linha */}O QUE É A LITERIS?
+            <br /> O QUE É A LITERIS?
           </Title>
           <Subtitle className="subtitle">
             A Literis é uma plataforma dedicada a conectar leitores e autores em

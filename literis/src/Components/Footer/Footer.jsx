@@ -1,11 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-//  importando ícones:
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaCcVisa, FaCcMastercard, FaPaypal } from 'react-icons/fa';
 import Logo from '../../imgs/LiterisLogo.png';
 
-// Importando componentes estilizados:
 import {
   FooterContainer,
   FooterContent,
@@ -49,17 +46,6 @@ const Footer = () => {
             <li><Link to="/returns">Trocas & Devoluções</Link></li>
           </ul>
         </FooterSection>
-
-        {/* Seção de Contato */}
-        {/* <FooterSection>
-          <SectionTitle>CONTATO</SectionTitle>
-          <ul>
-          <li><Link to="/">contatoliteris@gmail.com</Link></li>
-            <li><Link to="/">Número Comercial: (88) 1234-5678</Link></li>
-            <br />
-            <li><Link to="/">Rua dos Livros Estrelosos, 123</Link></li>
-          </ul>
-        </FooterSection> */}
 
         {/* Redes Sociais */}
         <FooterSection>
