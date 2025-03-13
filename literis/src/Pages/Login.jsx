@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '../Context/AuthContext';
 import { FcGoogle } from 'react-icons/fc'; 
 import { FaFacebook } from 'react-icons/fa';
 

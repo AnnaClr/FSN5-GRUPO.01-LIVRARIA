@@ -1,18 +1,18 @@
 // src/App.jsx
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Home from './pages/Home/Home.jsx';
-import Login from './pages/Login';
-import Register from './pages/Register';
+import Home from './Pages/Home/Home.jsx';
+import Login from './Pages/Login';
+import Register from './Pages/Register';
 import ProductDetails from './Pages/ProductDetails/ProductDetail.jsx';
-import Cart from './pages/Cart/Cart.jsx';
-import Contact from './pages/Contact';
-import About from './pages/About/About.jsx';
-import Header from './components/Header/Header';
+import Cart from './Pages/Cart/Cart.jsx';
+import Contact from './Pages/Contact';
+import About from './Pages/About/About.jsx';
+import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useContext } from 'react';
-import { AuthContext } from './context/AuthContext';
+import { AuthContext } from './Context/AuthContext';
 import Bookstore from './Pages/Bookstore/Bookstore.jsx';
 
 function App() {
