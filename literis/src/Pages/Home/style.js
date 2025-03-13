@@ -4,15 +4,13 @@ import styled from "styled-components";
 const colors = {
   primary: "rgb(30, 90, 255)",
   secondary: "rgb(59, 59, 59)",
-  background: "#FFFFFF",
+  background: "rgb(255, 255, 255)",
+  background2: "rgb(245, 245, 245)",
+  background3: "rgb(0, 136, 255)",
   backgroundSecondary: "#F3F4F6",
   text: "#374151",
   accent: "rgb(30, 90, 255)",
 };
-
-const gradientBackground = "linear-gradient(to right,rgb(255, 255, 255), rgb(240, 240, 240))";
-const gradientBackground2 = "linear-gradient(to left,rgb(255, 255, 255), rgb(240, 240, 240))";
-const gradientBackground3 = "linear-gradient(to left,rgb(0, 136, 255), rgb(73, 137, 255))";
 
 // Container principal
 export const HomeContainer = styled.div`
@@ -27,7 +25,7 @@ export const Cover = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 80px 100px;
-  background: ${gradientBackground};
+  background: ${colors.background};
 
   img {
     width: 550px;
@@ -90,7 +88,7 @@ export const Button = styled.button`
 // Seção de cards
 export const Cards = styled.div`
   padding: 80px 100px;
-  background: ${gradientBackground2};
+  background: ${colors.background2};
   justify-content: center;
   align-items: center;
 
@@ -164,7 +162,7 @@ export const CardSubtitle = styled.div`
 // Seção de vitrine
 export const Vitrine = styled.div`
   padding: 80px 100px;
-  background: ${gradientBackground3};
+  background: ${colors.background3};
 `;
 
 export const VitrineTitle = styled.h2`
@@ -213,7 +211,7 @@ export const Paragraph = styled.p`
 // Seção de livros
 export const Books = styled.div`
   padding: 80px 100px;
-  background: ${gradientBackground2};
+  background: ${colors.background2};
 `;
 
 export const BooksTitle = styled.h2`

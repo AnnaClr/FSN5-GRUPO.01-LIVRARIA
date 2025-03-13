@@ -5,45 +5,24 @@ const colors = {
   primary: "rgb(30, 90, 255)",
   secondary: "rgb(59, 59, 59)",
   background: "#FFFFFF",
+  background2: "rgb(245, 245, 245)",
   backgroundSecondary: "#F3F4F6",
   text: "#374151",
-  accent: "rgb(30, 90, 255)",
+  accent: "rgb(0, 50, 187)",
 };
-
-const gradientBackground = "linear-gradient(to right, rgb(255, 255, 255), rgb(240, 240, 240))";
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-
-const scaleUp = keyframes`
-  to {
-    transform: scale(1.05);
-  }
-`;
 
 export const Container = styled.div`
   display: flex;
-  padding: 20px;
-  gap: 20px;
-  background: ${gradientBackground};
-  min-height: 100vh;
+  padding: 40px;
+  gap: 10px;
 `;
 
 export const FilterSection = styled.div`
   width: 250px;
   padding: 20px;
-  background: ${colors.backgroundSecondary};
+  background:rgb(253, 253, 253);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  animation: ${fadeIn} 0.5s ease-out;
 
   h2 {
     margin-bottom: 16px;
@@ -94,7 +73,6 @@ export const BookCard = styled.div`
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
-  animation: ${fadeIn} 0.5s ease-out;
 
   &:hover {
     transform: translateY(-5px);
@@ -103,11 +81,11 @@ export const BookCard = styled.div`
 
   img {
     width: 100%;
-    max-width: 500px;
-    height: auto;
-    max-height: 340px;
+    max-width: 200px;
+    height: 280px;
     border-radius: 8px;
     object-fit: cover;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     transition: transform 0.3s;
   }
 
@@ -122,29 +100,61 @@ export const BookCard = styled.div`
     margin: 4px 0;
     color: ${colors.secondary};
     font-size: 0.9rem;
+  } 
+
+  .price {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: rgb(0, 210, 25);
+  }
+
+  .author {
+    font-size: 0.9rem;
+    color:rgb(121, 121, 121);
+    margin-top: 8px;
+    font-style: italic;
   }
 `;
 
 export const Button = styled.button`
-  background: ${colors.accent};
+  background: ${colors.primary};
+  width: 150px;
+  justify-content: baseline;
+  align-items: center;
   color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 8px;
-  cursor: pointer;
   margin-top: 16px;
   font-size: 0.9rem;
   font-weight: 500;
   transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+
+    cursor: pointer;
 
   &:hover {
-    background: ${colors.primary};
-    transform: translateY(-2px);
+    background: ${colors.accent};
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
 
-  &:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%) rotate(45deg);
+    transition: all 0.5s ease;
+    z-index: 0;
+  }
+
+  &:hover::after {
+    width: 0;
+    height: 0;
   }
 `;

@@ -6,20 +6,21 @@ import { FaShoppingCart } from 'react-icons/fa';
 const colors = {
   primary: "rgb(30, 90, 255)",
   secondary: "rgb(59, 59, 59)",
-  background: "#FFFFFF",
+  background: "rgb(255, 255, 255)",
+  background2: "rgb(235, 235, 235)",
   backgroundSecondary: "#F3F4F6",
   text: "#374151",
   accent: "rgb(30, 90, 255)",
 };
 
-const gradientBackground = "linear-gradient(to right,rgb(255, 255, 255), rgb(240, 240, 240))";
+// const colors.background = "linear-gradient(to right,rgb(255, 255, 255), rgb(240, 240, 240))";
 
 export const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background: ${gradientBackground};
+  background: ${colors.background};
   height: 70px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 `;
@@ -30,7 +31,6 @@ export const Logo = styled(Link)`
   font-weight: 700;
   color: ${colors.primary};
   text-decoration: none;
-  /* margin-left: 70px; */
   flex: 1;
 
   &:hover {
@@ -43,8 +43,6 @@ export const NavLinks = styled.div`
   margin-right: 70px;
   display: flex;
   justify-content: space-between;
-  gap: 1rem;
-
   align-items: center;
   flex: 1;
   gap: 18rem;

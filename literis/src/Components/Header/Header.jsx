@@ -48,7 +48,7 @@ const Header = () => {
           <div className="navs-right">
             <CartIcon size={24} onClick={() => navigate('/cart')} />
             {!isAuthenticated && (
-              <LoginButton onClick={() => navigate('/login')}><strong>LOGIN</strong></LoginButton>
+              <LoginButton onClick={() => navigate('/register')}><strong>CADASTRO</strong></LoginButton>
             )}
             {isAuthenticated && (
               <LoginButton onClick={handleLogout}>Sair</LoginButton>

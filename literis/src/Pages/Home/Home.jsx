@@ -32,8 +32,8 @@ import {
 } from "./style";
 
 import HomeImages from "../../imgs/Home.png";
-import PequenoPrincipe from '../../imgs/PequenoPrincipe.png';
-import DomCasmurro from '../../imgs/DomCasmurro.png';
+import PequenoPrincipe from '../../imgs/BookImgs/PequenoPrincipe.png';
+import DomCasmurro from '../../imgs/BookImgs/DomCasmurro.png';
 import { FaUser, FaThumbsUp } from "react-icons/fa";
 import { IoBookSharp } from "react-icons/io5";
 import { books } from "../../Vitrine/livros";

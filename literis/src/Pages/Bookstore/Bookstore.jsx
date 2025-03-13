@@ -90,8 +90,8 @@ const Bookstore = () => {
           <BookCard key={book.id}>
             <img src={book.image} alt={book.title} />
             <h3>{book.title}</h3>
-            <p>{book.author}</p>
-            <p>R$ {book.physicalPrice}</p>
+            <p className="author">{book.author}</p>
+            <p className="price"><span>R$ {book.physicalPrice}</span></p>
             <Link to={`/product/${book.id}`}>
               <Button>Ver Detalhes</Button>
             </Link>

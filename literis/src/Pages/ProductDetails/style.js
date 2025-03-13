@@ -4,18 +4,16 @@ import styled from "styled-components";
 const colors = {
   primary: "rgb(30, 90, 255)",
   secondary: "rgb(59, 59, 59)",
-  background: "#FFFFFF",
+  background: "rgb(255, 255, 255)",
+  background2: "rgb(250, 250, 250)",
   backgroundSecondary: "#F3F4F6",
   text: "#374151",
   accent: "rgb(30, 90, 255)",
 };
 
-const gradientBackground = "linear-gradient(to right, rgb(255, 255, 255), rgb(240, 240, 240))";
-const gradientBackground3 = "linear-gradient(to left, rgb(0, 136, 255), rgb(73, 137, 255))";
-
 // Estilos
 export const ProductDetailsContainer = styled.div`
-  background: ${gradientBackground};
+  background: ${colors.background};
   display: flex;
   gap: 2rem;
   padding: 80px 100px;
@@ -43,7 +41,6 @@ export const ProductTitle = styled.h1`
   font-size: 2.5rem;
   color: ${colors.primary};
   margin-bottom: 0.5rem;
-  /* position: relative; */
 
   &::after {
     content: "";
@@ -51,7 +48,7 @@ export const ProductTitle = styled.h1`
     width: 80px;
     height: 5px;
     border-radius: 5px;
-    background: ${gradientBackground3};
+    background: ${colors.accent};
     margin-top: 0.5rem;
   }
 `;
@@ -82,19 +79,27 @@ export const ProductCard = styled.div`
   padding: 1.5rem;
   background: ${colors.background};
   border-radius: 5px;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
   text-align: left;
   transition: transform 0.3s ease;
 `;
 
 export const PriceOptionsContainer = styled.div`
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  display: flex;
   gap: 1rem;
   margin-bottom: 1rem;
 `;
 
 export const PriceOption = styled.div`
-  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.8rem;
   border: 1px solid ${({ selected }) => (selected ? colors.primary : "#ddd")};
   border-radius: 5px;
   cursor: pointer;
@@ -104,28 +109,23 @@ export const PriceOption = styled.div`
   pointer-events: ${({ disabled }) => (disabled ? "none" : "auto")};
   transition: all 0.3s ease;
 
-  span {
+  .version-label {
+    font-size: 0.8rem;
+    color: #666;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 0.2rem;
+  }
+
+  .version-price {
     font-size: 1.2rem;
     font-weight: bold;
+    color: ${colors.primary};
   }
 
   &:hover {
-    background: ${colors.primary};
-    color: white;
+    border-color: ${colors.primary};
   }
-`;
-
-export const DiscountPrice = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: red;
-  font-size: 0.9rem;
-`;
-
-export const OriginalPrice = styled.span`
-  text-decoration: line-through;
-  color: #666;
 `;
 
 export const ProductCardShipping = styled.div`
@@ -188,7 +188,6 @@ export const AddToCartButton = styled.button`
     width: 0;
     height: 0;
   }
-
 `;
 
 export const BuyNowButton = styled.button`
@@ -229,10 +228,11 @@ export const BuyNowButton = styled.button`
 export const ProductCardFooter = styled.div`
   font-size: 0.8rem;
   color: ${colors.text};
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 
   p {
     margin: 0.2rem 0;
+    margin-top: 5px;
   }
 `;
 
@@ -256,28 +256,18 @@ export const ProductDetailsSection = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
-  gap: 4rem;
+  gap: 3rem;
   margin-top: 2rem;
   text-align: center;
-
-  &::after {
-    content: '';
-    display: block;
-    width: 80%;
-    height: 1px;
-    background-color: ${colors.backgroundSecondary};
-    margin-top: 1rem;
-  }
 `;
 
 export const ProductDetailsItem = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   gap: 0.5rem;
-  font-size: 1rem;
+  font-size: 12px;
+  font-weight: bold;
   color: ${colors.text};
 
   svg {

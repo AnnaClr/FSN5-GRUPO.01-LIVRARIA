@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { FaStar, FaBook, FaBuilding, FaCalendarAlt } from 'react-icons/fa';
 import { MdLanguage } from "react-icons/md";
 import { toast } from 'react-toastify';
@@ -20,8 +20,6 @@ import {
   ProductCard,
   PriceOptionsContainer,
   PriceOption,
-  DiscountPrice,
-  OriginalPrice,
   ProductCardShipping,
   ProductCardStock,
   ProductCardQuantity,
@@ -44,9 +42,17 @@ const ProductDetails = () => {
   const [selectedVersion, setSelectedVersion] = useState('e-book');
 
   const handleAddToCart = () => {
-    addToCart({ ...livro, quantity, version: selectedVersion });
+    const price = selectedVersion === 'e-book' ? livro.ebookPrice : livro.physicalPrice;
+
+    addToCart({ 
+      ...livro, 
+      quantity, 
+      version: selectedVersion, 
+      price
+    });
+
     toast.success('Livro adicionado ao carrinho!', {
-      position: 'bottom-right',
+      position: 'top-right',
       autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -56,8 +62,16 @@ const ProductDetails = () => {
   };
 
   const handleBuyNow = () => {
-    addToCart({ ...livro, quantity, version: selectedVersion });
-    navigate('/checkout');
+    const price = selectedVersion === 'e-book' ? livro.ebookPrice : livro.physicalPrice;
+
+    addToCart({ 
+      ...livro, 
+      quantity, 
+      version: selectedVersion, 
+      price
+    });
+
+    navigate('/cart');
   };
 
   const isOutOfStock = livro.stock <= 0;
@@ -87,22 +101,27 @@ const ProductDetails = () => {
 
         {/* Descrição completa */}
         <ProductDescription>{livro.FullDescription}</ProductDescription>
+        <hr />
 
         {/* Detalhes adicionais */}
         <ProductDetailsSection>
-          <ProductDetailsItem>
-            <FaBook color='rgb(30, 90, 255)' /><span>{livro.pages}</span>
-          </ProductDetailsItem>
-          <ProductDetailsItem>
-          <MdLanguage color='rgb(30, 90, 255)' /> <span>{livro.language}</span>
-          </ProductDetailsItem>
-          <ProductDetailsItem>
-            <FaBuilding color='rgb(30, 90, 255)' /><span>{livro.publisher}</span>
-          </ProductDetailsItem>
-          <ProductDetailsItem>
-            <FaCalendarAlt color='rgb(30, 90, 255)' /> <span>{livro.publication}</span>
-          </ProductDetailsItem>
-        </ProductDetailsSection>
+            <ProductDetailsItem>
+              <FaBook color='rgb(30, 90, 255)' />
+              <span>{livro.pages} páginas</span>
+            </ProductDetailsItem>
+            <ProductDetailsItem>
+              <MdLanguage color='rgb(30, 90, 255)' />
+              <span>{livro.language}</span>
+            </ProductDetailsItem>
+            <ProductDetailsItem>
+              <FaBuilding color='rgb(30, 90, 255)' />
+              <span>{livro.publisher}</span>
+            </ProductDetailsItem>
+            <ProductDetailsItem>
+              <FaCalendarAlt color='rgb(30, 90, 255)' />
+              <span>Publicado em {livro.publication}</span>
+            </ProductDetailsItem>
+          </ProductDetailsSection>
       </ProductInfo>
 
       {/* Card de compra */}
@@ -114,32 +133,22 @@ const ProductDetails = () => {
             selected={selectedVersion === 'e-book'}
             disabled={isOutOfStock}
           >
-            <span>E-book: {livro.ebookPrice}</span>
-            {livro.discount > 0 && (
-              <DiscountPrice>
-                <OriginalPrice>R$ {livro.physicalPrice}</OriginalPrice>
-                <span>-25%</span>
-              </DiscountPrice>
-            )}
+            <div className="version-label">E-book</div>
+            <div className="version-price">R$ {livro.ebookPrice}0</div>
           </PriceOption>
           <PriceOption
             onClick={() => !isOutOfStock && setSelectedVersion('físico')}
             selected={selectedVersion === 'físico'}
             disabled={isOutOfStock}
           >
-            <span>Físico: {livro.physicalPrice}</span>
-            {livro.discount > 0 && (
-              <DiscountPrice>
-                <OriginalPrice>R$ {livro.physicalPrice}</OriginalPrice>
-                <span>-25%</span>
-              </DiscountPrice>
-            )}
+            <div className="version-label">Físico</div>
+            <div className="version-price">R$ {livro.physicalPrice}0</div>
           </PriceOption>
         </PriceOptionsContainer>
 
         {/* Frete */}
         <ProductCardShipping>
-          Frete grátis a partir de R$ 79,99
+          Frete grátis a partir de R$ 69,99
         </ProductCardShipping>
 
         {/* Estoque */}
@@ -164,16 +173,16 @@ const ProductDetails = () => {
         <AddToCartButton onClick={handleAddToCart} disabled={isOutOfStock}>
           Adicionar ao Carrinho
         </AddToCartButton>
-        <BuyNowButton onClick={handleBuyNow} disabled={isOutOfStock}>
-          Comprar Agora
+        <BuyNowButton disabled={isOutOfStock}>
+          <Link to='/cart' onClick={handleAddToCart}>Comprar Agora</Link>
         </BuyNowButton>
 
         {/* Rodapé do card */}
         <ProductCardFooter>
           <p>Enviado por: Literis.com.br</p>
           <p>Vendido por: Literis.com.br</p>
-          <p>Devolução: Elegível para Devolução, Reembolso ou substituição em até 30 dias após o recebimento</p>
           <p>Pagamento: Transação segura</p>
+          <p>Elegível para Devolução, Reembolso ou substituição em até 30 dias após o recebimento</p>
         </ProductCardFooter>
       </ProductCard>
     </ProductDetailsContainer>

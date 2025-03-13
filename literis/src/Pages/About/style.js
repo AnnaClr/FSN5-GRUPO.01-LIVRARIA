@@ -4,15 +4,13 @@ import styled from "styled-components";
 const colors = {
   primary: "rgb(30, 90, 255)",
   secondary: "rgb(59, 59, 59)",
-  background: "#FFFFFF",
+  background: "rgb(255, 255, 255)",
+  background2: "rgb(245, 245, 245)",
+  background3: "rgb(0, 136, 255)",
   backgroundSecondary: "#F3F4F6",
   text: "#374151",
   accent: "rgb(30, 90, 255)",
 };
-
-const gradientBackground = "linear-gradient(to right,rgb(255, 255, 255), rgb(240, 240, 240))";
-const gradientBackground2 = "linear-gradient(to left,rgb(255, 255, 255), rgb(240, 240, 240))";
-const gradientBackground3 = "linear-gradient(to left,rgb(0, 136, 255), rgb(73, 137, 255))";
 
 // Container principal
 export const AboutContainer = styled.div`
@@ -20,14 +18,9 @@ export const AboutContainer = styled.div`
   font-family: "Inter", sans-serif;
 `;
 
-export const Form = styled.section`
-  padding: 80px 100px;
-  background: ${gradientBackground2};
-`;
-
 export const Garantias = styled.section`
   padding: 80px 100px;
-  background: ${gradientBackground};
+  background: ${colors.background};
 `;
 
 export const SectionContent = styled.div`
@@ -35,7 +28,7 @@ export const SectionContent = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 80px 100px;
-  background: ${gradientBackground};
+  background: ${colors.background};
 `;
 
 export const Text = styled.div`
@@ -77,7 +70,7 @@ export const Cover = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 80px 100px;
-  background: ${gradientBackground};
+  background: ${colors.background};
 
   img {
     width: 550px;
@@ -160,38 +153,64 @@ export const CardText = styled.p`
 `;
 
 // Formulário de Contato
+
+export const Form = styled.div`
+  background: ${colors.background2};
+  width: 100%;
+  max-width: 1320px;
+  padding: 80px;
+`;
+
 export const FormContainer = styled.form`
+  background: ${colors.background};
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.5rem;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
   max-width: 600px;
   margin: 0 auto;
 `;
 
 export const FormInput = styled.input`
   padding: 12px;
-  border: 1px solid ${colors.backgroundSecondary};
+  border: 2px solid ${colors.backgroundSecondary};
   border-radius: 8px;
   font-size: 16px;
   color: ${colors.text};
+  background: ${colors.background};
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 
   &:focus {
     outline: none;
     border-color: ${colors.primary};
+    box-shadow: 0px 0px 8px rgba(30, 90, 255, 0.2);
+  }
+
+  &::placeholder {
+    color: #999;
   }
 `;
 
 export const FormTextArea = styled.textarea`
   padding: 12px;
-  border: 1px solid ${colors.backgroundSecondary};
+  border: 2px solid ${colors.backgroundSecondary};
   border-radius: 8px;
   font-size: 16px;
   color: ${colors.text};
+  background: ${colors.background};
   resize: vertical;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 
   &:focus {
     outline: none;
     border-color: ${colors.primary};
+    box-shadow: 0px 0px 8px rgba(30, 90, 255, 0.2);
+  }
+
+  &::placeholder {
+    color: #999;
   }
 `;
 
@@ -204,17 +223,22 @@ export const FormButton = styled.button`
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 
   &:hover {
     background-color: darken(${colors.primary}, 10%);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 `;
 
 // Seção de vitrine
 export const Vitrine = styled.div`
   padding: 80px 100px;
-  background: ${gradientBackground3};
+  background: ${colors.background3};
 `;
 
 export const VitrineTitle = styled.h2`
