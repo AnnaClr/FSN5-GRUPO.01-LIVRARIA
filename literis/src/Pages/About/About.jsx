@@ -110,7 +110,7 @@ export default function About() {
       {/* Seção: Formulário de Contato */}
       <Form>
         <FormContainer>
-          <SectionTitle>CONTATE-NOS!</SectionTitle>
+          <SectionTitle className="FormTitle">CONTATE-NOS!</SectionTitle>
           <FormInput type="text" placeholder="Seu nome" />
           <FormInput type="email" placeholder="Seu e-mail" />
           <FormTextArea placeholder="Sua mensagem" rows="5" />

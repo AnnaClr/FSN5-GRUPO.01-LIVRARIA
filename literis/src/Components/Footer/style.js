@@ -170,7 +170,6 @@ export const LogoSection = styled.div`
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-right: 5.8rem;
 
   p {
     width: 200px;
@@ -180,6 +179,8 @@ export const LogoSection = styled.div`
 
     @media (max-width: 480px) {
       font-size: 0.8rem;
+      display: flex;
+      flex-direction: column;
     }
   }
 `;

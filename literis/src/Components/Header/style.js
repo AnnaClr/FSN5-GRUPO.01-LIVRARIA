@@ -13,8 +13,6 @@ const colors = {
   accent: "rgb(30, 90, 255)",
 };
 
-// const colors.background = "linear-gradient(to right,rgb(255, 255, 255), rgb(240, 240, 240))";
-
 export const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
@@ -23,6 +21,10 @@ export const Nav = styled.nav`
   background: ${colors.background};
   height: 70px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 export const Logo = styled(Link)`
@@ -36,6 +38,10 @@ export const Logo = styled(Link)`
   &:hover {
     color:rgb(50, 84, 178);
   }
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
 `;
 
 export const NavLinks = styled.div`
@@ -47,17 +53,33 @@ export const NavLinks = styled.div`
   flex: 1;
   gap: 18rem;
 
+  @media (max-width: 1024px) {
+    gap: 10rem;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+
   .navs-center {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 2rem;
+
+    @media (max-width: 1024px) {
+      gap: 1rem;
+    }
   }
 
   .navs-right {
     display: flex;
     align-items: center;
     gap: 2rem;
+
+    @media (max-width: 1024px) {
+      gap: 1rem;
+    }
   }
 `;
 
@@ -117,6 +139,11 @@ export const LoginButton = styled.button`
   &:hover {
     background-color:rgb(50, 84, 178);
   }
+
+  @media (max-width: 768px) {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
 `;
 
 export const MenuIcon = styled.div`
@@ -141,6 +168,10 @@ export const MobileMenu = styled.div`
   right: 0;
   width: 100%;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+
+  @media (min-width: 769px) {
+    display: none;
+  }
 `;
 
 export const MobileNavLinks = styled.div`

@@ -134,7 +134,7 @@ const ProductDetails = () => {
             disabled={isOutOfStock}
           >
             <div className="version-label">E-book</div>
-            <div className="version-price">R$ {livro.ebookPrice}0</div>
+            <div className="version-price">R$ {livro.ebookPrice.toFixed(2)}</div>
           </PriceOption>
           <PriceOption
             onClick={() => !isOutOfStock && setSelectedVersion('físico')}
@@ -142,7 +142,7 @@ const ProductDetails = () => {
             disabled={isOutOfStock}
           >
             <div className="version-label">Físico</div>
-            <div className="version-price">R$ {livro.physicalPrice}0</div>
+            <div className="version-price">R$ {livro.physicalPrice.toFixed(2)}</div>
           </PriceOption>
         </PriceOptionsContainer>
 
