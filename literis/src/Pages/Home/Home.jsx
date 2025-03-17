@@ -10,6 +10,7 @@ import {
   CardsTitle,
   CardsContent,
   Card,
+  CardIcon,
   CardNum,
   CardTitle,
   CardSubtitle,
@@ -71,7 +72,9 @@ export default function Home() {
         </CardsTitle>
         <CardsContent>
           <Card>
-              <IoBookSharp className="cardIcon" color="rgb(30, 90, 255)" />
+            <CardIcon>
+              <IoBookSharp  size={50} color="rgb(30, 90, 255)" />
+            </CardIcon>
             <CardNum>1000+</CardNum>
             <CardTitle>Livros Disponíveis</CardTitle>
             <CardSubtitle>
@@ -81,7 +84,9 @@ export default function Home() {
             </CardSubtitle>
           </Card>
           <Card>
-              <FaUser className="cardIcon" color="rgb(30, 90, 255)" />
+            <CardIcon>
+              <FaUser size={50} color="rgb(30, 90, 255)" />
+            </CardIcon>
             <CardNum>500+</CardNum>
             <CardTitle>Autores incríveis</CardTitle>
             <CardSubtitle>
@@ -91,7 +96,9 @@ export default function Home() {
             </CardSubtitle>
           </Card>
           <Card>
-              <FaThumbsUp className="cardIcon" color="rgb(30, 90, 255)" />
+            <CardIcon>
+              <FaThumbsUp size={50} color="rgb(30, 90, 255)" />
+            </CardIcon>
             <CardNum>99%</CardNum>
             <CardTitle>de aprovação</CardTitle>
             <CardSubtitle>
@@ -115,7 +122,7 @@ export default function Home() {
             Descubra histórias envolventes e conhecimento inspirador com nossa seleção de livros extraordinários. 
             De aventuras emocionantes a aprendizados transformadores, há sempre uma nova página esperando por você! 📚✨
             </Paragraph>
-            <Button className="vitrineButton">COMECE AGORA</Button>
+            <Button>COMECE AGORA</Button>
           </VitrineText>
         </Box>
       </Vitrine>
@@ -129,7 +136,7 @@ export default function Home() {
               <BookCover style={{ backgroundImage: `url(${book.image})` }} />
               <BookName>{book.title}</BookName>
               <Author>{book.author}</Author>
-              <Price>R$ {book.physicalPrice.toFixed(2)}</Price>
+              <Price>{book.physicalPrice}</Price>
               <BookCardButton>ver detalhes</BookCardButton>
             </BookCard>
           ))}

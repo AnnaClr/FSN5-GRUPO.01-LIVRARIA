@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { FaSearch } from "react-icons/fa"; // Importando o ícone de pesquisa
 import { books } from "../../Vitrine/livros.js";
 import {
   Container,
   TopBar,
+  SearchContainer,
   SearchBar,
+  SearchIcon,
   FilterIcon,
   Content,
   FilterSection,
@@ -53,12 +56,17 @@ const Bookstore = () => {
   return (
     <Container>
       <TopBar>
-        <SearchBar
-          type="text"
-          placeholder="Pesquisar livros..."
-          value={searchQuery}
-          onChange={handleSearchChange}
-        />
+        <SearchContainer>
+          <SearchIcon>
+            <FaSearch size={16} /> {/* Ícone de pesquisa */}
+          </SearchIcon>
+          <SearchBar
+            type="text"
+            placeholder="Pesquisar livros..."
+            value={searchQuery}
+            onChange={handleSearchChange}
+          />
+        </SearchContainer>
         <FilterIcon onClick={toggleFilter}>
           {isFilterOpen ? "✖" : "☰"}
         </FilterIcon>
@@ -103,7 +111,7 @@ const Bookstore = () => {
             </select>
           </label>
 
-          <label>
+          <label className="maxPrice">
             Preço Máximo:
             <input
               type="number"

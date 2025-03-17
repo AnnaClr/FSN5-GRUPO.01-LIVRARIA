@@ -381,22 +381,18 @@ export const BookCardContainer = styled.div`
 `;
 
 export const BookCard = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: ${colors.background};
-  border: 1px solid ${colors.backgroundSecondary};
-  border-radius: 16px;
-  padding: 24px;
-  width: 300px;
-  height: 550px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: ${colors.background};
+  padding: 15px;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  width: 310px;
+  height: 430px;
 
   &:hover {
-    transform: translateY(-10px);
-    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
 
   @media (max-width: 768px) {
@@ -409,12 +405,12 @@ export const BookCard = styled.div`
 
 export const BookCover = styled.div`
   width: 100%;
-  height: 380px;
+  height: 280px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 
   @media (max-width: 768px) {
     height: 250px;
@@ -422,10 +418,10 @@ export const BookCover = styled.div`
 `;
 
 export const BookName = styled.div`
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 600;
   color: ${colors.primary};
-  margin-bottom: 5px;
+  margin-bottom: 3px;
 
   @media (max-width: 768px) {
     font-size: 25px;
@@ -434,7 +430,7 @@ export const BookName = styled.div`
 `;
 
 export const Author = styled.div`
-  font-size: 14px;
+  font-size: 12px;
   font-style: italic;
   font-weight: 500;
   color: ${colors.text};

@@ -34,9 +34,10 @@ export const Logo = styled(Link)`
   color: ${colors.primary};
   text-decoration: none;
   flex: 1;
+  transition: color 0.3s ease;
 
   &:hover {
-    color:rgb(50, 84, 178);
+    color: ${colors.text};
   }
 
   @media (max-width: 768px) {
@@ -51,7 +52,7 @@ export const NavLinks = styled.div`
   justify-content: space-between;
   align-items: center;
   flex: 1;
-  gap: 18rem;
+  gap: 16rem;
 
   @media (max-width: 1024px) {
     gap: 10rem;
@@ -120,7 +121,7 @@ export const CartIcon = styled(FaShoppingCart)`
   transition: color 0.3s ease;
 
   &:hover {
-    color:rgb(50, 84, 178);
+    color: ${colors.text};
   }
 `;
 
@@ -137,7 +138,7 @@ export const LoginButton = styled.button`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color:rgb(50, 84, 178);
+    background-color: ${colors.text};
   }
 
   @media (max-width: 768px) {

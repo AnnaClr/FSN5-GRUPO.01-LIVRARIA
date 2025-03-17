@@ -1,8 +1,8 @@
 // src/App.jsx
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Home from './pages/Home/Home.jsx';
-import Login from './pages/Login';
-import Register from './pages/Register';
+import Login from './pages/Login/Login.jsx';
+import Register from './pages/Register/Register.jsx';
 import ProductDetails from './Pages/ProductDetails/ProductDetail.jsx';
 import Cart from './pages/Cart/Cart.jsx';
 import Contact from './pages/Contact';
