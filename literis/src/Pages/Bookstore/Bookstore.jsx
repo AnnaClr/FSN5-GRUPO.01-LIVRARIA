@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaSearch } from "react-icons/fa"; // Importando o ícone de pesquisa
+import { FaSearch } from "react-icons/fa";
 import { books } from "../../Vitrine/livros.js";
 import {
   Container,
@@ -58,7 +58,7 @@ const Bookstore = () => {
       <TopBar>
         <SearchContainer>
           <SearchIcon>
-            <FaSearch size={16} /> {/* Ícone de pesquisa */}
+            <FaSearch size={16} />
           </SearchIcon>
           <SearchBar
             type="text"
