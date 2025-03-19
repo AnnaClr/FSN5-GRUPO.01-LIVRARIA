@@ -1,7 +1,7 @@
 import React from "react";
-import { FaBook, FaHandshake, FaShieldAlt } from "react-icons/fa"; 
+import { FaBook, FaHandshake, FaShieldAlt } from "react-icons/fa";
 import BoyImage from "../../imgs/BoyImage.png";
-import GirlImage from "../../imgs/GirlImage.png"; 
+import GirlImage from "../../imgs/GirlImage.png";
 
 import {
   AboutContainer,
@@ -29,6 +29,7 @@ import {
   Garantias,
   Form,
 } from "./style";
+import { Link } from "react-router-dom";
 
 export default function About() {
   return (
@@ -45,7 +46,9 @@ export default function About() {
             experiências incríveis. Nosso objetivo é oferecer um acervo
             diversificado e acessível, promovendo a cultura e o conhecimento.
           </Subtitle>
-          <Button>COMECE AGORA</Button>
+          <Button>
+            <Link to="/register">COMECE AGORA</Link>
+          </Button>
         </Text>
         <img src={BoyImage} alt="" />
       </Cover>
@@ -63,7 +66,9 @@ export default function About() {
               Acreditamos que cada livro é uma porta para novos mundos, e
               queremos ajudar você a explorá-los. 📚✨
             </Paragraph>
-            <Button>COMECE AGORA</Button>
+            <Button>
+              <Link to="/register">COMECE AGORA</Link>
+            </Button>
           </VitrineText>
         </Box>
       </Vitrine>

@@ -42,7 +42,7 @@ const Header = () => {
           <div className="navs-center">
             <NavLink to="/">PÁGINA INICIAL</NavLink>
             <NavLink to="/bookstore">LIVRARIA</NavLink>
-            <NavLink to="/vendedor" onClick={toggleMenu}>VENDEDOR</NavLink>
+            <NavLink to="/seller-login" onClick={toggleMenu}>VENDEDOR</NavLink>
             <NavLink to="/about">SOBRE NÓS</NavLink>
           </div>
 
@@ -67,7 +67,7 @@ const Header = () => {
           <MobileNavLinks>
             <NavLink to="/" onClick={toggleMenu}>página inicial</NavLink>
             <NavLink to="/bookstore" onClick={toggleMenu}>livraria</NavLink>
-            <NavLink to="/vendedor" onClick={toggleMenu}>vendedor</NavLink>
+            <NavLink to="/selle-login" onClick={toggleMenu}>vendedor</NavLink>
             <NavLink to="/about" onClick={toggleMenu}>sobre nós</NavLink>
             <NavLink to="/cart" onClick={toggleMenu}>carrinho</NavLink>
             {!isAuthenticated && (

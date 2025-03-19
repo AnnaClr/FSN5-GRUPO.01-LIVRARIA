@@ -158,7 +158,7 @@ export const ItemImage = styled.img`
   width: 80px;
   height: 120px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 4px;
 `;
 
 export const ItemInfo = styled.div`

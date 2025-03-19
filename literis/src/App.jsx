@@ -1,8 +1,10 @@
 // src/App.jsx
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Home from './pages/Home/Home.jsx';
-import Login from './pages/Login/Login.jsx';
+import Login from './Pages/Login/Login.jsx';
 import Register from './pages/Register/Register.jsx';
+import SellerLogin from './Pages/Seller/login/sellerLogin.jsx';
+import SellerRegister from './Pages/Seller/register/sellerRegister.jsx';
 import ProductDetails from './Pages/ProductDetails/ProductDetail.jsx';
 import Cart from './pages/Cart/Cart.jsx';
 import Contact from './pages/Contact';
@@ -24,6 +26,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/seller-login" element={<SellerLogin />} />
+        <Route path="/seller-register" element={<SellerRegister />} />
         <Route path="/register" element={<Register />} />
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/bookstore" element={<Bookstore />} />

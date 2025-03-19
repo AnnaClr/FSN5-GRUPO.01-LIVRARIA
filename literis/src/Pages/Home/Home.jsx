@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   HomeContainer,
   Cover,
@@ -32,34 +33,37 @@ import {
 } from "./style";
 
 import HomeImages from "../../imgs/Home.png";
-import PequenoPrincipe from '../../imgs/BookImgs/PequenoPrincipe.png';
-import DomCasmurro from '../../imgs/BookImgs/DomCasmurro.png';
+import PequenoPrincipe from "../../imgs/BookImgs/PequenoPrincipe.png";
+import DomCasmurro from "../../imgs/BookImgs/DomCasmurro.png";
 import { FaUser, FaThumbsUp } from "react-icons/fa";
 import { IoBookSharp } from "react-icons/io5";
 import { books } from "../../Vitrine/livros";
 
 export default function Home() {
-
-    const selectedBooks = books.filter(
-      (book) =>
-        book.title === "Conclave" || book.title === "Wicked" || book.title === "Ainda Estou Aqui"
-    );
+  const selectedBooks = books.filter(
+    (book) =>
+      book.title === "Conclave" ||
+      book.title === "Wicked" ||
+      book.title === "Ainda Estou Aqui"
+  );
 
   return (
     <HomeContainer>
       <Cover>
         <Text>
-        <Title className="title">
-          <span className="blue">BOAS VINDAS À LITERIS! 🌟</span>
-          <br /> {/* Quebra de linha */}
-          Sua jornada literária começa aqui
-        </Title>
+          <Title className="title">
+            <span className="blue">BOAS VINDAS À LITERIS! 🌟</span>
+            <br /> {/* Quebra de linha */}
+            Sua jornada literária começa aqui
+          </Title>
           <Subtitle className="subtitle">
             Aqui, você encontra um universo de histórias, conhecimento e
             aventuras ao alcance de um clique. Seu próximo livro favorito está
             te esperando! 🚀
           </Subtitle>
-          <Button>COMECE AGORA</Button>
+          <Button>
+            <Link to="/register">COMECE AGORA</Link>
+          </Button>
         </Text>
         <img src={HomeImages} alt="" />
       </Cover>
@@ -73,7 +77,7 @@ export default function Home() {
         <CardsContent>
           <Card>
             <CardIcon>
-              <IoBookSharp  size={50} color="rgb(30, 90, 255)" />
+              <IoBookSharp size={50} color="rgb(30, 90, 255)" />
             </CardIcon>
             <CardNum>1000+</CardNum>
             <CardTitle>Livros Disponíveis</CardTitle>
@@ -119,10 +123,14 @@ export default function Home() {
           <VitrineText>
             <VitrineTitle>LIVROS EXTRAORDINÁRIOS PARA VOCÊ!</VitrineTitle>
             <Paragraph>
-            Descubra histórias envolventes e conhecimento inspirador com nossa seleção de livros extraordinários. 
-            De aventuras emocionantes a aprendizados transformadores, há sempre uma nova página esperando por você! 📚✨
+              Descubra histórias envolventes e conhecimento inspirador com nossa
+              seleção de livros extraordinários. De aventuras emocionantes a
+              aprendizados transformadores, há sempre uma nova página esperando
+              por você! 📚✨
             </Paragraph>
-            <Button>COMECE AGORA</Button>
+            <Button>
+              <Link to="/register">COMECE AGORA</Link>
+            </Button>
           </VitrineText>
         </Box>
       </Vitrine>
@@ -136,13 +144,12 @@ export default function Home() {
               <BookCover style={{ backgroundImage: `url(${book.image})` }} />
               <BookName>{book.title}</BookName>
               <Author>{book.author}</Author>
-              <Price>{book.physicalPrice}</Price>
+              <Price>R$ {book.physicalPrice.toFixed(2)}</Price>
               <BookCardButton>ver detalhes</BookCardButton>
             </BookCard>
           ))}
         </BookCardContainer>
       </Books>
-
     </HomeContainer>
   );
 }

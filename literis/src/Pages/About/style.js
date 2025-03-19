@@ -333,12 +333,7 @@ export const FormButton = styled.button`
   transition: background-color 0.3s ease, transform 0.2s ease;
 
   &:hover {
-    background-color: darken(${colors.primary}, 10%);
-    transform: translateY(-2px);
-  }
-
-  &:active {
-    transform: translateY(0);
+    background-color: ${colors.text};
   }
 
   @media (max-width: 768px) {
@@ -419,7 +414,7 @@ export const Button = styled.button`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: darken(${colors.accent}, 10%);
+    background-color: ${colors.text};
   }
 
   @media (max-width: 768px) {

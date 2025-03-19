@@ -115,7 +115,7 @@ export const Button = styled.button`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: darken(${colors.accent}, 10%);
+    background-color: ${colors.text};
   }
 
   @media (max-width: 768px) {
@@ -466,7 +466,7 @@ export const BookCardButton = styled.button`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: darken(${colors.secondary}, 10%);
+    background-color: ${colors.text};
   }
 
   @media (max-width: 768px) {
