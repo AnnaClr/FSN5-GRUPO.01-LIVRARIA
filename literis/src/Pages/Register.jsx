@@ -13,17 +13,34 @@ const Register = () => {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleRegister = () => {
-    if (email && password && confirmPassword) {
-      if (password === confirmPassword) {
-        login();
-        toast.success('Registro realizado com sucesso!');
-        navigate('/');
-      } else {
-        toast.error('As senhas não coincidem!');
-      }
-    } else {
+  const handleRegister = async () => {
+    if (!email || !password || !confirmPassword) {
       toast.error('Preencha todos os campos!');
+      return;
+    }
+  
+    if (password !== confirmPassword) {
+      toast.error('As senhas não coincidem!');
+      return;
+    }
+  
+    try {
+      const response = await fetch('http://localhost:5000/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        toast.success(data.message);
+        navigate('/login');
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error('Erro ao registrar usuário!');
     }
   };
 

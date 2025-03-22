@@ -14,6 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useContext } from 'react';
 import { AuthContext } from './context/AuthContext';
 import Bookstore from './Pages/Bookstore/Bookstore.jsx';
+import SuggestBook from './Pages/SuggestBook/SuggestBook.jsx';
 
 function App() {
   const { isAuthenticated } = useContext(AuthContext);
@@ -28,6 +29,7 @@ function App() {
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/bookstore" element={<Bookstore />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/suggest-book" element={<SuggestBook />} />
         {/* <Route
           path="/product/:id"
           element={isAuthenticated ? <ProductDetails /> : <Navigate to="/" />}

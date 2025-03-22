@@ -32,17 +32,14 @@ const Header = () => {
     <>
       <Nav>
         {/* Logo da Livraria */}
-        {/* <Logo to="/">LITERIS</Logo> */}
-
-        {/* Links de Navegação (Desktop) */}
         <NavLinks>
-          {/* Logo da Livraria */}
           <Logo to="/">LITERIS</Logo>
 
           <div className="navs-center">
             <NavLink to="/">PÁGINA INICIAL</NavLink>
             <NavLink to="/bookstore">LIVRARIA</NavLink>
             <NavLink to="/about">SOBRE NÓS</NavLink>
+            <NavLink to="/suggest-book">SUGERIR LIVRO</NavLink> {/* Novo Link */}
           </div>
 
           <div className="navs-right">
@@ -67,6 +64,7 @@ const Header = () => {
             <NavLink to="/" onClick={toggleMenu}>página inicial</NavLink>
             <NavLink to="/bookstore" onClick={toggleMenu}>livraria</NavLink>
             <NavLink to="/about" onClick={toggleMenu}>sobre nós</NavLink>
+            <NavLink to="/suggest-book" onClick={toggleMenu}>sugerir livro</NavLink> {/* Novo Link */}
             <NavLink to="/cart" onClick={toggleMenu}>carrinho</NavLink>
             {!isAuthenticated && (
               <NavLink to="/login" onClick={toggleMenu}>LOGIN</NavLink>
