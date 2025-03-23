@@ -1,8 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const authRoutes = require('./routes/authRoutes');
-const bookRoutes = require('./routes/bookRoutes'); // Rotas do SuggestBook
+const bookRoutes = require('./routes/bookRoutes'); // Rotas de livros
 const pool = require('./config/db'); // Conexão com o banco de dados
 
 const app = express();
@@ -18,25 +17,14 @@ console.log('✅ Middleware CORS configurado com sucesso.');
 app.use(express.json());
 console.log('✅ Middleware para JSON carregado com sucesso.');
 
-// Rotas de autenticação
-app.use('/auth', authRoutes);
-console.log('✅ Rotas de autenticação carregadas.');
-
-// Rotas do SuggestBook
+// Rotas para livros
 app.use('/api', bookRoutes);
-console.log('✅ Rotas de sugestão de livros carregadas.');
+console.log('✅ Rotas de livros carregadas.');
 
 // Rota principal para verificar funcionamento do servidor
 app.get('/', (req, res) => {
   console.log('⚡ Rota principal acessada.');
   res.status(200).send('✅ Servidor rodando corretamente!');
-});
-
-// Iniciar o servidor
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`🚀 Servidor iniciado na porta ${PORT}`);
-  console.log('🌐 Tentando conexão com o banco de dados...');
 });
 
 // Verificação de conexão com o banco de dados
@@ -46,10 +34,11 @@ pool.connect()
   })
   .catch(err => {
     console.error('❌ Erro ao conectar ao banco de dados:', err.message);
-    process.exit(1); // Finaliza o processo se a conexão falhar
+    process.exit(1); // Finaliza o processo em caso de erro
   });
 
-process.on('uncaughtException', (err) => {
-  console.error('❌ Erro não tratado:', err.message);
-  process.exit(1);
+// Iniciar o servidor
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`🚀 Servidor iniciado na porta ${PORT}`);
 });

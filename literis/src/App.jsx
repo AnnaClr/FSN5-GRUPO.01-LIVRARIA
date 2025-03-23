@@ -1,5 +1,4 @@
-// src/App.jsx
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home.jsx';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -9,16 +8,11 @@ import Contact from './pages/Contact';
 import About from './pages/About/About.jsx';
 import Header from './components/Header/Header';
 import Footer from './Components/Footer/Footer';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useContext } from 'react';
-import { AuthContext } from './context/AuthContext';
 import Bookstore from './Pages/Bookstore/Bookstore.jsx';
 import SuggestBook from './Pages/SuggestBook/SuggestBook.jsx';
+import AdminPanel from './Pages/AdminPanel/AdminPanel.jsx';
 
 function App() {
-  const { isAuthenticated } = useContext(AuthContext);
-
   return (
     <Router>
       <Header />
@@ -30,19 +24,11 @@ function App() {
         <Route path="/bookstore" element={<Bookstore />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/suggest-book" element={<SuggestBook />} />
-        {/* <Route
-          path="/product/:id"
-          element={isAuthenticated ? <ProductDetails /> : <Navigate to="/" />}
-        /> */}
-        {/* <Route
-          path="/cart"
-          element={isAuthenticated ? <Cart /> : <Navigate to="/login" />}
-        /> */}
+        <Route path="/admin" element={<AdminPanel />} /> {/* Rota do painel administrativo */}
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
       </Routes>
       <Footer />
-      <ToastContainer />
     </Router>
   );
 }

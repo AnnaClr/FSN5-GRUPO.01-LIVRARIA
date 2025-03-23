@@ -31,7 +31,6 @@ const Header = () => {
   return (
     <>
       <Nav>
-        {/* Logo da Livraria */}
         <NavLinks>
           <Logo to="/">LITERIS</Logo>
 
@@ -39,39 +38,32 @@ const Header = () => {
             <NavLink to="/">PÁGINA INICIAL</NavLink>
             <NavLink to="/bookstore">LIVRARIA</NavLink>
             <NavLink to="/about">SOBRE NÓS</NavLink>
-            <NavLink to="/suggest-book">SUGERIR LIVRO</NavLink> {/* Novo Link */}
+            <NavLink to="/suggest-book">SUGERIR LIVRO</NavLink>
+            <NavLink to="/admin">PAINEL ADMINISTRATIVO</NavLink> {/* Corrigido */}
           </div>
 
           <div className="navs-right">
             <CartIcon size={24} onClick={() => navigate('/cart')} />
             {!isAuthenticated && (
-              <LoginButton onClick={() => navigate('/register')}><strong>CADASTRO</strong></LoginButton>
+              <LoginButton onClick={() => navigate('/register')}>CADASTRO</LoginButton>
             )}
             {isAuthenticated && (
-              <LoginButton onClick={handleLogout}>Sair</LoginButton>
+              <LoginButton onClick={handleLogout}>SAIR</LoginButton>
             )}
           </div>
         </NavLinks>
 
-        {/* Ícone do Menu Hambúrguer (Mobile) */}
         <MenuIcon onClick={toggleMenu}>
           <GiHamburgerMenu size={24} />
         </MenuIcon>
 
-        {/* Menu Mobile */}
         <MobileMenu isOpen={isMenuOpen}>
           <MobileNavLinks>
-            <NavLink to="/" onClick={toggleMenu}>página inicial</NavLink>
-            <NavLink to="/bookstore" onClick={toggleMenu}>livraria</NavLink>
-            <NavLink to="/about" onClick={toggleMenu}>sobre nós</NavLink>
-            <NavLink to="/suggest-book" onClick={toggleMenu}>sugerir livro</NavLink> {/* Novo Link */}
-            <NavLink to="/cart" onClick={toggleMenu}>carrinho</NavLink>
-            {!isAuthenticated && (
-              <NavLink to="/login" onClick={toggleMenu}>LOGIN</NavLink>
-            )}
-            {isAuthenticated && (
-              <LoginButton onClick={handleLogout}>Logout</LoginButton>
-            )}
+            <NavLink to="/" onClick={toggleMenu}>PÁGINA INICIAL</NavLink>
+            <NavLink to="/bookstore" onClick={toggleMenu}>LIVRARIA</NavLink>
+            <NavLink to="/about" onClick={toggleMenu}>SOBRE NÓS</NavLink>
+            <NavLink to="/suggest-book" onClick={toggleMenu}>SUGERIR LIVRO</NavLink>
+            <NavLink to="/admin" onClick={toggleMenu}>PAINEL ADMINISTRATIVO</NavLink>
           </MobileNavLinks>
         </MobileMenu>
       </Nav>
