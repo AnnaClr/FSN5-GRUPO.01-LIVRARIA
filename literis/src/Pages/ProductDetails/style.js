@@ -4,18 +4,15 @@ import styled from "styled-components";
 const colors = {
   primary: "rgb(30, 90, 255)",
   secondary: "rgb(59, 59, 59)",
-  background: "#FFFFFF",
+  background: "rgb(255, 255, 255)",
+  background2: "rgb(250, 250, 250)",
   backgroundSecondary: "#F3F4F6",
   text: "#374151",
   accent: "rgb(30, 90, 255)",
 };
 
-const gradientBackground = "linear-gradient(to right, rgb(255, 255, 255), rgb(240, 240, 240))";
-const gradientBackground3 = "linear-gradient(to left, rgb(0, 136, 255), rgb(73, 137, 255))";
-
 // Estilos
 export const ProductDetailsContainer = styled.div`
-  background: ${gradientBackground};
   display: flex;
   gap: 2rem;
   padding: 80px 100px;
@@ -24,6 +21,12 @@ export const ProductDetailsContainer = styled.div`
   margin: 0 auto;
   align-items: flex-start;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 40px 20px;
+    align-items: center;
+  }
 `;
 
 export const ProductImage = styled.img`
@@ -31,11 +34,20 @@ export const ProductImage = styled.img`
   height: auto;
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
   transition: transform 0.3s ease;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 300px;
+  }
 `;
 
 export const ProductInfo = styled.div`
   flex: 1;
   text-align: left;
+
+  @media (max-width: 768px) {
+    text-align: center;
+  }
 `;
 
 export const ProductTitle = styled.h1`
@@ -43,7 +55,6 @@ export const ProductTitle = styled.h1`
   font-size: 2.5rem;
   color: ${colors.primary};
   margin-bottom: 0.5rem;
-  /* position: relative; */
 
   &::after {
     content: "";
@@ -51,8 +62,16 @@ export const ProductTitle = styled.h1`
     width: 80px;
     height: 5px;
     border-radius: 5px;
-    background: ${gradientBackground3};
+    background: ${colors.accent};
     margin-top: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+
+    &::after {
+      margin: 0.5rem auto;
+    }
   }
 `;
 
@@ -61,6 +80,10 @@ export const ProductAuthor = styled.p`
   color: ${colors.text};
   font-style: italic;
   margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 export const ProductDescription = styled.p`
@@ -71,72 +94,103 @@ export const ProductDescription = styled.p`
   width: 100%;
   max-width: 600px;
   line-height: 1.6;
+
+  @media (max-width: 768px) {
+    text-align: center;
+    font-size: 0.9rem;
+  }
 `;
 
 export const ProductCard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 400px;
-  height: 500px;
-  padding: 1.5rem;
+  width: 350px;
+  height: auto;
+  padding: 2rem;
   background: ${colors.background};
   border-radius: 5px;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
   text-align: left;
   transition: transform 0.3s ease;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: 300px;
+    padding: 2rem;
+  }
 `;
 
 export const PriceOptionsContainer = styled.div`
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   gap: 1rem;
   margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    flex-direction: row;
+    gap: 0.5rem;
+  }
 `;
 
 export const PriceOption = styled.div`
-  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
   border: 1px solid ${({ selected }) => (selected ? colors.primary : "#ddd")};
   border-radius: 5px;
   cursor: pointer;
   background: ${({ selected }) => (selected ? "#f0f8ff" : "white")};
-  width: 150px;
+  width: 120px;
   opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
   pointer-events: ${({ disabled }) => (disabled ? "none" : "auto")};
   transition: all 0.3s ease;
 
-  span {
-    font-size: 1.2rem;
+  .version-label {
+    font-size: 0.7rem;
+    color: #666;
     font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 0.2rem;
+  }
+
+  .version-price {
+    font-size: 1rem;
+    font-weight: bold;
+    color: ${colors.primary};
   }
 
   &:hover {
-    background: ${colors.primary};
-    color: white;
+    border-color: ${colors.primary};
   }
-`;
 
-export const DiscountPrice = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: red;
-  font-size: 0.9rem;
-`;
-
-export const OriginalPrice = styled.span`
-  text-decoration: line-through;
-  color: #666;
+  @media (max-width: 768px) {
+    width: 100px;
+    padding: 0.4rem; 
+  }
 `;
 
 export const ProductCardShipping = styled.div`
   color: ${colors.text};
   margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
 `;
 
 export const ProductCardStock = styled.div`
   color: ${({ isOutOfStock }) => (isOutOfStock ? "red" : "green")};
   font-weight: bold;
   margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
 `;
 
 export const ProductCardQuantity = styled.div`
@@ -152,6 +206,10 @@ export const ProductCardQuantity = styled.div`
     border: 1px solid #ddd;
     opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
     pointer-events: ${({ disabled }) => (disabled ? "none" : "auto")};
+  }
+
+  @media (max-width: 768px) {
+    align-items: center;
   }
 `;
 
@@ -188,7 +246,6 @@ export const AddToCartButton = styled.button`
     width: 0;
     height: 0;
   }
-
 `;
 
 export const BuyNowButton = styled.button`
@@ -229,10 +286,15 @@ export const BuyNowButton = styled.button`
 export const ProductCardFooter = styled.div`
   font-size: 0.8rem;
   color: ${colors.text};
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 
   p {
     margin: 0.2rem 0;
+    margin-top: 5px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.7rem;
   }
 `;
 
@@ -241,6 +303,10 @@ export const RatingSection = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
 `;
 
 export const RatingStars = styled.div`
@@ -256,28 +322,24 @@ export const ProductDetailsSection = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
-  gap: 4rem;
+  gap: 3rem;
   margin-top: 2rem;
   text-align: center;
 
-  &::after {
-    content: '';
-    display: block;
-    width: 80%;
-    height: 1px;
-    background-color: ${colors.backgroundSecondary};
-    margin-top: 1rem;
+  @media (max-width: 768px) {
+    flex-direction: row; 
+    gap: 1rem;
+    flex-wrap: wrap;
   }
 `;
 
 export const ProductDetailsItem = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   gap: 0.5rem;
-  font-size: 1rem;
+  font-size: 12px;
+  font-weight: bold;
   color: ${colors.text};
 
   svg {
@@ -287,5 +349,10 @@ export const ProductDetailsItem = styled.div`
 
   span {
     text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+    flex: 1 1 45%;
   }
 `;

@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { FaSearch } from "react-icons/fa";
 import { books } from "../../Vitrine/livros.js";
 import {
   Container,
+  TopBar,
+  SearchContainer,
+  SearchBar,
+  SearchIcon,
+  FilterIcon,
+  Content,
   FilterSection,
   BookList,
   BookCard,
@@ -17,6 +24,9 @@ const Bookstore = () => {
     maxphysicalPrice: Infinity,
   });
 
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
     setFilters({
@@ -25,79 +35,107 @@ const Bookstore = () => {
     });
   };
 
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const toggleFilter = () => {
+    setIsFilterOpen(!isFilterOpen);
+  };
+
   const filteredBooks = books.filter((book) => {
     return (
       (filters.author === "" || book.author === filters.author) &&
       (filters.genre === "" || book.genre === filters.genre) &&
       (filters.publisher === "" || book.publisher === filters.publisher) &&
-      (filters.maxphysicalPrice === Infinity || book.physicalPrice <= filters.maxphysicalPrice)
+      (filters.maxphysicalPrice === Infinity || book.physicalPrice <= filters.maxphysicalPrice) &&
+      (book.title.toLowerCase().includes(searchQuery.toLowerCase()))
     );
   });
 
   return (
     <Container>
-      <FilterSection>
-        <h2>Filtrar por:</h2>
-        <label>
-          Autor:
-          <select name="author" onChange={handleFilterChange}>
-            <option value="">Todos</option>
-            {[...new Set(books.map((book) => book.author))].map((author) => (
-              <option key={author} value={author}>
-                {author}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <label>
-          Gênero:
-          <select name="genre" onChange={handleFilterChange}>
-            <option value="">Todos</option>
-            {[...new Set(books.map((book) => book.genre))].map((genre) => (
-              <option key={genre} value={genre}>
-                {genre}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <label>
-          Editora:
-          <select name="publisher" onChange={handleFilterChange}>
-            <option value="">Todos</option>
-            {[...new Set(books.map((book) => book.publisher))].map((publisher) => (
-              <option key={publisher} value={publisher}>
-                {publisher}
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <label>
-          Preço Máximo:
-          <input
-            type="number"
-            name="maxphysicalPrice"
-            placeholder="Preço máximo"
-            onChange={handleFilterChange}
+      <TopBar>
+        <SearchContainer>
+          <SearchIcon>
+            <FaSearch size={16} />
+          </SearchIcon>
+          <SearchBar
+            type="text"
+            placeholder="Pesquisar livros..."
+            value={searchQuery}
+            onChange={handleSearchChange}
           />
-        </label>
-      </FilterSection>
+        </SearchContainer>
+        <FilterIcon onClick={toggleFilter}>
+          {isFilterOpen ? "✖" : "☰"}
+        </FilterIcon>
+      </TopBar>
 
-      <BookList>
-        {filteredBooks.map((book) => (
-          <BookCard key={book.id}>
-            <img src={book.image} alt={book.title} />
-            <h3>{book.title}</h3>
-            <p>{book.author}</p>
-            <p>R$ {book.physicalPrice}</p>
-            <Link to={`/product/${book.id}`}>
-              <Button>Ver Detalhes</Button>
-            </Link>
-          </BookCard>
-        ))}
-      </BookList>
+      <Content>
+        <FilterSection isFilterOpen={isFilterOpen}>
+          <h2>Filtrar por:</h2>
+          <label>
+            Autor:
+            <select name="author" onChange={handleFilterChange}>
+              <option value="">Todos</option>
+              {[...new Set(books.map((book) => book.author))].map((author) => (
+                <option key={author} value={author}>
+                  {author}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label>
+            Gênero:
+            <select name="genre" onChange={handleFilterChange}>
+              <option value="">Todos</option>
+              {[...new Set(books.map((book) => book.genre))].map((genre) => (
+                <option key={genre} value={genre}>
+                  {genre}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label>
+            Editora:
+            <select name="publisher" onChange={handleFilterChange}>
+              <option value="">Todos</option>
+              {[...new Set(books.map((book) => book.publisher))].map((publisher) => (
+                <option key={publisher} value={publisher}>
+                  {publisher}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label className="maxPrice">
+            Preço Máximo:
+            <input
+              type="number"
+              name="maxphysicalPrice"
+              placeholder="Preço máximo"
+              onChange={handleFilterChange}
+            />
+          </label>
+        </FilterSection>
+
+        <BookList>
+          {filteredBooks.map((book) => (
+            <BookCard key={book.id}>
+              <img src={book.image} alt={book.title} />
+              <h3>{book.title}</h3>
+              <p className="author">{book.author}</p>
+              <p className="price"><span>R$ {(book.physicalPrice).toFixed(2)}</span></p>
+              <Link to={`/product/${book.id}`}>
+                <Button>Ver Detalhes</Button>
+              </Link>
+            </BookCard>
+          ))}
+        </BookList>
+      </Content>
     </Container>
   );
 };

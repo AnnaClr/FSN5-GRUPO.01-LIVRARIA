@@ -42,13 +42,14 @@ const Header = () => {
           <div className="navs-center">
             <NavLink to="/">PÁGINA INICIAL</NavLink>
             <NavLink to="/bookstore">LIVRARIA</NavLink>
+            <NavLink to="/vendedor" onClick={toggleMenu}>VENDEDOR</NavLink>
             <NavLink to="/about">SOBRE NÓS</NavLink>
           </div>
 
           <div className="navs-right">
             <CartIcon size={24} onClick={() => navigate('/cart')} />
             {!isAuthenticated && (
-              <LoginButton onClick={() => navigate('/login')}><strong>LOGIN</strong></LoginButton>
+              <LoginButton onClick={() => navigate('/register')}><strong>CADASTRO</strong></LoginButton>
             )}
             {isAuthenticated && (
               <LoginButton onClick={handleLogout}>Sair</LoginButton>
@@ -66,6 +67,7 @@ const Header = () => {
           <MobileNavLinks>
             <NavLink to="/" onClick={toggleMenu}>página inicial</NavLink>
             <NavLink to="/bookstore" onClick={toggleMenu}>livraria</NavLink>
+            <NavLink to="/vendedor" onClick={toggleMenu}>vendedor</NavLink>
             <NavLink to="/about" onClick={toggleMenu}>sobre nós</NavLink>
             <NavLink to="/cart" onClick={toggleMenu}>carrinho</NavLink>
             {!isAuthenticated && (

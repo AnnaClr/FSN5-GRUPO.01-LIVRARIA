@@ -19,10 +19,16 @@ const Footer = () => {
   return (
     <FooterContainer>
       <FooterContent>
-        {/* Seção da Logo e Descrição */}
+        {/* Seção da Logo, Descrição e Redes Sociais */}
         <LogoSection>
           <LogoImage src={Logo} alt="Literis Logo" />
           <p>Literis - Sua jornada literária começa aqui!</p>
+          <SocialIcons>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FaFacebook /></a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><FaTwitter /></a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
+          </SocialIcons>
         </LogoSection>
 
         {/* Seção Explore */}
@@ -33,6 +39,7 @@ const Footer = () => {
             <li><Link to="/contact">Contato</Link></li>
             <li><Link to="/categories">Categorias</Link></li>
             <li><Link to="/best-sellers">Mais Vendidos</Link></li>
+            <li><Link to="/new-releases">Lançamentos</Link></li>
           </ul>
         </FooterSection>
 
@@ -44,18 +51,20 @@ const Footer = () => {
             <li><Link to="/policy">Política de Privacidade</Link></li>
             <li><Link to="/terms">Termos de Uso</Link></li>
             <li><Link to="/returns">Trocas & Devoluções</Link></li>
+            <li><Link to="/shipping">Entregas & Prazos</Link></li>
           </ul>
         </FooterSection>
 
-        {/* Redes Sociais */}
+        {/* Seção Institucional */}
         <FooterSection>
-          <SectionTitle>REDES SOCIAIS</SectionTitle>
-          <SocialIcons>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FaFacebook /></a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><FaTwitter /></a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
-          </SocialIcons>
+          <SectionTitle>INSTITUCIONAL</SectionTitle>
+          <ul>
+            <li><Link to="/careers">Trabalhe Conosco</Link></li>
+            <li><Link to="/press">Imprensa</Link></li>
+            <li><Link to="/partners">Parceiros</Link></li>
+            <li><Link to="/blog">Blog</Link></li>
+            <li><Link to="/events">Eventos</Link></li>
+          </ul>
         </FooterSection>
 
         {/* Pagamentos Seguros */}
@@ -66,6 +75,7 @@ const Footer = () => {
             <FaCcMastercard />
             <FaPaypal />
           </PaymentIcons>
+          <p>Compra 100% segura para você!</p>
         </FooterSection>
       </FooterContent>
 

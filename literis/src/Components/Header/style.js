@@ -6,22 +6,25 @@ import { FaShoppingCart } from 'react-icons/fa';
 const colors = {
   primary: "rgb(30, 90, 255)",
   secondary: "rgb(59, 59, 59)",
-  background: "#FFFFFF",
+  background: "rgb(255, 255, 255)",
+  background2: "rgb(235, 235, 235)",
   backgroundSecondary: "#F3F4F6",
   text: "#374151",
   accent: "rgb(30, 90, 255)",
 };
-
-const gradientBackground = "linear-gradient(to right,rgb(255, 255, 255), rgb(240, 240, 240))";
 
 export const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background: ${gradientBackground};
+  background: ${colors.background};
   height: 70px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 export const Logo = styled(Link)`
@@ -30,11 +33,15 @@ export const Logo = styled(Link)`
   font-weight: 700;
   color: ${colors.primary};
   text-decoration: none;
-  /* margin-left: 70px; */
   flex: 1;
+  transition: color 0.3s ease;
 
   &:hover {
-    color:rgb(50, 84, 178);
+    color: ${colors.text};
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
   }
 `;
 
@@ -43,23 +50,37 @@ export const NavLinks = styled.div`
   margin-right: 70px;
   display: flex;
   justify-content: space-between;
-  gap: 1rem;
-
   align-items: center;
   flex: 1;
-  gap: 18rem;
+  gap: 16rem;
+
+  @media (max-width: 1024px) {
+    gap: 10rem;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 
   .navs-center {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 2rem;
+
+    @media (max-width: 1024px) {
+      gap: 1rem;
+    }
   }
 
   .navs-right {
     display: flex;
     align-items: center;
     gap: 2rem;
+
+    @media (max-width: 1024px) {
+      gap: 1rem;
+    }
   }
 `;
 
@@ -100,7 +121,7 @@ export const CartIcon = styled(FaShoppingCart)`
   transition: color 0.3s ease;
 
   &:hover {
-    color:rgb(50, 84, 178);
+    color: ${colors.text};
   }
 `;
 
@@ -117,7 +138,12 @@ export const LoginButton = styled.button`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color:rgb(50, 84, 178);
+    background-color: ${colors.text};
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
   }
 `;
 
@@ -143,6 +169,10 @@ export const MobileMenu = styled.div`
   right: 0;
   width: 100%;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+
+  @media (min-width: 769px) {
+    display: none;
+  }
 `;
 
 export const MobileNavLinks = styled.div`
