@@ -13,33 +13,38 @@ const Register = () => {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  // Função para lidar com o registro
   const handleRegister = async () => {
     if (!email || !password || !confirmPassword) {
       toast.error('Preencha todos os campos!');
       return;
     }
-  
+
     if (password !== confirmPassword) {
       toast.error('As senhas não coincidem!');
       return;
     }
-  
+
     try {
-      const response = await fetch('http://localhost:5000/auth/register', {
+      console.log("📥 Enviando dados de registro para o backend...");
+      const response = await fetch('http://localhost:3000/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
-  
+
       const data = await response.json();
-  
+
       if (response.ok) {
+        console.log("✅ Registro concluído com sucesso:", data.message);
         toast.success(data.message);
-        navigate('/login');
+        navigate('/login'); // Redireciona para a página de login
       } else {
+        console.error("❌ Erro no registro:", data.message);
         toast.error(data.message);
       }
     } catch (error) {
+      console.error("❌ Erro na requisição:", error);
       toast.error('Erro ao registrar usuário!');
     }
   };
@@ -79,7 +84,7 @@ const Register = () => {
 
         <Divider>
           <span>OU</span>
-        </Divider> 
+        </Divider>
 
         <SocialButtons>
           <GoogleButton onClick={handleGoogleLogin}>
@@ -93,51 +98,19 @@ const Register = () => {
         </SocialButtons>
 
         <RegisterLink>
-          Não tem uma conta? <Link to="/login">Faça login</Link>
+          Já tem uma conta? <Link to="/login">Faça login</Link>
         </RegisterLink>
-
       </FormContainer>
     </Container>
   );
 };
 
+// Estilização para o Registro
 const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-`;
-
-const Button = styled.button`
-  width: 100%;
-  padding: 12px;
-  margin-top: 20px;
-  background-color: #6a11cb;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: #2575fc;
-  }
-`;
-
-const RegisterLink = styled.p`
-  margin-top: 20px;
-  font-size: 14px;
-  color: #333;
-
-  a {
-    color: #6a11cb;
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
 `;
 
 const FormContainer = styled.div`
@@ -163,6 +136,43 @@ const Input = styled.input`
 
   &:focus {
     border-color: #6a11cb;
+  }
+`;
+
+const Button = styled.button`
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  background-color: #6a11cb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #2575fc;
+  }
+`;
+
+const Divider = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+
+  span {
+    padding: 0 10px;
+    color: #888;
+    font-size: 14px;
+    background: white;
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #ddd;
   }
 `;
 
@@ -200,23 +210,18 @@ const FacebookButton = styled(SocialButton)`
   color: #1877F2;
 `;
 
-const Divider = styled.div`
-  display: flex;
-  align-items: center;
-  margin: 20px 0;
+const RegisterLink = styled.p`
+  margin-top: 20px;
+  font-size: 14px;
+  color: #333;
 
-  span {
-    padding: 0 10px;
-    color: #888;
-    font-size: 14px;
-    background: white;
-  }
+  a {
+    color: #6a11cb;
+    text-decoration: none;
 
-  &::before,
-  &::after {
-    content: '';
-    flex: 1;
-    border-bottom: 1px solid #ddd;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `;
 

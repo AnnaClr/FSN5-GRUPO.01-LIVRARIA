@@ -1,22 +1,28 @@
-const bcrypt = require('bcryptjs');
-const User = require('../models/userModel');
+const UserModel = require('../models/userModel');
 
-exports.register = async (req, res) => {
-  const { email, password } = req.body;
+const AuthController = {
+  // Função para registrar um novo usuário
+  async register(req, res) {
+    try {
+      const { email, password } = req.body;
+      console.log("📥 Recebendo dados para registro:", req.body);
 
-  try {
-    const existingUser = await User.findByEmail(email);
-    if (existingUser) {
-      return res.status(400).json({ message: 'Email já cadastrado!' });
+      // Verifica se o email já está registrado
+      const existingUser = await UserModel.findByEmail(email);
+      if (existingUser) {
+        console.log("❌ Email já registrado:", email);
+        return res.status(400).json({ message: 'Email já registrado.' });
+      }
+
+      // Cria um novo usuário
+      const newUser = await UserModel.create({ email, password });
+      console.log("✅ Usuário registrado com sucesso:", newUser);
+      res.status(201).json({ message: 'Usuário registrado com sucesso!', user: newUser });
+    } catch (error) {
+      console.error("❌ Erro ao registrar usuário:", error.message);
+      res.status(500).json({ message: 'Erro ao registrar usuário.', error: error.message });
     }
-
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
-
-    await User.create(email, hashedPassword);
-
-    res.status(201).json({ message: 'Usuário cadastrado com sucesso!' });
-  } catch (error) {
-    res.status(500).json({ message: 'Erro no servidor' });
-  }
+  },
 };
+
+module.exports = AuthController;

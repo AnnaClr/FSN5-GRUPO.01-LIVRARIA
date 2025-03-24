@@ -5,3 +5,9 @@ CREATE TABLE books (
   description TEXT NOT NULL,
   image_url TEXT
 );
+
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password VARCHAR(255) NOT NULL
+);
