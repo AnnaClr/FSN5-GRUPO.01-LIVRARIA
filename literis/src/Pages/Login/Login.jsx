@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthContext';
+import { AuthContext } from '../../context/AuthContext'; // Importando o AuthContext
 import { FcGoogle } from 'react-icons/fc';
 import { FaFacebook } from 'react-icons/fa';
 import {
@@ -20,7 +20,7 @@ import {
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { login } = useContext(AuthContext);
+  const { login } = useContext(AuthContext); // Acessando a função login do AuthContext
   const navigate = useNavigate();
 
   // Função para validar o formato do e-mail
@@ -46,8 +46,8 @@ const Login = () => {
     );
   };
 
-  const handleLogin = () => {
-    // Validação do e-mail
+  // Função de login com o backend
+  const handleLogin = async () => {
     if (!email) {
       toast.error('Por favor, insira seu e-mail.');
       return;
@@ -56,8 +56,6 @@ const Login = () => {
       toast.error('Por favor, insira um e-mail válido.');
       return;
     }
-
-    // Validação da senha
     if (!password) {
       toast.error('Por favor, insira sua senha.');
       return;
@@ -69,10 +67,32 @@ const Login = () => {
       return;
     }
 
-    // Se tudo estiver válido, prossegue com o login
-    login();
-    toast.success('Login realizado com sucesso!');
-    navigate('/');
+    try {
+      const response = await fetch('http://localhost:5000/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        toast.error(data.error || 'Erro ao fazer login.');
+        return;
+      }
+
+      // Atualizando o contexto com os dados do usuário
+      login({
+        email: data.user.email, // Armazenando o e-mail do usuário
+        token: data.token, // Armazenando o token JWT
+      });
+
+      toast.success('Login realizado com sucesso!');
+      navigate('/'); // Redireciona para a página principal
+    } catch (error) {
+      toast.error('Erro ao conectar com o servidor.');
+      console.error('Erro no login:', error);
+    }
   };
 
   const handleGoogleLogin = () => {

@@ -20,7 +20,8 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const { login } = useContext(AuthContext);
+  const [name, setName] = useState(''); // Adicionando o estado para o nome
+  const { login } = useContext(AuthContext); // Usando a função login do contexto
   const navigate = useNavigate();
 
   // Função para validar o formato do e-mail
@@ -46,7 +47,13 @@ const Register = () => {
     );
   };
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
+    // Validação do nome
+    if (!name) {
+      toast.error('Por favor, insira seu nome.');
+      return;
+    }
+
     // Validação do e-mail
     if (!email) {
       toast.error('Por favor, insira seu e-mail.');
@@ -79,10 +86,30 @@ const Register = () => {
       return;
     }
 
-    // Se tudo estiver válido, prossegue com o registro
-    login();
-    toast.success('Registro realizado com sucesso!');
-    navigate('/');
+    try {
+      const response = await fetch('http://localhost:5000/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password, name }), // Enviando o nome para o backend
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        toast.error(data.error || 'Erro ao registrar usuário.');
+        return;
+      }
+
+      toast.success('Conta criada com sucesso!');
+      localStorage.setItem('token', data.token); // Armazena o token JWT
+      login({ email, token: data.token }); // Usando a função login para atualizar o contexto
+
+      navigate('/'); // Redireciona para a página principal
+
+    } catch (error) {
+      toast.error('Erro ao conectar com o servidor.');
+      console.error('Erro no registro:', error);
+    }
   };
 
   const handleGoogleLogin = () => {
@@ -97,6 +124,12 @@ const Register = () => {
     <Container>
       <FormContainer>
         <h1>Registro</h1>
+        <Input
+          type="text"
+          placeholder="Nome"
+          value={name}
+          onChange={(e) => setName(e.target.value)} // Adicionando controle do campo de nome
+        />
         <Input
           type="email"
           placeholder="Email"
