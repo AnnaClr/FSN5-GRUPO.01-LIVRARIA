@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home/Home.jsx';
-import Login from './pages/Login';
-import Register from './pages/Register';
+import Home from './Pages/Home/Home.jsx';
+import Login from './Pages/Login/Login.jsx';
+import Register from './Pages/Register/Register';
 import ProductDetails from './Pages/ProductDetails/ProductDetail.jsx';
-import Cart from './pages/Cart/Cart.jsx';
-import Contact from './pages/Contact';
-import About from './pages/About/About.jsx';
+import Cart from './Pages/Cart/Cart.jsx';
+import Contact from './Pages/Contact';
+import About from './Pages/About/About.jsx';
 import Header from './components/Header/Header';
 import Footer from './Components/Footer/Footer';
 import Bookstore from './Pages/Bookstore/Bookstore.jsx';
