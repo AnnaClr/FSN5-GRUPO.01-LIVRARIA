@@ -13,7 +13,7 @@ const SuggestBookForm = () => {
     title: "",
     author: "",
     description: "",
-    imageUrl: "", // Novo campo para o link da imagem
+    imageUrl: "",  
   });
 
   const handleChange = (e) => {

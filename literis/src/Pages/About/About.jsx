@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaBook, FaHandshake, FaShieldAlt } from "react-icons/fa"; 
 import BoyImage from "../../imgs/BoyImage.png";
 import GirlImage from "../../imgs/GirlImage.png"; 
+import axios from "axios";
 
 import {
   AboutContainer,
@@ -31,6 +32,31 @@ import {
 } from "./style";
 
 export default function About() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const [feedback, setFeedback] = useState(""); // Para exibir mensagens de sucesso/erro
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Evitar recarregar a página
+    try {
+      const response = await axios.post("http://localhost:3000/api/contact", formData);
+      setFeedback("Mensagem enviada com sucesso! Obrigado por entrar em contato.");
+      setFormData({ name: "", email: "", message: "" }); // Limpar os campos do formulário
+    } catch (error) {
+      console.error("Erro ao enviar mensagem:", error.message);
+      setFeedback("Ocorreu um erro ao enviar sua mensagem. Tente novamente.");
+    }
+  };
+
   return (
     <AboutContainer>
       <Cover>
@@ -108,13 +134,32 @@ export default function About() {
       </Garantias>
 
       {/* Seção: Formulário de Contato */}
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <FormContainer>
           <SectionTitle className="FormTitle">CONTATE-NOS!</SectionTitle>
-          <FormInput type="text" placeholder="Seu nome" />
-          <FormInput type="email" placeholder="Seu e-mail" />
-          <FormTextArea placeholder="Sua mensagem" rows="5" />
-          <FormButton>Enviar Mensagem</FormButton>
+          <FormInput
+            type="text"
+            name="name"
+            placeholder="Seu nome"
+            value={formData.name}
+            onChange={handleChange}
+          />
+          <FormInput
+            type="email"
+            name="email"
+            placeholder="Seu e-mail"
+            value={formData.email}
+            onChange={handleChange}
+          />
+          <FormTextArea
+            name="message"
+            placeholder="Sua mensagem"
+            rows="5"
+            value={formData.message}
+            onChange={handleChange}
+          />
+          <FormButton type="submit">Enviar Mensagem</FormButton>
+          {feedback && <p>{feedback}</p>} {/* Exibe a mensagem de sucesso ou erro */}
         </FormContainer>
       </Form>
     </AboutContainer>

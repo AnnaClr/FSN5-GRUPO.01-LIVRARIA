@@ -50,8 +50,47 @@ const Cart = () => {
     };
   }).filter(Boolean);
 
-  const handleCheckout = () => {
-    setIsModalOpen(true);
+  // Lógica de integração com o backend
+  const handleCheckout = async () => {
+    if (cart.length === 0) {
+      toast.error('Seu carrinho está vazio!');
+      return;
+    }
+
+    const cartData = cartWithDetails.map(item => ({
+      id: item.id,
+      title: item.title,
+      quantity: item.quantity,
+      price: item.price
+    }));
+
+    const orderData = {
+      cart: cartData,
+      paymentMethod
+    };
+
+    try {
+      const response = await fetch('http://localhost:3000/api/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(orderData)
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Erro ao processar o pedido');
+      }
+
+      const responseData = await response.json();
+      toast.success('Pedido realizado com sucesso!');
+      console.log('Resposta do servidor:', responseData);
+
+      clearCart(); // Limpar o carrinho após finalizar a compra
+      closeModal(); // Fechar o modal
+    } catch (error) {
+      toast.error(`Erro: ${error.message}`);
+      console.error('Erro ao enviar o pedido:', error);
+    }
   };
 
   const closeModal = () => {
@@ -77,7 +116,7 @@ const Cart = () => {
   // Calcula o total a pagar (preço do livro * quantidade + frete)
   const calculateTotal = () => {
     const total = cartWithDetails.reduce((total, item) => {
-      const price = parseNumber(item.price); // Usa o preço correto (e-book ou físico)
+      const price = parseNumber(item.price);
       const quantity = parseNumber(item.quantity);
       return total + price * quantity;
     }, 0);

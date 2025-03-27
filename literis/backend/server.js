@@ -5,7 +5,7 @@ const bookRoutes = require('./routes/bookRoutes'); // Rotas de livros
 const userRoutes = require('./routes/userRoutes');
 const pool = require('./config/db'); // Conexão com o banco de dados
 const contactRoutes = require('./routes/contactRoutes');
-
+const orderRoutes = require('./routes/orderRoutes'); // Rotas de pedidos
 
 const app = express();
 
@@ -21,6 +21,9 @@ console.log('✅ Middleware para JSON carregado.');
 
 app.use('/api', contactRoutes);
 console.log('✅ Rotas de contatos carregadas.');
+
+app.use('/api', orderRoutes); // Registra o endpoint com o caminho correto
+console.log('✅ Rotas de carrinho carregadas.');
 // Rotas para livros
 app.use('/api', bookRoutes);
 console.log('✅ Rotas de livros carregadas.');

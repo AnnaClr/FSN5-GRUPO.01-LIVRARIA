@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaClock, FaLinkedin, FaInstagram } from 'react-icons/fa';
+import { FaEnvelope, FaPhone, FaLinkedin, FaInstagram } from 'react-icons/fa';
+import axios from 'axios';
 
+// Animação de fade in
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -13,6 +15,7 @@ const fadeIn = keyframes`
   }
 `;
 
+// Estilização com styled-components
 const Container = styled.div`
   max-width: 800px;
   margin: 40px auto;
@@ -67,7 +70,8 @@ const Form = styled.form`
     color: #333;
   }
 
-  input, textarea {
+  input,
+  textarea {
     width: 100%;
     padding: 12px;
     margin-top: 8px;
@@ -128,31 +132,87 @@ const SocialIcons = styled.div`
   }
 `;
 
+// Componente principal
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+
+  const [feedback, setFeedback] = useState('');
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:3000/api/contact', formData);
+      setFeedback(response.data.message);
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      console.error('Erro ao enviar mensagem:', error);
+      setFeedback('Falha ao enviar mensagem. Tente novamente.');
+    }
+  };
+
   return (
     <Container>
       <h1>ENTRE EM CONTATO</h1>
       <p>Estamos aqui para te ajudar com o necessário! Contate-nos por meios de nossas redes sociais ou envie-nos uma mensagem.</p>
       <Info>
-        <p><FaEnvelope /> <a href="mailto:contato@literis.com">contato@literis.com</a></p>
-        <p><FaPhone /> <a href="tel:+551112345678">(11) 1234-5678</a></p>
+        <p>
+          <FaEnvelope /> <a href="mailto:contato@literis.com">contato@literis.com</a>
+        </p>
+        <p>
+          <FaPhone /> <a href="tel:+551112345678">(11) 1234-5678</a>
+        </p>
       </Info>
       <SocialIcons>
-        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+          <FaLinkedin />
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+          <FaInstagram />
+        </a>
       </SocialIcons>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <label>Nome</label>
-        <input type="text" placeholder="Digite o seu nome completo" required />
-        
+        <input
+          type="text"
+          name="name"
+          placeholder="Digite o seu nome completo"
+          value={formData.name}
+          onChange={handleChange}
+          required
+        />
+
         <label>Email</label>
-        <input type="email" placeholder="Digite o seu email" required />
-        
+        <input
+          type="email"
+          name="email"
+          placeholder="Digite o seu email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
+
         <label>Mensagem</label>
-        <textarea placeholder="Digite a sua mensagem" rows="5" required></textarea>
-        
+        <textarea
+          name="message"
+          placeholder="Digite a sua mensagem"
+          value={formData.message}
+          onChange={handleChange}
+          rows="5"
+          required
+        ></textarea>
+
         <button type="submit">Enviar Mensagem</button>
       </Form>
+      {feedback && <p>{feedback}</p>}
     </Container>
   );
 };
