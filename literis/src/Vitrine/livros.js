@@ -13,12 +13,12 @@ import BrasCubas from "../imgs/BookImgs/BrasCubas.png";
 import QuartoDeDespejo from '../imgs/BookImgs/QuartoDeDespejo.png';
 import HoraDaEstrela from "../imgs/BookImgs/HoraDaEstrela.png";
 import PonciaVicencio from "../imgs/BookImgs/PonciaVicencio.png";
-// import OlhosDAgua from '../imgs/BookImgs/OlhosDAgua
-// import ContoDaAia from '../imgs/BookImgs/ContoDaAia';
-// import Kindred from '../imgs/BookImgs/Kindred
-// import Americanah from '../imgs/BookImgs/Americanah
-// import CorPurpura from '../imgs/BookImgs/CorPurpura
-// import Persepolis from '../imgs/BookImgs/Persepolis
+import OlhosDAgua from "../imgs/BookImgs/OlhosDAgua.jpg";
+import ContoDaAia from "../imgs/BookImgs/ContoDaAia.jpg";
+import Kindred from "../imgs/BookImgs/Kindred.jpg";
+import Americanah from "../imgs/BookImgs/Americanah.jpg";
+import CorPurpura from "../imgs/BookImgs/CorPurpura.jpg";
+import Persepolis from "../imgs/BookImgs/Persepolis.jpg";
 
 
 export const books = [
@@ -171,7 +171,7 @@ export const books = [
       publisher: "Editora Pallas",
       language: "Português",
       pages: 144,
-      // image: OlhosDAgua,
+      image: OlhosDAgua,
     },
     {
       id: 9,
@@ -190,7 +190,7 @@ export const books = [
       publisher: "Editora Rocco",
       language: "Inglês",
       pages: 368,
-      // image: ContoDaAia,
+      image: ContoDaAia,
     },
     {
       id: 10,
@@ -209,7 +209,7 @@ export const books = [
       publisher: "Editora Morro Branco",
       language: "Inglês",
       pages: 288,
-      // image: Kindred,
+      image: Kindred,
     },
     {
       id: 11,
@@ -228,7 +228,7 @@ export const books = [
       publisher: "Editora Companhia das Letras",
       language: "Inglês",
       pages: 520,
-      // image: Americanah,
+      image: Americanah,
     },
     {
       id: 12,
@@ -247,7 +247,7 @@ export const books = [
       publisher: "Editora José Olympio",
       language: "Inglês",
       pages: 304,
-      // image: CorPurpura,
+      image: CorPurpura,
     },
     {
       id: 13,
@@ -266,7 +266,7 @@ export const books = [
       publisher: "Editora Companhia das Letras",
       language: "Francês",
       pages: 352,
-      // image: Persepolis,
+      image: Persepolis,
     },
     {
       id: 14,
