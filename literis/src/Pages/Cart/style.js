@@ -119,8 +119,6 @@ export const TableHeader = styled.div`
   padding: 1rem;
   font-weight: bold;
   margin-bottom: 10px;
-  /* border-bottom: 2px solid rgb(149, 149, 149); */
-  /* border-top: 2px solid rgb(149, 149, 149); */
   color:rgb(149, 149, 149);
   text-transform: uppercase;
 `;
@@ -302,18 +300,37 @@ export const InvalidCouponMessage = styled.p`
 `;
 
 export const CheckoutButton = styled.button`
-  background: ${colors.primary};
-  color: ${colors.background};
+  background: linear-gradient(to right, #34a853, #2d9147);
+  color: white;
   border: none;
   padding: 0.7rem 1.2rem;
   border-radius: 8px;
   font-weight: bold;
+  transition: transform 0.3s ease, background 0.3s ease;
+  margin-top: 1rem;
+  position: relative;
+  overflow: hidden;
   cursor: pointer;
   width: 100%;
-  transition: background 0.3s ease;
+  opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
+  pointer-events: ${({ disabled }) => (disabled ? "none" : "auto")};
 
-  &:hover {
-    background: darken(${colors.primary}, 10%);
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%) rotate(45deg);
+    transition: all 0.5s ease;
+    z-index: 0;
+  }
+
+  &:hover::after {
+    width: 0;
+    height: 0;
   }
 `;
 
@@ -365,7 +382,7 @@ export const ModalContent = styled.div`
     transition: background 0.3s ease;
 
     &:hover {
-      background: darken(${colors.primary}, 10%);
+      background: ${colors.text};
     }
   }
 `;
