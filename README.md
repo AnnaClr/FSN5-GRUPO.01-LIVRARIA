@@ -57,4 +57,4 @@ Este projeto está licenciado sob a MIT License - veja o arquivo [LICENSE](LICEN
 ```
 
 ---
-Desenvolvido por **Ana Clara**, **Tailan**, **Arthur**, **José Matheus** e **Ismael**
+Desenvolvido por **Ana Clara**, **Tailan**, **Arthur Rebouças**, **José Matheus** e **Ismael**
