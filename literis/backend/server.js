@@ -4,6 +4,8 @@ const cors = require('cors');
 const bookRoutes = require('./routes/bookRoutes'); // Rotas de livros
 const userRoutes = require('./routes/userRoutes');
 const pool = require('./config/db'); // Conexão com o banco de dados
+const contactRoutes = require('./routes/contactRoutes');
+
 
 const app = express();
 
@@ -16,6 +18,12 @@ console.log('✅ Middleware CORS configurado.');
 // Middleware para JSON
 app.use(express.json());
 console.log('✅ Middleware para JSON carregado.');
+
+app.use('/api', contactRoutes);
+console.log('✅ Rotas de contatos carregadas.');
+// Rotas para livros
+app.use('/api', bookRoutes);
+console.log('✅ Rotas de livros carregadas.');
 
 // Rotas para usuários – observe o caminho '/api/user'
 app.use('/api/user', userRoutes);
