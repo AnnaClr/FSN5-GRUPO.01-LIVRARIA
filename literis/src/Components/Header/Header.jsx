@@ -42,7 +42,7 @@ const Header = () => {
           <div className="navs-center">
             <NavLink to="/">PÁGINA INICIAL</NavLink>
             <NavLink to="/bookstore">LIVRARIA</NavLink>
-            <NavLink to="/seller-login" onClick={toggleMenu}>VENDEDOR</NavLink>
+            <NavLink to="/seller-login">VENDEDOR</NavLink>
             <NavLink to="/about">SOBRE NÓS</NavLink>
           </div>
 
